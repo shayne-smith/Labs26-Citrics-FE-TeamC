@@ -1,23 +1,24 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 import {
   BrowserRouter as Router,
   Route,
   useHistory,
-  Switch,
-} from 'react-router-dom';
-import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
+  Switch
+} from "react-router-dom";
+import { Security, LoginCallback, SecureRoute } from "@okta/okta-react";
 
-import 'antd/dist/antd.less';
+import "antd/dist/antd.less";
+import "./index.css";
 
-import { NotFoundPage } from './components/pages/NotFound';
-import { ExampleListPage } from './components/pages/ExampleList';
-import { ProfileListPage } from './components/pages/ProfileList';
-import { LoginPage } from './components/pages/Login';
-import { HomePage } from './components/pages/Home';
-import { ExampleDataViz } from './components/pages/ExampleDataViz';
-import { config } from './utils/oktaConfig';
-import { LoadingComponent } from './components/common';
+import { NotFoundPage } from "./components/pages/NotFound";
+import { ExampleListPage } from "./components/pages/ExampleList";
+import { ProfileListPage } from "./components/pages/ProfileList";
+import { LoginPage } from "./components/pages/Login";
+import { HomePage } from "./components/pages/Home";
+import { ExampleDataViz } from "./components/pages/ExampleDataViz";
+import { config } from "./utils/oktaConfig";
+import { LoadingComponent } from "./components/common";
 
 ReactDOM.render(
   <Router>
@@ -25,7 +26,7 @@ ReactDOM.render(
       <App />
     </React.StrictMode>
   </Router>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 function App() {
@@ -36,7 +37,7 @@ function App() {
   const authHandler = () => {
     // We pass this to our <Security /> component that wraps our routes.
     // It'll automatically check if userToken is available and push back to login if not :)
-    history.push('/login');
+    history.push("/login");
   };
 
   return (
