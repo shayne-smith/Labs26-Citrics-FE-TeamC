@@ -44,6 +44,7 @@ body {
     margin: 0 0 0 0.4rem;
     border-radius: 5px;
     font-weight: 900;
+    color: #ffffff;
   }
   .header-link {
     color: #A6ACA8;
@@ -53,6 +54,19 @@ body {
     text-decoration: none;
     color: #A6ACA8;
     opacity: 0.75;
+  }
+  .hero {
+    margin: 0 auto;
+    padding: 1rem;
+    position: relative;
+  }
+  .mail {
+    position: absolute;
+    top: 0;
+    margin-left: 1.5rem;
+  }
+  .tagline {
+    margin: 0 auto;
   }
   .arrow {
     height: 100%;
