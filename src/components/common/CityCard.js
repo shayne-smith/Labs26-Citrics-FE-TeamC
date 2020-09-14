@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 import ny from "../../assets/ny.jpg";
@@ -16,13 +16,12 @@ function CityCard(props) {
     height: 150px;
     min-width: 300px;
     margin: 1rem;
-    padding: 0.5rem;
     border-radius: 3px;
     flex-grow: 1;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 
     &:hover {
-      transform: scale(1.05);
+      transform: scale(1.01);
       transition-duration: 0.1s;
     }
 
@@ -37,7 +36,6 @@ function CityCard(props) {
     height: 15%;
     left: 0px;
     top: 10px;
-    white-space: nowrap;
 
     display: flex;
     justify-content: center;
@@ -70,6 +68,7 @@ function CityCard(props) {
     position: absolute;
     left: 0;
     bottom: 0;
+    border-radius: 3px;
     background: rgba(112, 199, 131, 0.8);
 
     font-family: Amatic SC;
