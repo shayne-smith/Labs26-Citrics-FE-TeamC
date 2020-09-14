@@ -6,6 +6,8 @@ import boulder from "../../assets/boulder.jpg";
 import la from "../../assets/la.jpg";
 import miami from "../../assets/miami.jpg";
 
+import { ReactComponent as Arrow } from "../../assets/arrow.svg";
+
 function CityCard(props) {
   const CardContainer = styled.div`
     background: url(${boulder}) no-repeat center;
@@ -21,7 +23,7 @@ function CityCard(props) {
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 
     &:hover {
-      transform: scale(1.01);
+      transform: scale(1.02);
       transition-duration: 0.1s;
     }
 
@@ -47,7 +49,7 @@ function CityCard(props) {
     font-size: 1.2rem;
     text-align: center;
 
-    background: #70c783;
+    background: rgba(112, 199, 131, 0.8);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
     &:after {
@@ -56,7 +58,7 @@ function CityCard(props) {
       left: 100%;
       height: 0;
       width: 0;
-      border-left: 11.5px solid #70c783;
+      border-left: 11.5px solid rgba(112, 199, 131, 0.8);
       border-right: 11.5px solid transparent;
       border-bottom: 11.5px solid transparent;
       border-top: 11.5px solid transparent;
@@ -79,7 +81,10 @@ function CityCard(props) {
 
   return (
     <CardContainer>
-      <CardHeader>{props.city}</CardHeader>
+      <CardHeader>
+        {/* <Arrow class="arrow" /> */}
+        {props.city}
+      </CardHeader>
 
       <CardFooter>
         <div class="attributes">
