@@ -37,7 +37,25 @@ body {
   .rent-price {
     width: 30%;
     text-align: left;
-    /* font-size: 1.2rem; */
+  }
+  #login {
+    background-color: rgba(112, 199, 131, 0.8);
+    padding: 0 0.8rem;
+    margin: 0 0 0 0.4rem;
+    border-radius: 5px;
+    font-weight: 900;
+  }
+  .header-link {
+    color: #A6ACA8;
+    padding: 0 1.2rem;
+  }
+  .header-link:hover {
+    text-decoration: none;
+    color: #A6ACA8;
+    opacity: 0.75;
+  }
+  .arrow {
+    height: 100%;
   }
   
   .top-left {
