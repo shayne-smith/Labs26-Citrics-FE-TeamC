@@ -10,6 +10,14 @@
       "StackName": "amplify-labs26citricsfeteamc-dev-161405",
       "StackId": "arn:aws:cloudformation:us-east-1:185965742359:stack/amplify-labs26citricsfeteamc-dev-161405/3a1b43f0-f6cf-11ea-af30-0a3238f55eb3",
       "AmplifyAppId": "d326ntg6jpp3x3"
+    },
+    "categories": {
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d326ntg6jpp3x3",
+          "type": "manual"
+        }
+      }
     }
   }
 }
