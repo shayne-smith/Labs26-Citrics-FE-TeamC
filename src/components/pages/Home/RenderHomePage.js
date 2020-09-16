@@ -6,7 +6,8 @@ import Header from "../../common/Header.js";
 import Hero from "../../common/Hero.js";
 
 function RenderHomePage(props) {
-  const { userInfo, authService } = props;
+  // const { userInfo, authService } = props;
+  const { userInfo } = props;
   const [cities, setCities] = useState([
     ["Miami", "Florida", "../assets/miami.jpg"],
     ["Los Angeles", "California", "./assets/la.jpg"],
