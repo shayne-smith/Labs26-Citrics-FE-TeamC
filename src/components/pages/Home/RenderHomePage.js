@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import { Button } from "antd";
 import CityCard from "../../common/CityCard.js";
@@ -8,12 +9,21 @@ import Hero from "../../common/Hero.js";
 function RenderHomePage(props) {
   // const { userInfo, authService } = props;
   const { userInfo } = props;
-  const [cities, setCities] = useState([
-    ["Miami", "Florida", "../assets/miami.jpg"],
-    ["Los Angeles", "California", "./assets/la.jpg"],
-    ["Boulder", "Colorado", "./assets/boulder.jpg"],
-    ["New York", "New York", "./assets/ny.jpg"]
-  ]);
+  const [cities, setCities] = useState([]);
+
+  useEffect(() => {
+    getCityData();
+  }, []);
+
+  const getCityData = () => {
+    axios
+      .get("https://citrics-c-api.herokuapp.com/cities")
+      .then(res => {
+        console.log(res.data);
+        setCities(res.data);
+      })
+      .catch(err => console.log(err));
+  };
 
   return (
     <div>
@@ -42,7 +52,8 @@ function RenderHomePage(props) {
       <div className="container">
         {cities.map((city, index) => (
           <CityCard
-            city={city[0]}
+            key={index}
+            city={city.location}
             state={city[1]}
             image={city[2]}
             index={index}
