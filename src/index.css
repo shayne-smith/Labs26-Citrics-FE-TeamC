@@ -55,6 +55,21 @@ body {
     color: #A6ACA8;
     opacity: 0.75;
   }
+  .plus-button {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    border: 0;
+    padding: 0;
+    background: rgba(0,0,0, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  .plus-sign {
+    font-size: 25px;
+  }
   .hero {
     margin: 0 auto;
     padding: 1rem;
@@ -78,7 +93,6 @@ body {
     text-align: left;
     border-bottom: 2px solid whitesmoke;
   }
-  
   .bottom-left {
     text-align: left;
   }
