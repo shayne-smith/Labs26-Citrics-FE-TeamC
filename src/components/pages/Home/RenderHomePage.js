@@ -10,6 +10,8 @@ function RenderHomePage(props) {
   // const { userInfo, authService } = props;
   const { userInfo } = props;
   const [cities, setCities] = useState([]);
+  const [isComparing, setIsComparing] = useState(false);
+  const [comparisonList, setComparisonList] = useState([]);
 
   useEffect(() => {
     getCityData();
@@ -23,6 +25,10 @@ function RenderHomePage(props) {
         setCities(res.data);
       })
       .catch(err => console.log(err));
+  };
+
+  const addCity = key => {
+    setComparisonList(oldArray => [...oldArray, key]);
   };
 
   return (
@@ -55,8 +61,10 @@ function RenderHomePage(props) {
             key={index}
             city={city.location}
             state={city[1]}
-            image={city[2]}
+            image={city.image}
             index={index}
+            setIsComparing={setIsComparing}
+            addCity={addCity}
           />
         ))}
       </div>
