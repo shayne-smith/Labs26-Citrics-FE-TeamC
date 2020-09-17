@@ -100,3 +100,14 @@ body {
   .bottom-right {
     text-align: right;
   }
+
+  .searchbox {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .search-input {
+    display: block;
+    width: 35%;
+    height: 40px;
+  }

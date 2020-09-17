@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+// import { Button, AutoComplete } from "antd";
 import { Button } from "antd";
 import CityCard from "../../common/CityCard.js";
 import Header from "../../common/Header.js";
 import Hero from "../../common/Hero.js";
+import { AutoComplete } from "../../common/AutoComplete.js";
 
 function RenderHomePage(props) {
   // const { userInfo, authService } = props;
@@ -35,6 +37,7 @@ function RenderHomePage(props) {
     <div>
       <Header />
       <Hero />
+      <AutoComplete />
       {/* <h1>Hi {userInfo.name} Welcome to Labs Basic SPA</h1>
       <div>
         <p>

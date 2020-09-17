@@ -791,17 +791,27 @@ export const AutoComplete = () => {
     let value = e.target.value;
     let regex = new RegExp(`^${value}`, "i");
     // setSuggestions(suggestions.sort().filter((v) => regex.test(v)));
-    const arr = suggestions.filter(v => regex.test(v));
-    setResult(arr);
+    let arr = [];
+    if (value.length != 0) {
+      arr = suggestions.filter(v => regex.test(v));
+    }
+
+    console.log("arr: " + arr);
+    setResult(arr.slice(0, 5));
   };
 
   console.log(result);
   return (
     <div className="searchbox">
-      <input onChange={changeText} type="text" placeholder="city search" />
+      <input
+        className="search-input"
+        onChange={changeText}
+        type="text"
+        placeholder="city search"
+      />
       <div className="grid">
-        {result.map(item => {
-          return <CityCards data={item} />;
+        {result.map((item, index) => {
+          return <CityCards data={item} key={index} />;
         })}
       </div>
     </div>
