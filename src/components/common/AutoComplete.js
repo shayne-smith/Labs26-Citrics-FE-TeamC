@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { CityCards } from "./CityCards";
 
-export const AutoComplete = () => {
+export const AutoComplete = props => {
   const [suggestions, setSuggestions] = useState([
     "Auburn city, Alabama",
     "Birmingham city, Alabama",
@@ -784,7 +784,6 @@ export const AutoComplete = () => {
     "Casper city, Wyoming",
     "Cheyenne city, Wyoming"
   ]);
-
   const [result, setResult] = useState([]);
 
   const changeText = e => {
@@ -811,7 +810,15 @@ export const AutoComplete = () => {
       />
       <div className="grid">
         {result.map((item, index) => {
-          return <CityCards data={item} key={index} />;
+          return (
+            <div
+              className="result"
+              key={index}
+              onClick={() => props.addCity(item)}
+            >
+              {item}
+            </div>
+          );
         })}
       </div>
     </div>

@@ -37,7 +37,7 @@ function RenderHomePage(props) {
     <div>
       <Header />
       <Hero />
-      <AutoComplete />
+      <AutoComplete addCity={addCity} />
       {/* <h1>Hi {userInfo.name} Welcome to Labs Basic SPA</h1>
       <div>
         <p>
