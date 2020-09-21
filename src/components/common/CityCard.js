@@ -9,7 +9,7 @@ import miami from "../../assets/miami.jpg";
 import { PlusCircleOutlined } from "@ant-design/icons";
 import { ReactComponent as Arrow } from "../../assets/arrow.svg";
 
-const CardContainer = styled.div`
+const CardComparison = styled.div`
   /* background: url(${boulder}) no-repeat center; */
   background-size: cover;
   background-repeat: no-repeat;
@@ -95,7 +95,7 @@ const CardFooter = styled.div`
 
 function CityCard(props) {
   return (
-    <CardContainer
+    <CardComparison
       style={{ background: `url(${props.image}) no-repeat center` }}
     >
       <CardHeader>
@@ -106,7 +106,7 @@ function CityCard(props) {
         className="plus-button"
         onClick={() => {
           props.setIsComparing(true);
-          props.addCity(props.city);
+          props.addCity([props.city, props.image]);
         }}
       >
         <PlusCircleOutlined className="plus-sign" />
@@ -124,7 +124,7 @@ function CityCard(props) {
           </span>
         </div>
       </CardFooter>
-    </CardContainer>
+    </CardComparison>
   );
 }
 
