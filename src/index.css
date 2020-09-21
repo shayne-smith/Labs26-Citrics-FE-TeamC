@@ -18,6 +18,14 @@ body {
     flex-wrap: wrap;
     justify-content: space-between;
   }
+
+  .comparison {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
   
   .text {
     line-height: 0.1;
