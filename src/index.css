@@ -153,3 +153,6 @@ body {
     color: rgb(101, 102, 101);
     font-size: 1.5rem;
   }
+  .compareButton {
+    margin: 0 auto;
+  }

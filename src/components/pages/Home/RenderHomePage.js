@@ -19,7 +19,18 @@ function RenderHomePage(props) {
 
   useEffect(() => {
     getCityData();
+    getHousingData();
   }, []);
+
+  useEffect(() => {
+    checkComparisonListLength();
+  }, [comparisonList]);
+
+  const checkComparisonListLength = () => {
+    if (comparisonList.length == 0) {
+      setIsComparing(false);
+    }
+  };
 
   const getCityData = () => {
     axios
@@ -31,18 +42,37 @@ function RenderHomePage(props) {
       .catch(err => console.log(err));
   };
 
+  const getHousingData = () => {
+    axios
+      .get(
+        "http://driftly-ds-api.eba-pqp2r6up.us-east-2.elasticbeanstalk.com/housing"
+      )
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(err => console.log(err));
+  };
+
   const addCity = key => {
     console.log(key);
     setComparisonList(oldArray => [...oldArray, key]);
   };
 
-  const removeCity = e => {
-    // console.log(e, 'EEEEEEEEE')
-    // console.log(comparisonList)
-    comparisonList.filter(item => {
-      return item !== e.target.value;
-    });
-    setComparisonList(comparisonList);
+  const removeCity = elem => {
+    setComparisonList(
+      comparisonList.filter(value => {
+        return value[0] !== elem[0];
+      })
+    );
+  };
+
+  const getVizData = () => {
+    axios
+      .get()
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(err => console.log(err));
   };
 
   if (comparisonList.length <= 3) {
@@ -52,24 +82,30 @@ function RenderHomePage(props) {
         <Hero />
         <AutoComplete addCity={addCity} />
 
-        <div className="comparison">
-          {comparisonList.map((city, index) => (
-            <CardComparison
-              key={index}
-              city={city[0]}
-              image={city[1]}
-              index={index}
-              removeCity={removeCity}
-            />
-          ))}
-        </div>
+        {isComparing && (
+          <div className="comparison-container">
+            <div className="comparison">
+              {comparisonList.map((city, index) => (
+                <CardComparison
+                  key={index}
+                  city={city[0]}
+                  image={city[1]}
+                  index={index}
+                  removeCity={removeCity}
+                />
+              ))}
+            </div>
+            <button className="compareButton" onClick={getVizData}>
+              Compare Cities
+            </button>
+          </div>
+        )}
 
         <div className="container">
           {cities.map((city, index) => (
             <CityCard
               key={index}
               city={city.location}
-              state={city[1]}
               image={city.image}
               index={index}
               setIsComparing={setIsComparing}
@@ -89,26 +125,6 @@ function RenderHomePage(props) {
       <Hero />
       <AutoComplete addCity={addCity} />
       <ComparisonViz />
-      {/* <h1>Hi {userInfo.name} Welcome to Labs Basic SPA</h1>
-      <div>
-        <p>
-          This is an example of a common example of how we'd like for you to
-          approach components.
-        </p>
-        <p>
-          <Link to="/profile-list">Profiles Example</Link>
-        </p>
-        <p>
-          <Link to="/example-list">Example List of Items</Link>
-        </p>
-        <p>
-          <Link to="/datavis">Data Visualizations Example</Link>
-        </p>
-        <p>
-          <Button type="primary" onClick={() => authService.logout()}>
-            Logout
-          </Button>
-        </p> */}
       <div className="container">
         {cities.map((city, index) => (
           <CityCard
@@ -122,7 +138,6 @@ function RenderHomePage(props) {
           />
         ))}
       </div>
-      {/* </div> */}
     </div>
   );
 }
