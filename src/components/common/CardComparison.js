@@ -6,25 +6,28 @@ import boulder from "../../assets/boulder.jpg";
 import la from "../../assets/la.jpg";
 import miami from "../../assets/miami.jpg";
 
-import { PlusCircleOutlined } from "@ant-design/icons";
+import { MinusCircleOutlined } from "@ant-design/icons";
 import { ReactComponent as Arrow } from "../../assets/arrow.svg";
 
-const CardComparison = styled.div`
+const CardContainer = styled.div`
   /* background: url(${boulder}) no-repeat center; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-size: cover;
   background-repeat: no-repeat;
   color: whitesmoke;
-  width: 29%;
-  height: 150px;
+  width: 25%;
+  height: 500px;
   min-width: 300px;
-  margin: 1rem;
+  margin: 2rem;
   border-radius: 3px;
   flex-grow: 1;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 
   &:hover {
     transform: scale(1.02);
-    transition-duration: 0.1s;
+    transition-duration: 0.3s;
   }
 
   @media (max-width: 768px) {
@@ -93,9 +96,9 @@ const CardFooter = styled.div`
   font-size: 1.1rem;
 `;
 
-function CityCard(props) {
+function CardComparison(props) {
   return (
-    <CardComparison
+    <CardContainer
       style={{ background: `url(${props.image}) no-repeat center` }}
     >
       <CardHeader>
@@ -104,12 +107,11 @@ function CityCard(props) {
       </CardHeader>
       <button
         className="plus-button"
-        onClick={() => {
-          props.setIsComparing(true);
-          props.addCity([props.city, props.image]);
+        onClick={e => {
+          props.removeCity([props.city, props.image]);
         }}
       >
-        <PlusCircleOutlined className="plus-sign" />
+        <MinusCircleOutlined className="plus-sign" />
       </button>
 
       <CardFooter>
@@ -124,8 +126,8 @@ function CityCard(props) {
           </span>
         </div>
       </CardFooter>
-    </CardComparison>
+    </CardContainer>
   );
 }
 
-export default CityCard;
+export default CardComparison;

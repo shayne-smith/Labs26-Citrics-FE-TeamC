@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 // import { Button, AutoComplete } from "antd";
 import { Button } from "antd";
 import CityCard from "../../common/CityCard.js";
+import CardComparison from "../../common/CardComparison.js";
 import Header from "../../common/Header.js";
 import Hero from "../../common/Hero.js";
 import { AutoComplete } from "../../common/AutoComplete.js";
@@ -23,15 +24,63 @@ function RenderHomePage(props) {
     axios
       .get("https://citrics-c-api.herokuapp.com/cities")
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         setCities(res.data);
       })
       .catch(err => console.log(err));
   };
 
   const addCity = key => {
+    console.log(key);
     setComparisonList(oldArray => [...oldArray, key]);
   };
+
+  const removeCity = e => {
+    // console.log(e, 'EEEEEEEEE')
+    // console.log(comparisonList)
+    comparisonList.filter(item => {
+      return item !== e.target.value;
+    });
+    setComparisonList(comparisonList);
+  };
+
+  if (comparisonList.length <= 3) {
+    return (
+      <div>
+        <Header />
+        <Hero />
+        <AutoComplete addCity={addCity} />
+
+        <div className="comparison">
+          {comparisonList.map((city, index) => (
+            <CardComparison
+              key={index}
+              city={city[0]}
+              image={city[1]}
+              index={index}
+              removeCity={removeCity}
+            />
+          ))}
+        </div>
+
+        <div className="container">
+          {cities.map((city, index) => (
+            <CityCard
+              key={index}
+              city={city.location}
+              state={city[1]}
+              image={city.image}
+              index={index}
+              setIsComparing={setIsComparing}
+              addCity={addCity}
+            />
+          ))}
+        </div>
+      </div>
+    );
+  } else if (comparisonList.length > 3) {
+    alert("Can only compare at most 3 cities!");
+  }
 
   return (
     <div>
