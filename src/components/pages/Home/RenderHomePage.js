@@ -7,6 +7,7 @@ import CityCard from "../../common/CityCard.js";
 import Header from "../../common/Header.js";
 import Hero from "../../common/Hero.js";
 import { AutoComplete } from "../../common/AutoComplete.js";
+import ComparisonViz from "../../common/ComparisonViz.js";
 
 function RenderHomePage(props) {
   // const { userInfo, authService } = props;
@@ -38,6 +39,7 @@ function RenderHomePage(props) {
       <Header />
       <Hero />
       <AutoComplete addCity={addCity} />
+      <ComparisonViz />
       {/* <h1>Hi {userInfo.name} Welcome to Labs Basic SPA</h1>
       <div>
         <p>

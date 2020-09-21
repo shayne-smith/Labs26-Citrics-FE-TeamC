@@ -125,3 +125,23 @@ body {
     cursor: pointer;
     background-color: #E5E5E5;
   }
+  .comparison-container {
+    width: 90%;
+    margin: 2rem auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border: 2px solid gold;
+    border-radius: 3px;
+  }
+  .card-list {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  #comparison-header {
+    text-align: center;
+    margin: 1rem;
+    color: rgb(101, 102, 101);
+    font-size: 1.5rem;
+  }
