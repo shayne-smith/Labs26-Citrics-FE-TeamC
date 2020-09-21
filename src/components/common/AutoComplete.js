@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { CityCards } from "./CityCards";
 
-export const AutoComplete = () => {
+export const AutoComplete = props => {
   const [suggestions, setSuggestions] = useState([
     "Auburn city, Alabama",
     "Birmingham city, Alabama",
@@ -784,24 +784,41 @@ export const AutoComplete = () => {
     "Casper city, Wyoming",
     "Cheyenne city, Wyoming"
   ]);
-
   const [result, setResult] = useState([]);
 
   const changeText = e => {
     let value = e.target.value;
     let regex = new RegExp(`^${value}`, "i");
     // setSuggestions(suggestions.sort().filter((v) => regex.test(v)));
-    const arr = suggestions.filter(v => regex.test(v));
-    setResult(arr);
+    let arr = [];
+    if (value.length != 0) {
+      arr = suggestions.filter(v => regex.test(v));
+    }
+
+    console.log("arr: " + arr);
+    setResult(arr.slice(0, 5));
   };
 
   console.log(result);
   return (
     <div className="searchbox">
-      <input onChange={changeText} type="text" placeholder="city search" />
+      <input
+        className="search-input"
+        onChange={changeText}
+        type="text"
+        placeholder="city search"
+      />
       <div className="grid">
-        {result.map(item => {
-          return <CityCards data={item} />;
+        {result.map((item, index) => {
+          return (
+            <div
+              className="result"
+              key={index}
+              onClick={() => props.addCity(item)}
+            >
+              {item}
+            </div>
+          );
         })}
       </div>
     </div>

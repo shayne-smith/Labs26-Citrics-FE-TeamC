@@ -100,3 +100,28 @@ body {
   .bottom-right {
     text-align: right;
   }
+
+  .searchbox {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .search-input {
+    display: block;
+    width: 35%;
+    height: 40px;
+  }
+  .grid {
+    width: 35%;
+  }
+  .result {
+    width: 100%;
+    margin: 0.2rem 0;
+    padding: 0.3rem 1rem;
+    border: 2px solid rgb(118, 118, 118);
+    border-radius: 6px;
+  }
+  .result:hover {
+    cursor: pointer;
+    background-color: #E5E5E5;
+  }
