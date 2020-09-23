@@ -1,16 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-import ny from "../../assets/ny.jpg";
-import boulder from "../../assets/boulder.jpg";
-import la from "../../assets/la.jpg";
-import miami from "../../assets/miami.jpg";
-
 import { PlusCircleOutlined } from "@ant-design/icons";
-import { ReactComponent as Arrow } from "../../assets/arrow.svg";
 
 const CardComparison = styled.div`
-  /* background: url(${boulder}) no-repeat center; */
   background-size: cover;
   background-repeat: no-repeat;
   color: whitesmoke;
