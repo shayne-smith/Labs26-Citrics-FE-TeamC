@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { CityCards } from "./CityCards";
+import React, { useState } from "react";
 
 export const AutoComplete = props => {
   const [suggestions, setSuggestions] = useState([
