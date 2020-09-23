@@ -1,22 +1,24 @@
 import React from "react";
 import styled from "styled-components";
 
-import { MinusCircleOutlined } from "@ant-design/icons";
+import { PlusCircleOutlined } from "@ant-design/icons";
 
-const CardContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+const CardComparison = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   color: whitesmoke;
-  width: 25%;
-  height: 200px;
+  width: 29%;
+  height: 150px;
   min-width: 300px;
-  margin: 2rem;
+  margin: 1rem;
   border-radius: 3px;
   flex-grow: 1;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+  &:hover {
+    transform: scale(1.02);
+    transition-duration: 0.1s;
+  }
 
   @media (max-width: 768px) {
     flex-wrap: wrap;
@@ -84,31 +86,12 @@ const CardFooter = styled.div`
   font-size: 1.1rem;
 `;
 
-function CardComparison(props) {
+function StatCard(props) {
   return (
-    <CardContainer
-      style={{ background: `url(${props.image}) no-repeat center` }}
-    >
+    <CardComparison>
       <CardHeader>{props.city}</CardHeader>
-      <button
-        className="plus-button"
-        onClick={e => {
-          props.removeCity([props.city, props.image]);
-        }}
-      >
-        <MinusCircleOutlined className="plus-sign" />
-      </button>
-      {props.showStats && (
-        <div className="stat-section">
-          <ul>
-            <li>Population: </li>
-            <li>Jobs: </li>
-            <li>Weather: </li>
-          </ul>
-        </div>
-      )}
-    </CardContainer>
+    </CardComparison>
   );
 }
 
-export default CardComparison;
+export default StatCard;

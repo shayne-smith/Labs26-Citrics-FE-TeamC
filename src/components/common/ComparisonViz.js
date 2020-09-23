@@ -9,9 +9,10 @@ const ComparisonViz = props => {
       <div className="comparison-container">
         <h3 id="comparison-header">City Comparison</h3>
         <div className="card-list">
-          {/* <CityCard></CityCard>
-                    <CityCard></CityCard>
-                    <CityCard></CityCard> */}
+          <Plot
+            data={props.data}
+            layout={{ width: 320, height: 240, title: "Housing Data" }}
+          />
           <Plot
             data={[
               {
