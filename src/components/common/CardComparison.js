@@ -100,7 +100,7 @@ function CardComparison(props) {
       </button>
       <div className="stat-section">
         <ul>
-          <li>Rent (1BR): ${props.housingData}</li>
+          <li>1BR Home Price: ${props.housingData}</li>
           <li>Weather: {props.weatherData}°F</li>
           <li>Total Nonfarm Payroll: ${props.jobsData} MM</li>
         </ul>
