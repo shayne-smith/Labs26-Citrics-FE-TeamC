@@ -30,8 +30,10 @@ function Header(props) {
         <Link className="header-link" to="/">
           Home
         </Link>
-        <Link className="header-link">About</Link>
-        <Link id="login" className="header-link">
+        <Link className="header-link" to="/about">
+          About
+        </Link>
+        <Link id="login" className="header-link" to="/login">
           Login
         </Link>
       </Navigation>

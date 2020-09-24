@@ -55,7 +55,7 @@ function RenderHomePage(props) {
     axios
       .get(`${baseURL}/housing`)
       .then(res => {
-        // console.log(res.data);
+        console.log(JSON.parse(res.data));
         setHousing(JSON.parse(res.data));
       })
       .catch(err => console.log(err));
@@ -64,7 +64,7 @@ function RenderHomePage(props) {
     axios
       .get(`${baseURL}/jobs`)
       .then(res => {
-        // console.log(res.data);
+        console.log(JSON.parse(res.data));
         setJobs(JSON.parse(res.data));
       })
       .catch(err => console.log(err));
@@ -73,7 +73,7 @@ function RenderHomePage(props) {
     axios
       .get(`${baseURL}/weather`)
       .then(res => {
-        // console.log(res.data);
+        console.log(JSON.parse(res.data));
         setWeather(JSON.parse(res.data));
       })
       .catch(err => console.log(err));
@@ -91,8 +91,34 @@ function RenderHomePage(props) {
     );
   };
 
-  const calcHousingData = (cityName, stateCode) => {
-    console.log(housing[stateCode][cityName]);
+  const calcHousingData = (cityStateName, stateCode) => {
+    try {
+      console.log("housing data: " + housing[stateCode][cityStateName]);
+      return housing[stateCode][cityStateName];
+    } catch {
+      console.log("State and city housing data was not found!");
+    }
+  };
+
+  const calcWeatherData = (cityStateName, stateCode) => {
+    try {
+      console.log(
+        "weather data: " +
+          weather[stateCode][cityStateName]["summer"]["FeelsLikeF"]
+      );
+      return weather[stateCode][cityStateName]["summer"]["FeelsLikeF"];
+    } catch {
+      console.log("State and city weather data was not found!");
+    }
+  };
+
+  const calcJobsData = stateCode => {
+    try {
+      console.log("jobs data: " + jobs[stateCode]["Total Nonfarm"]);
+      return jobs[stateCode]["Total Nonfarm"];
+    } catch {
+      console.log("State jobs data was not found!");
+    }
   };
 
   const getVizData = () => {
@@ -144,21 +170,22 @@ function RenderHomePage(props) {
                   key={index}
                   removeCity={() => removeCity(index)}
                   showStats={showStats}
+                  // housingData={calcHousingData(
+                  //   city[0],
+                  //   city[0].split(",")[1].trim()
+                  // )}
+                  // weatherData={calcWeatherData(
+                  //   city[0],
+                  //   city[0].split(",")[1].trim()
+                  // ).toFixed(1)}
+                  // jobsData={Math.round(
+                  //   calcJobsData(city[0].split(",")[1].trim())
+                  // )}
                   data={data}
                 />
               ))}
             </div>
-            <button
-              className="compareButton"
-              onClick={() => {
-                // getHousingData();
-                // getWeatherData();
-                // getJobsData();
-                setShowStats(true);
-              }}
-            >
-              Compare Cities
-            </button>
+            <button className="compareButton">More Info</button>
           </div>
         )}
 
