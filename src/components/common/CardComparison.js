@@ -87,24 +87,27 @@ const CardFooter = styled.div`
 function CardComparison(props) {
   return (
     <CardContainer
-      style={{ background: `url(${props.image}) no-repeat center` }}
+      style={{ background: `url(${props.data.city.image}) no-repeat center` }}
     >
-      <CardHeader>{props.city}</CardHeader>
+      <CardHeader>{props.data.city.location}</CardHeader>
       <button
         className="plus-button"
         onClick={e => {
-          props.removeCity([props.city, props.image]);
+          props.removeCity(e);
+          // props.removeCity([props.city, props.image]);
         }}
       >
         <MinusCircleOutlined className="plus-sign" />
       </button>
-      <div className="stat-section">
-        <ul>
-          <li>1BR Home Price: ${props.housingData}</li>
-          <li>Weather: {props.weatherData}°F</li>
-          <li>Total Nonfarm Payroll: ${props.jobsData} MM</li>
-        </ul>
-      </div>
+      {props.showStats && (
+        <div className="stat-section">
+          <ul>
+            <li>Housing: ${props.data.housing}</li>
+            <li>Total Manufacturing: {props.data.jobs.toFixed(2)}</li>
+            <li>Weather: {props.data.weather.toFixed(0)} degree</li>
+          </ul>
+        </div>
+      )}
     </CardContainer>
   );
 }
