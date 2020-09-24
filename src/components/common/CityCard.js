@@ -99,7 +99,8 @@ function CityCard(props) {
         className="plus-button"
         onClick={() => {
           props.setIsComparing(true);
-          props.addCity([props.city, props.image]);
+          // props.addCity([props.city, props.image]);
+          props.getData(props.city);
         }}
       >
         <PlusCircleOutlined className="plus-sign" />

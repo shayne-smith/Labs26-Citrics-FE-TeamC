@@ -4,14 +4,15 @@ import Plot from "react-plotly.js";
 import CityCard from "./CityCard.js";
 
 const ComparisonViz = props => {
+  console.log(JSON.parse(props.data));
   return (
     <>
       <div className="comparison-container">
         <h3 id="comparison-header">City Comparison</h3>
         <div className="card-list">
           <Plot
-            data={props.data}
-            layout={{ width: 320, height: 240, title: "Housing Data" }}
+            data={JSON.parse(props.data).data}
+            layout={JSON.parse(props.data).layout}
           />
           <Plot
             data={[

@@ -17,6 +17,7 @@ import { ProfileListPage } from "./components/pages/ProfileList";
 import { LoginPage } from "./components/pages/Login";
 import { HomePage } from "./components/pages/Home";
 import { ExampleDataViz } from "./components/pages/ExampleDataViz";
+import { DataViz } from "./components/pages/DataViz";
 import { config } from "./utils/oktaConfig";
 import { LoadingComponent } from "./components/common";
 
@@ -57,7 +58,7 @@ function App() {
       />
       <Route path="/example-list" component={ExampleListPage} />
       <Route path="/profile-list" component={ProfileListPage} />
-      <Route path="/datavis" component={ExampleDataViz} />
+      <Route path="/dataviz" component={DataViz} />
       <Route component={NotFoundPage} />
     </Switch>
     // </Security>

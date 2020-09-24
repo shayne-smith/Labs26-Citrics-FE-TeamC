@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 // import { Button, AutoComplete } from "antd";
 import { Button } from "antd";
 import CityCard from "../../common/CityCard.js";
@@ -25,6 +25,8 @@ function RenderHomePage(props) {
 
   const baseURL =
     "http://driftly-ds-api.eba-pqp2r6up.us-east-2.elasticbeanstalk.com";
+
+  let history = useHistory();
 
   useEffect(() => {
     getCityData();
@@ -185,7 +187,22 @@ function RenderHomePage(props) {
                 />
               ))}
             </div>
-            <button className="compareButton">More Info</button>
+            <button
+              className="compareButton"
+              onClick={() => {
+                setShowStats(true);
+              }}
+            >
+              Compare Cities
+            </button>
+            <button
+              className="moreInfoButton"
+              onClick={() => {
+                history.push("/dataviz");
+              }}
+            >
+              More Info
+            </button>
           </div>
         )}
 
@@ -198,6 +215,7 @@ function RenderHomePage(props) {
               index={index}
               setIsComparing={setIsComparing}
               addCity={addCity}
+              getData={getData}
             />
           ))}
         </div>
