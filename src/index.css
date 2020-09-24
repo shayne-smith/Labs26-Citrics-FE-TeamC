@@ -47,7 +47,7 @@ body {
     text-align: left;
   }
   #login {
-    background-color: rgba(112, 199, 131, 0.8);
+    background-color: rgba(112, 199, 131, 0.9);
     padding: 0 0.8rem;
     margin: 0 0 0 0.4rem;
     border-radius: 5px;
@@ -155,4 +155,16 @@ body {
   }
   .compareButton {
     margin: 0 auto;
+  }
+  .stat-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-self: flex-end;
+    background-color: rgba(112, 199, 131, 0.9);
+  }
+  .stat-section ul {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0;
   }
