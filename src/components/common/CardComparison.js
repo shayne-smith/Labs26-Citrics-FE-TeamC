@@ -41,7 +41,7 @@ const CardHeader = styled.div`
   font-size: 1.25vw;
   text-align: center;
 
-  background: rgba(112, 199, 131, 0.8);
+  background: rgba(112, 199, 131, 0.9);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
   &:after {
@@ -50,7 +50,7 @@ const CardHeader = styled.div`
     left: 100%;
     height: 0;
     width: 0;
-    border-left: 11.5px solid rgba(112, 199, 131, 0.8);
+    border-left: 11.5px solid rgba(112, 199, 131, 0.9);
     border-right: 11.5px solid transparent;
     border-bottom: 11.5px solid transparent;
     border-top: 11.5px solid transparent;
@@ -76,7 +76,7 @@ const CardFooter = styled.div`
   left: 0;
   bottom: 0;
   border-radius: 3px;
-  background: rgba(112, 199, 131, 0.8);
+  background: rgba(112, 199, 131, 0.9);
 
   font-family: Amatic SC;
   font-style: normal;
