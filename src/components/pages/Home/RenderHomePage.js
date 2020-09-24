@@ -19,9 +19,9 @@ function RenderHomePage(props) {
   const [showStats, setShowStats] = useState(false);
   const [isVisualizing, setIsVisualizing] = useState(false);
   const [comparisonList, setComparisonList] = useState([]);
-  const [housing, setHousing] = useState({});
-  const [weather, setWeather] = useState({});
-  const [jobs, setJobs] = useState({});
+  const [housing, setHousing] = useState([]);
+  const [weather, setWeather] = useState([]);
+  const [jobs, setJobs] = useState([]);
 
   const baseURL =
     "http://driftly-ds-api.eba-pqp2r6up.us-east-2.elasticbeanstalk.com";
@@ -43,53 +43,50 @@ function RenderHomePage(props) {
     }
   };
 
-  const getCityData = () => {
+  const getCityData = () =>
     axios
       .get("https://citrics-c-api.herokuapp.com/cities")
       .then(res => {
         setCities(res.data);
       })
       .catch(err => console.log(err));
-  };
 
-  const getHousingData = () => {
+  const getHousingData = () =>
     axios
       .get(`${baseURL}/housing`)
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         setHousing(JSON.parse(res.data));
       })
       .catch(err => console.log(err));
-  };
 
-  const getJobsData = () => {
+  const getJobsData = () =>
     axios
       .get(`${baseURL}/jobs`)
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         setJobs(JSON.parse(res.data));
       })
       .catch(err => console.log(err));
-  };
 
-  const getWeatherData = () => {
+  const getWeatherData = () =>
     axios
       .get(`${baseURL}/weather`)
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         setWeather(JSON.parse(res.data));
       })
       .catch(err => console.log(err));
-  };
 
   const addCity = key => {
     setComparisonList(oldArray => [...oldArray, key]);
   };
+  // console.log(comparisonList)
 
-  const removeCity = elem => {
+  const removeCity = idx => {
     setComparisonList(
-      comparisonList.filter(value => {
-        return value[0] !== elem[0];
+      comparisonList.filter((value, index) => {
+        return idx !== index;
       })
     );
   };
@@ -111,27 +108,43 @@ function RenderHomePage(props) {
       .catch(err => console.log(err));
   };
 
+  const getData = async str => {
+    const s = str.charAt(str.length - 2) + str.charAt(str.length - 1);
+
+    setComparisonList([
+      ...comparisonList,
+      {
+        // this doesn't seem to be finding city image
+        city: cities.find(city => (city.location = str)),
+        housing: housing[s][str],
+        weather: weather[s][str].summer.MaxTempF,
+        jobs: jobs[s]["Total Manufacturing"]
+      }
+    ]);
+    setIsComparing(true);
+  };
+
   if (comparisonList.length <= 3) {
     return (
       <div>
         <Header />
         <Hero />
-        <AutoComplete addCity={addCity} cities={cities} />
+        <AutoComplete
+          addCity={addCity}
+          cities={cities}
+          setComparisonList={setComparisonList}
+          getData={getData}
+        />
 
         {isComparing && (
           <div className="comparison-container">
             <div className="comparison">
-              {comparisonList.map((city, index) => (
+              {comparisonList.map((data, index) => (
                 <CardComparison
                   key={index}
-                  city={city[0]}
-                  image={city[1]}
-                  index={index}
-                  removeCity={removeCity}
+                  removeCity={() => removeCity(index)}
                   showStats={showStats}
-                  // housingData={}
-                  // weatherData={}
-                  // jobsData={}
+                  data={data}
                 />
               ))}
             </div>
