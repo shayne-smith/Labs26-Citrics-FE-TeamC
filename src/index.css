@@ -168,3 +168,42 @@ body {
     flex-direction: column;
     margin: 1rem 0;
   }
+
+  /* ABOUT PAGE */
+  .social {
+    display: block;
+    color: rgba(255, 255, 255, .8);
+    font-size: 20px;
+    height: 60px;
+    width: 60px;
+    position: relative;
+  }
+
+  .social:hover,
+  .social:active {
+    color: rgba(255, 255, 255, .8);
+  }
+
+  .social:hover > .text {
+    opacity: 1;
+  }
+  .social:hover > .icon {
+    opacity: 0;
+  }
+
+  .text,
+  .icon {
+    display: block;
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    text-transform: uppercase;
+    transition: all 0.3s ease-out;
+  }
+  .text {
+    font-size: 1rem;
+    opacity: 0;
+  }
