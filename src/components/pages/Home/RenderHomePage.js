@@ -24,7 +24,7 @@ function RenderHomePage(props) {
   const [jobs, setJobs] = useState([]);
 
   const baseURL =
-    "http://driftly-ds-api.eba-pqp2r6up.us-east-2.elasticbeanstalk.com";
+    "https://driftly-ds-api.eba-pqp2r6up.us-east-2.elasticbeanstalk.com";
 
   let history = useHistory();
 
@@ -40,7 +40,7 @@ function RenderHomePage(props) {
   }, [comparisonList]);
 
   const checkComparisonListLength = () => {
-    if (comparisonList.length == 0) {
+    if (comparisonList.length === 0) {
       setIsComparing(false);
     }
   };
@@ -57,7 +57,7 @@ function RenderHomePage(props) {
     axios
       .get(`${baseURL}/housing`)
       .then(res => {
-        console.log(JSON.parse(res.data));
+        // console.log(JSON.parse(res.data));
         setHousing(JSON.parse(res.data));
       })
       .catch(err => console.log(err));
@@ -66,7 +66,7 @@ function RenderHomePage(props) {
     axios
       .get(`${baseURL}/jobs`)
       .then(res => {
-        console.log(JSON.parse(res.data));
+        // console.log(JSON.parse(res.data));
         setJobs(JSON.parse(res.data));
       })
       .catch(err => console.log(err));
@@ -75,7 +75,7 @@ function RenderHomePage(props) {
     axios
       .get(`${baseURL}/weather`)
       .then(res => {
-        console.log(JSON.parse(res.data));
+        // console.log(JSON.parse(res.data));
         setWeather(JSON.parse(res.data));
       })
       .catch(err => console.log(err));

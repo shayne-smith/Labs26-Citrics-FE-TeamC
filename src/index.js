@@ -16,6 +16,7 @@ import { ExampleListPage } from "./components/pages/ExampleList";
 import { ProfileListPage } from "./components/pages/ProfileList";
 import { LoginPage } from "./components/pages/Login";
 import { HomePage } from "./components/pages/Home";
+import { About } from "./components/pages/About";
 import { ExampleDataViz } from "./components/pages/ExampleDataViz";
 import { DataViz } from "./components/pages/DataViz";
 import { config } from "./utils/oktaConfig";
@@ -56,6 +57,7 @@ function App() {
         exact
         component={() => <HomePage LoadingComponent={LoadingComponent} />}
       />
+      <Route path="/about" component={About} />
       <Route path="/example-list" component={ExampleListPage} />
       <Route path="/profile-list" component={ProfileListPage} />
       <Route path="/dataviz" component={DataViz} />
