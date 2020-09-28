@@ -87,9 +87,9 @@ const CardFooter = styled.div`
 function CardComparison(props) {
   return (
     <CardContainer
-      style={{ background: `url(${props.data.city.image}) no-repeat center` }}
+      style={{ background: `url(${props.data.image}) no-repeat center` }}
     >
-      <CardHeader>{props.data.city.location}</CardHeader>
+      <CardHeader>{props.data.city}</CardHeader>
       <button
         className="plus-button"
         onClick={e => {

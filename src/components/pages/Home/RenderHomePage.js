@@ -24,7 +24,7 @@ function RenderHomePage(props) {
   const [jobs, setJobs] = useState([]);
 
   const baseURL =
-    "https://driftly-ds-api.eba-pqp2r6up.us-east-2.elasticbeanstalk.com";
+    "http://driftly-ds-api.eba-pqp2r6up.us-east-2.elasticbeanstalk.com";
 
   let history = useHistory();
 
@@ -136,20 +136,25 @@ function RenderHomePage(props) {
       .catch(err => console.log(err));
   };
 
-  const getData = async str => {
+  // console.log(comparisonList)
+  const getData = str => {
     const s = str.charAt(str.length - 2) + str.charAt(str.length - 1);
-
-    setComparisonList([
-      ...comparisonList,
-      {
-        // this doesn't seem to be finding city image
-        city: cities.find(city => (city.location = str)),
-        housing: housing[s][str],
-        weather: weather[s][str].summer.MaxTempF,
-        jobs: jobs[s]["Total Manufacturing"]
-      }
-    ]);
-    setIsComparing(true);
+    try {
+      setComparisonList([
+        ...comparisonList,
+        {
+          // this doesn't seem to be finding city image
+          city: str,
+          image: cities.find(city => (city.location = str)).image,
+          housing: housing[s][str],
+          weather: weather[s][str].summer.MaxTempF,
+          jobs: jobs[s]["Total Manufacturing"]
+        }
+      ]);
+      setIsComparing(true);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   if (comparisonList.length <= 3) {
