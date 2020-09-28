@@ -24,7 +24,7 @@ function RenderHomePage(props) {
   const [jobs, setJobs] = useState([]);
 
   const baseURL =
-    "http://driftly-ds-api.eba-pqp2r6up.us-east-2.elasticbeanstalk.com";
+    "https://driftly-ds-api.eba-pqp2r6up.us-east-2.elasticbeanstalk.com";
 
   let history = useHistory();
 
@@ -40,7 +40,7 @@ function RenderHomePage(props) {
   }, [comparisonList]);
 
   const checkComparisonListLength = () => {
-    if (comparisonList.length == 0) {
+    if (comparisonList.length === 0) {
       setIsComparing(false);
     }
   };
