@@ -2,13 +2,18 @@ import React from "react";
 import styled from "styled-components";
 
 import { PlusCircleOutlined } from "@ant-design/icons";
+import CityCardModal from "./CityCardModal";
+
+import { Modal, Button } from "react-bootstrap";
+
+//cardComparison height from 150 to 250 px
 
 const CardComparison = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   color: whitesmoke;
   width: 29%;
-  height: 150px;
+  height: 250px;
   min-width: 300px;
   margin: 1rem;
   border-radius: 3px;
@@ -87,10 +92,28 @@ const CardFooter = styled.div`
 `;
 
 function CityCard(props) {
+  const [modalShow, setModalShow] = React.useState(false);
+
   return (
     <CardComparison
       style={{ background: `url(${props.image}) no-repeat center` }}
     >
+      <image
+        src={props.image}
+        onClick={() => setModalShow(true)}
+        height="250px"
+      >
+        Launch vertically centered modal
+      </image>
+      <CityCardModal
+        image={props.image}
+        width="10px"
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        cities={props.cities}
+        cityName={props.city}
+      />
+
       <CardHeader>
         {/* <Arrow class="arrow" /> */}
         {props.city}
@@ -105,7 +128,6 @@ function CityCard(props) {
       >
         <PlusCircleOutlined className="plus-sign" />
       </button>
-
       <CardFooter>
         <div className="attributes">
           <span className="rent-price">{"$1,379 / mo"}</span>

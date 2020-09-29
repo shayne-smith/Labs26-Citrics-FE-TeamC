@@ -11,6 +11,8 @@ import { AutoComplete } from "../../common/AutoComplete.js";
 import ComparisonViz from "../../common/ComparisonViz.js";
 import StatCard from "../../common/StatCard.js";
 
+import CityCardModal from "../../common/CityCardModal.js";
+
 function RenderHomePage(props) {
   // const { userInfo, authService } = props;
   const { userInfo } = props;
@@ -221,6 +223,7 @@ function RenderHomePage(props) {
               setIsComparing={setIsComparing}
               addCity={addCity}
               getData={getData}
+              cities={cities}
             />
           ))}
         </div>
