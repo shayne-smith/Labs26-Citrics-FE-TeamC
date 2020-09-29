@@ -87,20 +87,16 @@ const CardFooter = styled.div`
 `;
 
 function CityCard(props) {
+  const { setIsComparing, getData, city, image } = props;
   return (
-    <CardComparison
-      style={{ background: `url(${props.image}) no-repeat center` }}
-    >
-      <CardHeader>
-        {/* <Arrow class="arrow" /> */}
-        {props.city}
-      </CardHeader>
+    <CardComparison style={{ background: `url(${image}) no-repeat center` }}>
+      <CardHeader>{city}</CardHeader>
       <button
         className="plus-button"
         onClick={() => {
-          props.setIsComparing(true);
+          setIsComparing(true);
           // props.addCity([props.city, props.image]);
-          props.getData(props.city);
+          getData(city);
         }}
       >
         <PlusCircleOutlined className="plus-sign" />

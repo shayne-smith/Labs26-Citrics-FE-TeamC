@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import Header from "../../common/Header";
 import { ReactComponent as DriftlyLogo } from "../../../assets/driftlyLogo.svg";
+import VizDrawer from "../../common/VizDrawer.js";
 
 const Container = styled.div`
   display: flex;
@@ -23,9 +24,10 @@ const MenuWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
 `;
 const DataOptionsList = styled.div`
-  margin-top: 3rem;
+  margin-top: 6rem;
 `;
 const DataOption = styled.div`
   color: #ffffff;
@@ -85,9 +87,14 @@ function DataVizContainer(props) {
             WEATHER
           </DataOption>
         </DataOptionsList>
+        <VizDrawer />
       </MenuWrapper>
+
       <DataWrapper>
         <Header />
+        <h1 className="viz-title">
+          Albany, NY -- Sacramento, CA -- Austin, TX
+        </h1>
         <RenderDataViz showData={showData} />
       </DataWrapper>
     </Container>
