@@ -92,38 +92,35 @@ const CardFooter = styled.div`
 `;
 
 function CityCard(props) {
+  const { setIsComparing, getData, city, image, cities } = props;
   const [modalShow, setModalShow] = React.useState(false);
 
   return (
     <CardComparison
       style={{ background: `url(${props.image}) no-repeat center` }}
     >
-      <image
-        src={props.image}
-        onClick={() => setModalShow(true)}
-        height="250px"
-      >
+      <image src={image} onClick={() => setModalShow(true)} height="250px">
         Launch vertically centered modal
       </image>
       <CityCardModal
-        image={props.image}
+        image={image}
         width="10px"
         show={modalShow}
         onHide={() => setModalShow(false)}
-        cities={props.cities}
-        cityName={props.city}
+        cities={cities}
+        cityName={city}
       />
 
       <CardHeader>
         {/* <Arrow class="arrow" /> */}
-        {props.city}
+        {city}
       </CardHeader>
       <button
         className="plus-button"
         onClick={() => {
-          props.setIsComparing(true);
+          setIsComparing(true);
           // props.addCity([props.city, props.image]);
-          props.getData(props.city);
+          getData(city);
         }}
       >
         <PlusCircleOutlined className="plus-sign" />

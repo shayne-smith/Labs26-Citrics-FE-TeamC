@@ -29,7 +29,7 @@ code {
   margin: 0 0 0 0.4rem;
   border-radius: 5px;
   font-weight: 900;
-  color: #ffffff;
+  color: #E5E5E5;
 }
 .header-link {
   color: #656665;
@@ -211,7 +211,17 @@ code {
 
 /* DATA VISUALIZATION PAGE */
 .menuLogo {
-  max-width: 100%;
+  width: 10%;
+  position: absolute;
+  top: 3%;
+}
+.viz-title {
+  margin: 0 auto;
+
+  font-family: Amatic SC;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 2.5vw;
 }
 
 
