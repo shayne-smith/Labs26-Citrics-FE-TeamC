@@ -4,7 +4,22 @@ import { Modal, Button } from "react-bootstrap";
 //import styled from "styled-components";
 
 function CityCardModal(props) {
-  console.log("this is city data", props.cities);
+  // const valuesArr = []
+  // const weatherArr = []
+
+  // props.cities.map(city => {
+  //     valuesArr.push(Object.values(city))
+  // })
+
+  // valuesArr.map(weatherValues => {
+  //     weatherValues.map(value => {
+  //         console.log(value.toString().toFixed(2))
+  //         //weatherArr.push(value.toString().substr(0, 5))
+  //     })
+  // })
+
+  //console.log(weatherArr)
+
   return (
     <div>
       <Modal
@@ -30,57 +45,80 @@ function CityCardModal(props) {
             return city.location === props.cityName ? (
               <div className="modalContainer">
                 <div className="modalData">
-                  <span className="modalKey">Average Temp in F </span>
-                  {city.FeelsLikeF}
+                  <span className="modalKey">Average Temp (F)</span>
+                  {Number.parseFloat(city.FeelsLikeF).toFixed(2)}°F
                 </div>
                 <div className="modalData">
-                  <span className="modalKey">Average Temp in C </span>
-                  {city.FeelsLikeC}
+                  <span className="modalKey">Average Temp (C)</span>
+                  {Number.parseFloat(city.FeelsLikeC).toFixed(2)}°C
                 </div>
                 <div className="modalData">
-                  <span className="modalKey">Heat Index </span>
-                  {city.HeatIndexC} C
+                  <span className="modalKey">Heat Index</span>
+                  {Number.parseFloat(city.HeatIndexC).toFixed(2)}°C
                 </div>
                 <div className="modalData">
-                  <span className="modalKey">Wind Chill </span>
-                  {city.WindChillC} C
+                  <span className="modalKey">Wind Chill</span>
+                  {Number.parseFloat(city.WindChillC).toFixed(2)}°C
                 </div>
                 <div className="modalData">
-                  <span className="modalKey"> Dew Point </span>
-                  {city.DewPointC} C{" "}
+                  <span className="modalKey"> Dew Point</span>
+                  {Number.parseFloat(city.DewPointC).toFixed(2)}°C
                 </div>
                 <div className="modalData">
-                  <span className="modalKey"> Wind Gust </span>
-                  {city.WindGustKmph} km/hr{" "}
+                  <span className="modalKey"> Wind Gust</span>
+                  {Number.parseFloat(city.WindGustKmph).toFixed(2)} km/hr
                 </div>
                 <div className="modalData">
-                  <span className="modalKey"> Cloud Cover </span>
-                  {city.cloudcover}{" "}
+                  <span className="modalKey"> Cloud Cover</span>
+                  {Number.parseFloat(city.cloudcover).toFixed(2)}%
                 </div>
                 <div className="modalData">
-                  <span className="modalKey"> Humidity </span>
-                  {city.humidity}%
+                  <span className="modalKey"> Humidity</span>
+                  {Number.parseFloat(city.humidity).toFixed(2)}%
+                </div>
+                <div className="modalData">
+                  <span className="modalKey">Max Temp (C)</span>
+                  {Number.parseFloat(city.maxtempC).toFixed(2)}°C
                 </div>
 
-                {/* 
+                <div className="modalData">
+                  <span className="modalKey">Max Temp (F)</span>
+                  {Number.parseFloat(city.maxtempF).toFixed(2)}°F
+                </div>
 
-WindGustKmph: "15.50109649122807"
-cloudcover: "69.24890350877193"
-humidity: "87.8344298245614"
-id: 1
-image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Parque_Eagle_River%2C_Anchorage%2C_Alaska%2C_Estados_Unidos%2C_2017-09-01%2C_DD_02.jpg/2880px-Parque_Eagle_River%2C_Anchorage%2C_Alaska%2C_Estados_Unidos%2C_2017-09-01%2C_DD_02.jpg"
-location: "Juneau, AK"
-location_id: 1
-maxtempC: "-1.3793859649122806"
-maxtempF: "29.48201754385964"
-mintempC: "-5.640350877192983"
-mintempF: "21.81228070175439"
-precipMM: "8.517434210526318"
-pressure: "1010.9309210526316"
-totalSnow_cm: "3.773684210526315"
-uvIndex: "1.3475877192982457"
-visibility: "6.830043859649122"
-windspeedKmph: "9.12390350877193" */}
+                <div className="modalData">
+                  <span className="modalKey">Min Temp (C)</span>
+                  {Number.parseFloat(city.mintempC).toFixed(2)}°C
+                </div>
+
+                <div className="modalData">
+                  <span className="modalKey">Min Temp (F)</span>
+                  {Number.parseFloat(city.mintempF).toFixed(2)}°F
+                </div>
+                <div className="modalData">
+                  <span className="modalKey">Precipitation (mm)</span>
+                  {Number.parseFloat(city.precipMM).toFixed(2)}
+                </div>
+                <div className="modalData">
+                  <span className="modalKey">Pressure</span>
+                  {Number.parseFloat(city.pressure).toFixed(2)}
+                </div>
+                <div className="modalData">
+                  <span className="modalKey">Total Snow (cm)</span>
+                  {Number.parseFloat(city.totalSnow_cm).toFixed(2)}
+                </div>
+                <div className="modalData">
+                  <span className="modalKey">UV Index</span>
+                  {Number.parseFloat(city.uvIndex).toFixed(2)}
+                </div>
+                <div className="modalData">
+                  <span className="modalKey">Visibility</span>
+                  {Number.parseFloat(city.visibility).toFixed(2)}
+                </div>
+                <div className="modalData">
+                  <span className="modalKey">Wind Speed</span>
+                  {Number.parseFloat(city.windspeedKmph).toFixed(2)} km/hr
+                </div>
               </div>
             ) : (
               false

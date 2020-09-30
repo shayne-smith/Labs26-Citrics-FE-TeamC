@@ -244,6 +244,7 @@ code {
   text-align: center;
   display: flex;
   justify-content: space-between;
+  border-bottom: 1px solid lightgrey;
 
 }
 
@@ -251,5 +252,7 @@ code {
 
   font-family: roboto;
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
 }
