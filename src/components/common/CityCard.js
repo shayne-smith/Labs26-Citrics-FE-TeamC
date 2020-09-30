@@ -32,7 +32,7 @@ const CardComparison = styled.div`
 
 const CardHeader = styled.div`
   position: absolute;
-  width: 25%;
+  width: 30%;
   height: 15%;
   left: 0px;
   top: 10px;
@@ -97,11 +97,9 @@ function CityCard(props) {
 
   return (
     <CardComparison
-      style={{ background: `url(${props.image}) no-repeat center` }}
+      style={{ background: `url(${image}) no-repeat center` }}
+      onClick={() => setModalShow(true)}
     >
-      <image src={image} onClick={() => setModalShow(true)} height="250px">
-        Launch vertically centered modal
-      </image>
       <CityCardModal
         image={image}
         width="10px"
