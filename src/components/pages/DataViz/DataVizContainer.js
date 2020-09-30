@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { CityContext } from "../../../contexts/CityContext";
 import RenderDataViz from "./RenderDataViz";
 import styled from "styled-components";
 
@@ -45,11 +46,30 @@ const DataOption = styled.div`
 `;
 
 function DataVizContainer(props) {
+  const { comparisonList } = useContext(CityContext);
+
   const [showData, setShowData] = useState({
     jobs: false,
     realEstate: true,
-    weather: false
+    weather: true
   });
+  const [title, setTitle] = useState("");
+
+  useEffect(() => {
+    buildTitle();
+  });
+
+  const buildTitle = () => {
+    console.log(`comparison list: ${comparisonList}`);
+    let tempTitle = "";
+    comparisonList.forEach(city => {
+      console.log("running");
+      console.log(city.city);
+      tempTitle = tempTitle.concat(city.city, " -- ");
+    });
+    tempTitle = tempTitle.slice(0, -4);
+    setTitle(tempTitle);
+  };
 
   return (
     <Container>
@@ -92,9 +112,7 @@ function DataVizContainer(props) {
 
       <DataWrapper>
         <Header />
-        <h1 className="viz-title">
-          Albany, NY -- Sacramento, CA -- Austin, TX
-        </h1>
+        <h1 className="viz-title">{title}</h1>
         <RenderDataViz showData={showData} />
       </DataWrapper>
     </Container>

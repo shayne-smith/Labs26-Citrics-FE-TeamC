@@ -111,15 +111,11 @@ function CityCard(props) {
         cityName={city}
       />
 
-      <CardHeader>
-        {/* <Arrow class="arrow" /> */}
-        {city}
-      </CardHeader>
+      <CardHeader>{city}</CardHeader>
       <button
         className="plus-button"
         onClick={() => {
           setIsComparing(true);
-          // props.addCity([props.city, props.image]);
           getData(city);
         }}
       >

@@ -29,7 +29,7 @@ code {
   margin: 0 0 0 0.4rem;
   border-radius: 5px;
   font-weight: 900;
-  color: #E5E5E5;
+  color: #FFFFFF;
 }
 .header-link {
   color: #656665;
@@ -292,6 +292,11 @@ code {
   font-size: 2.5vw;
 }
 
+/* DATA VISUALIZATION DRAWER */
+.anticon-close:hover {
+  opacity: 0.75;
+  cursor: pointer;
+}
 
 
 /* MODAL */
