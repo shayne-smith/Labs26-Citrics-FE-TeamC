@@ -223,3 +223,46 @@ code {
   font-weight: bold;
   font-size: 2.5vw;
 }
+
+
+
+/* MODAL */
+
+.modalHeader{
+  font-family: Amatic SC;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 3rem;
+  text-align: center;
+}
+
+.modalSubheader{
+  font-family: Amatic SC;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 2.5rem;
+  text-align: center;
+} 
+
+
+.modalData{
+
+  font-family: Amatic SC;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 2rem;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid lightgrey;
+
+}
+
+.modalKey{
+
+  font-family: roboto;
+  font-weight: bold;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+}
