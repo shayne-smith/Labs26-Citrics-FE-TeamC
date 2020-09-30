@@ -166,17 +166,7 @@ function App() {
         <Route path="/about" component={About} />
         <Route path="/example-list" component={ExampleListPage} />
         <Route path="/profile-list" component={ProfileListPage} />
-        <Route
-          path="/dataviz"
-          component={() => (
-            <DataViz
-              addCity={addCity}
-              removeCity={removeCity}
-              comparisonList={comparisonList}
-              setComparisonList={setComparisonList}
-            />
-          )}
-        />
+        <Route path="/dataviz" component={DataViz} />
         <Route component={NotFoundPage} />
       </Switch>
     </CityContext.Provider>
