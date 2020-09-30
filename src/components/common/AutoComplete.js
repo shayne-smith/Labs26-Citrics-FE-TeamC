@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import { SearchOutlined } from "@ant-design/icons";
 
 export const AutoComplete = props => {
   const [suggestions] = useState([
@@ -701,7 +703,7 @@ export const AutoComplete = props => {
       arr = suggestions.filter(v => regex.test(v));
     }
 
-    setResult(arr.slice(0, 4));
+    setResult(arr.slice(0, 5));
   };
 
   // const findCityPhoto = name => {
@@ -720,13 +722,18 @@ export const AutoComplete = props => {
   // };
 
   return (
-    <div className="searchbox">
-      <input
-        className="search-input"
-        onChange={changeText}
-        type="text"
-        placeholder="city search"
-      />
+    <div className="search">
+      <div className="search-box">
+        <input
+          className="search-input"
+          onChange={changeText}
+          type="text"
+          placeholder="Type to search"
+        />
+        <Link className="search-btn" to="#">
+          <SearchOutlined />
+        </Link>
+      </div>
       <div className="grid">
         {result.map((item, index) => {
           return (
@@ -736,7 +743,6 @@ export const AutoComplete = props => {
               onClick={() => {
                 props.getData(item);
               }}
-              // onClick={() => props.addCity([item, findCityPhoto(item)])}
             >
               {item}
             </div>
