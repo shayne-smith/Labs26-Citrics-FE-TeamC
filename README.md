@@ -44,14 +44,11 @@ For steps on how to work with this repository [please see here](https://docs.lab
 Please go through this [Docs](https://github.com/Lambda-School-Labs/Labs26-Citrics-DS-TeamC) for more information about backend.
 
 # Installation Instructions
-Clone this repo by
-    * git clone https://github.com/Lambda-School-Labs/Labs26-Citrics-FE-TeamC
+- Clone this repo by `git clone https://github.com/Lambda-School-Labs/Labs26-Citrics-FE-TeamC`
 
-Installing the dependencies
-    * npm i
+- Installing the dependencies `npm i`
 
-Start the app    
-    * npm start
+- Start the app `npm start`
 
 # Contributing
 
