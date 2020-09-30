@@ -1,5 +1,12 @@
 import React, { useState } from "react";
 import Plot from "react-plotly.js";
+import styled from "styled-components";
+
+const ChartContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 function DataViz(props) {
   const [data, setData] = useState(
@@ -482,10 +489,10 @@ function DataViz(props) {
   });
 
   return (
-    <>
+    <ChartContainer>
       {props.showData.realEstate && (
         <Plot
-          className="DataViz"
+          className="data-viz"
           data={JSON.parse(data).data}
           layout={JSON.parse(data).layout}
           config={{ displayModeBar: false }}
@@ -493,13 +500,13 @@ function DataViz(props) {
       )}
       {props.showData.weather && (
         <Plot
-          className="DataViz"
+          className="data-viz"
           data={weather.data}
           layout={weather.layout}
           config={{ displayModeBar: false }}
         />
       )}
-    </>
+    </ChartContainer>
   );
 }
 

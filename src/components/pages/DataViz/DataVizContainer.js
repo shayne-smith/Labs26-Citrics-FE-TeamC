@@ -13,6 +13,7 @@ const Container = styled.div`
 const DataWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   margin: 0 auto;
   width: 80%;
 `;
