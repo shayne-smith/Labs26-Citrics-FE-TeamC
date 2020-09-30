@@ -306,12 +306,19 @@ code {
 
 /* MODAL */
 
-.modalHeader{
+
+.modal-title{
+
   font-family: Amatic SC;
   font-style: normal;
   font-weight: bold;
   font-size: 3rem;
   text-align: center;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 0 3%;
+ 
+
 }
 
 .modalSubheader{
@@ -328,7 +335,7 @@ code {
   font-family: Amatic SC;
   font-style: normal;
   font-weight: bold;
-  font-size: 2rem;
+  font-size: 1.8rem;
   text-align: center;
   display: flex;
   justify-content: space-between;
@@ -338,9 +345,70 @@ code {
 
 .modalKey{
 
-  font-family: roboto;
+  font-family: sans-serif;
   font-weight: bold;
-  font-size: 1.3rem;
+  font-size: 1rem;
   display: flex;
   align-items: center;
+}
+
+.modalBtn{
+  background-color: rgba(112,199,131,0.8);
+  font-family: Amatic SC;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 2rem;
+  border: none;
+  width: 100px;
+}
+
+.modalBtn:hover{
+  background-color: rgba(0, 0, 0, 0.65);
+}
+
+.close{
+ color: white;
+ font-size: 4rem;
+ opacity: 0.8;
+ font-family: Amatic SC;
+ 
+
+
+}
+
+/* button.close{
+  display: none;
+} */
+
+.modal-header{
+  height: 150px;
+  align-items: center;
+}
+
+.modal-header .close{
+
+  margin-bottom: 14%;
+  padding: 1%;
+  height: 10px;
+
+}
+
+.modal-footer{
+  justify-content: center;
+}
+
+.modalContainer{
+  display: flex;
+}
+
+.modal-leftSide{
+  width: 50%;
+  border-right: 1px solid lightgrey;
+  padding-right: 1%;
+}
+
+.modal-rightSide{
+  width: 50%;
+ 
+  padding-left: 1%;
 }
