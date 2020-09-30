@@ -1,10 +1,10 @@
-# Basic SPA
+# Driftly - let's find your next home!
+
+[Driftly](https://c.citrics.dev/)
+
+## Basic SPA
 
 For steps on how to work with this repository [please see here](https://docs.labs.lambdaschool.com/labs-spa-starter/)
-
-# Title of project
-
-You can find the deployed project at [https://c.citrics.dev/](https://c.citrics.dev/).
 
 ## Contributors
 
@@ -17,13 +17,10 @@ You can find the deployed project at [https://c.citrics.dev/](https://c.citrics.
 <br>
 <br>
 
-🚫 Optional examples of using images with links for your tech stack, make sure to change these to fit your project
-
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
 ![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
 ![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)
 
-🚫 more info on using badges [here](https://github.com/badges/shields)
 
 - Fork and clone the repo to install it as your own remote.
   - **note** please [be sure to set your remote](https://help.github.jp/enterprise/2.11/user/articles/changing-a-remote-s-url/) for this repo to point to your Labs Team Front End Repository.
@@ -34,55 +31,27 @@ You can find the deployed project at [https://c.citrics.dev/](https://c.citrics.
 
 ### Key Features
 
-- feature one
-- feature two
-- feature three
-- feature four
-- feature five
+- See a list of approximately 700 cities' statistics about weather, job market, housing, covid cases and more
+- Allow to choose any three cities to compare data
+- Providing data visualization such as graphs or bars for better user's experience
+- Search for city by name
+- Search based on user's reference (incoming)
 
-#### Front end deployed to `🚫insert service here`
+#### Front end deployed to ` https://c.citrics.dev`
 
-#### [Back end](🚫link to back end repo here) built using:
+#### [Back end](http://driftly-ds-api.eba-pqp2r6up.us-east-2.elasticbeanstalk.com/#/default) built using FastAPI
 
-#### 🚫 back end framework goes here
-
-- point one
-- point two
-- point three
-
-🚫 List the rest of the back end end features and libraries in the same format as the framework above
-
-# APIs
-
-## Authentication API here
-
-🚫Replace text below with a description of the API
-
-Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
-
-## Payment API here
-
-🚫Replace text below with a description of the API
-
-This is the way you take out your flustrations. Get away from those little Christmas tree things we used to make in school. Isn't it fantastic that you can change your mind and create all these happy things? Everything's not great in life, but we can still find beauty in it.
-
-## Misc API here
-
-🚫Replace text below with a description of the API
-
-You can do anything your heart can imagine. In life you need colors. This is where you take out all your hostilities and frustrations. It's better than kicking the puppy dog around and all that so. I'm sort of a softy, I couldn't shoot Bambi except with a camera. Trees get lonely too, so we'll give him a little friend. We'll lay all these little funky little things in there.
+Please go through this [Docs](https://github.com/Lambda-School-Labs/Labs26-Citrics-DS-TeamC) for more information about backend.
 
 # Installation Instructions
+Clone this repo by
+    * git clone https://github.com/Lambda-School-Labs/Labs26-Citrics-FE-TeamC
 
-🚫explain how to install the required dependencies to get this project up and running with yarn and NPM
+Installing the dependencies
+    * npm i
 
-## Other Scripts
-
-🚫replace these examples with your own
-
-    * build - creates a build of the application
-    * start - starts the production server after a build is created
-    * test - runs tests in **tests** directory \* eject - copy the configuration files and dependencies into the project so you have full control over them
+Start the app    
+    * npm start
 
 # Contributing
 
@@ -118,4 +87,4 @@ Remember that this project is licensed under the MIT license, and by submitting 
 
 ## Documentation
 
-See [Backend Documentation](🚫*link to your backend API SWAGGER DOCS here*) for details on the backend of our project.
+See [Backend Documentation](http://driftly-ds-api.eba-pqp2r6up.us-east-2.elasticbeanstalk.com/#/default) for details on the backend of our project.
