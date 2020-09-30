@@ -102,7 +102,6 @@ function CityCard(props) {
     >
       <CityCardModal
         image={image}
-        width="10px"
         show={modalShow}
         onHide={() => setModalShow(false)}
         cities={cities}
