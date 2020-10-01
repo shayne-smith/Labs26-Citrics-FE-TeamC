@@ -18,7 +18,8 @@ function RenderHomePage() {
     removeCity,
     isComparing,
     setIsComparing,
-    getData
+    getData,
+    weather
   } = useContext(CityContext);
 
   const [showStats, setShowStats] = useState(false);
@@ -79,6 +80,7 @@ function RenderHomePage() {
               addCity={addCity}
               getData={getData}
               cities={cities}
+              weather={weather}
             />
           ))}
         </div>

@@ -2,6 +2,44 @@ import React from "react";
 import { Modal, Button, Tabs, Tab } from "react-bootstrap";
 
 function CityCardModal(props) {
+  //console.log(props.weather)
+
+  let weatherArray = Array(props.weather);
+
+  //console.log(weatherArray[0])
+
+  const states = Object.keys(weatherArray[0]);
+
+  console.log(states);
+
+  for (let i = 0; i < states.length; i++) {
+    const strReplace = states[i].replace(/"/g, "");
+    console.log(weatherArray[0][strReplace]);
+  }
+
+  //let obj = props.weather
+
+  //const stateKeys = Object.keys(obj)
+
+  //console.log(keys)
+
+  // values is city name and housing
+  //const valuesArr = Object.values(obj)
+
+  //console.log(valuesArr)
+
+  // all the cities followed by a comma and the state code
+  // let cityStateArr = []
+
+  // for (let i = 0; i < valuesArr.length; i++) {
+  //   let obj3 = Object.keys(valuesArr[i])
+  //   obj3.map(e => {
+  //     cityStateArr.push(e)
+  //   })
+  // }
+
+  // console.log(cityStateArr)
+
   return (
     <div>
       <div onClick={e => e.stopPropagation()}>

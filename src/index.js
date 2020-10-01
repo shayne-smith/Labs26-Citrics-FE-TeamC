@@ -151,7 +151,8 @@ function App() {
         removeCity,
         isComparing,
         setIsComparing,
-        getData
+        getData,
+        weather
       }}
     >
       <Switch>

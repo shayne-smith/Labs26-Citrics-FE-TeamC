@@ -106,6 +106,7 @@ function CityCard(props) {
         onHide={() => setModalShow(false)}
         cities={cities}
         cityName={city}
+        weather={props.weather}
       />
 
       <CardHeader>{city}</CardHeader>
