@@ -46,6 +46,7 @@ function App() {
   const [jobs, setJobs] = useState([]);
 
   const [isComparing, setIsComparing] = useState(false);
+  const [showLimitError, setShowLimitError] = useState(false);
   // The reason to declare App this way is so that we can use any helper functions we'd need for business logic, in our case auth.
   // React Router has a nifty useHistory hook we can use at this level to ensure we have security around our routes.
 
@@ -60,21 +61,22 @@ function App() {
     getJobsData();
   }, []);
 
-  useEffect(() => {
-    checkComparisonListLength();
-  }, [comparisonList]);
-
   const checkComparisonListLength = () => {
     if (comparisonList.length === 0) {
       setIsComparing(false);
     }
   };
 
+  useEffect(() => {
+    checkComparisonListLength();
+  }, [comparisonList]);
+
   const getCityData = () =>
     axios
       .get("https://citrics-c-api.herokuapp.com/cities")
       .then(res => {
         setCities(res.data);
+        // console.log("running getCityData()");  runs 1 time
       })
       .catch(err => console.log(err));
 
@@ -83,6 +85,7 @@ function App() {
       .get(`${baseURL}/housing`)
       .then(res => {
         setHousing(JSON.parse(res.data));
+        console.log("running getHousingData()"); // runs 1 time
       })
       .catch(err => console.log(err));
 
@@ -99,24 +102,29 @@ function App() {
       .get(`${baseURL}/weather`)
       .then(res => {
         setWeather(JSON.parse(res.data));
+        console.log("running getWeatherData()"); // runs 1 time
       })
       .catch(err => console.log(err));
 
   const getData = str => {
     const s = str.charAt(str.length - 2) + str.charAt(str.length - 1);
     try {
-      setComparisonList([
-        ...comparisonList,
-        {
-          // this doesn't seem to be finding city image
-          city: str,
-          image: cities.find(city => (city.location = str)).image,
-          housing: housing[s][str],
-          weather: weather[s][str].summer.MaxTempF,
-          jobs: jobs[s]["Total Manufacturing"]
-        }
-      ]);
-      setIsComparing(true);
+      if (comparisonList.length < 3) {
+        setComparisonList([
+          ...comparisonList,
+          {
+            // this doesn't seem to be finding city image
+            city: str,
+            image: cities.find(city => (city.location = str)).image,
+            housing: housing[s][str],
+            weather: weather[s][str].summer.MaxTempF,
+            jobs: jobs[s]["Total Manufacturing"]
+          }
+        ]);
+        setIsComparing(true);
+      } else {
+        setShowLimitError(true);
+      }
     } catch (err) {
       console.log(err);
     }
@@ -126,6 +134,10 @@ function App() {
     // We pass this to our <Security /> component that wraps our routes.
     // It'll automatically check if userToken is available and push back to login if not :)
     history.push("/login");
+  };
+
+  const handleClose = () => {
+    setShowLimitError(false);
   };
 
   const addCity = key => {
@@ -151,7 +163,10 @@ function App() {
         removeCity,
         isComparing,
         setIsComparing,
-        getData
+        getData,
+        showLimitError,
+        setShowLimitError,
+        handleClose
       }}
     >
       <Switch>
