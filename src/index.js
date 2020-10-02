@@ -98,7 +98,8 @@ function App() {
     axios
       .get(`${baseURL}/weather`)
       .then(res => {
-        setWeather(JSON.parse(res.data));
+        const weatherData = JSON.parse(res.data);
+        setWeather(weatherData);
       })
       .catch(err => console.log(err));
 

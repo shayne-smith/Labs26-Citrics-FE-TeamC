@@ -7,8 +7,6 @@ import Header from "../../common/Header.js";
 import Hero from "../../common/Hero.js";
 import { AutoComplete } from "../../common/AutoComplete.js";
 
-//import CityCardModal from "../../common/CityCardModal.js";
-
 function RenderHomePage() {
   const {
     cities,

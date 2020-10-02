@@ -2,9 +2,11 @@ import React from "react";
 import styled from "styled-components";
 
 import { PlusCircleOutlined } from "@ant-design/icons";
-import CityCardModal from "./CityCardModal";
+//import CityCardModal from "./CityCardModal";
 
 import { Modal, Button } from "react-bootstrap";
+
+import TestComponent from "./TestComponent";
 
 //cardComparison height from 150 to 250 px
 
@@ -92,7 +94,7 @@ const CardFooter = styled.div`
 `;
 
 function CityCard(props) {
-  const { setIsComparing, getData, city, image, cities } = props;
+  const { setIsComparing, getData, city, image, cities, weather } = props;
   const [modalShow, setModalShow] = React.useState(false);
 
   return (
@@ -100,13 +102,22 @@ function CityCard(props) {
       style={{ background: `url(${image}) no-repeat center` }}
       onClick={() => setModalShow(true)}
     >
-      <CityCardModal
+      {/* <CityCardModal
         image={image}
         show={modalShow}
         onHide={() => setModalShow(false)}
         cities={cities}
         cityName={city}
-        weather={props.weather}
+
+      /> */}
+
+      <TestComponent
+        image={image}
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        cities={cities}
+        cityName={city}
+        weather={weather}
       />
 
       <CardHeader>{city}</CardHeader>
