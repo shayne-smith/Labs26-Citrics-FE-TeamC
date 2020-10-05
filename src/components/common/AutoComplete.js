@@ -734,21 +734,23 @@ export const AutoComplete = props => {
           <SearchOutlined />
         </Link>
       </div>
-      <div className="grid">
-        {result.map((item, index) => {
-          return (
-            <div
-              className="result"
-              key={index}
-              onClick={() => {
-                props.getData(item);
-              }}
-            >
-              {item}
-            </div>
-          );
-        })}
-      </div>
+      {result.length !== 0 && (
+        <div className="grid">
+          {result.map((item, index) => {
+            return (
+              <div
+                className="result"
+                key={index}
+                onClick={() => {
+                  props.getData(item);
+                }}
+              >
+                {item}
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };
