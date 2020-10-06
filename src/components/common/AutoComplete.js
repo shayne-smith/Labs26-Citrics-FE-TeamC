@@ -706,21 +706,6 @@ export const AutoComplete = props => {
     setResult(arr.slice(0, 5));
   };
 
-  // const findCityPhoto = name => {
-  //   for (let i = 0; i < props.cities.length; i++) {
-  //     // console.log(props.cities[i].location);
-  //     // console.log("name: " + name.split(",")[0]);
-  //     // console.log(props.cities[i].location.split(",")[0])
-  //     if (
-  //       name.split(",")[0].toLowerCase() ==
-  //       props.cities[i].location.split(",")[0].toLowerCase()
-  //     ) {
-  //       console.log("city name: " + props.cities[i]);
-  //       return props.cities[i][1];
-  //     }
-  //   }
-  // };
-
   return (
     <div className="search">
       <div className="search-box">
