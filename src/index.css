@@ -21,6 +21,10 @@ code {
   flex-wrap: wrap;
   justify-content: space-between;
 }
+.home-page-container {
+  display: flex;
+  flex-direction: column;
+}
 
 /* HEADER SECTION */
 #login {
@@ -108,14 +112,12 @@ code {
   align-items: center;
   margin-bottom: 6rem;
 }
-
 .search-box {
   position: relative;
   background: rgba(112, 199, 131, 0.7);
   height: 3rem;
   border-radius: 3rem;
 }
-
 .search-btn {
   font-size: 1.1rem;
   color: rgba(112, 199, 131, 0.9);
@@ -128,16 +130,13 @@ code {
   justify-content: center;
   align-items: center;
 }
-
 .search-btn:hover {
   color: rgba(112, 199, 131, 0.9);
 }
-
 .search-box:focus-within > .search-input {
   width: 20rem;
   padding: 0 .6rem;
 }
-
 .search-input {
   border: none;
   background: none;
@@ -150,7 +149,6 @@ code {
   line-height: 2.8rem;
   width: 0;
 }
-
 .grid {
   position: absolute;
   width: 15rem;
@@ -158,7 +156,6 @@ code {
   margin-top: 10rem;
   z-index: 10;
 }
-
 .result {
   color: #2f3640;
   border-radius: .3rem;
@@ -167,6 +164,19 @@ code {
   height: 1.2rem;
   margin: .1rem;
   background: rgba(112, 199, 131, .9);
+}
+.more-filters-button {
+  padding: 8px 16px;
+  margin: 0.5rem auto;
+  max-width: 130px;
+  border: 1px solid #656665;
+  border-radius: 30px;
+  color: #656665;
+  background: #F9F8F4;
+}
+.more-filters-button:hover {
+  border: 1px solid rgb(34, 34, 34);
+  cursor: pointer;
 }
 
 /* .searchbox {
@@ -278,10 +288,13 @@ code {
 
 
 /* DATA VISUALIZATION PAGE */
-.menuLogo {
-  width: 10%;
-  position: absolute;
+#menuLogoWrapper {
   top: 3%;
+  width: 80%;
+}
+#menuLogo {
+  width: 100%;
+  height: auto;
 }
 .viz-title {
   margin: 0 auto;
@@ -306,9 +319,7 @@ code {
   cursor: pointer;
 }
 
-
 /* MODAL */
-
 
 .modal-title{
 
@@ -415,3 +426,29 @@ code {
  
   padding-left: 1%;
 }
+
+/* ADVANCED SEARCH MENU */
+#advanced-search-title {
+  position: absolute;
+  top: 9rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: left;
+  color: #ffffff;
+  font-family: Amatic SC;
+}
+.advanced-search-menu {
+  position: absolute;
+  /* width: 100%; */
+  top: 12rem;
+  border-radius: 5px;
+  font-family: Amatic SC;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+/* .sub-menu-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+} */

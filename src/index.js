@@ -22,6 +22,7 @@ import { ExampleDataViz } from "./components/pages/ExampleDataViz";
 import { DataViz } from "./components/pages/DataViz";
 import { config } from "./utils/oktaConfig";
 import { LoadingComponent } from "./components/common";
+import { AdvancedSearch } from "./components/pages/AdvancedSearch";
 
 import { CityContext } from "./contexts/CityContext";
 
@@ -182,6 +183,7 @@ function App() {
         <Route path="/example-list" component={ExampleListPage} />
         <Route path="/profile-list" component={ProfileListPage} />
         <Route path="/dataviz" component={DataViz} />
+        <Route path="/advanced-search" component={AdvancedSearch} />
         <Route component={NotFoundPage} />
       </Switch>
     </CityContext.Provider>
