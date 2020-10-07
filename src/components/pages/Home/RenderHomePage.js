@@ -26,16 +26,23 @@ function RenderHomePage() {
 
   if (comparisonList.length <= 3) {
     return (
-      <div>
+      <div className="home-page-container">
         <Header />
         <Hero />
+
         <AutoComplete
           addCity={addCity}
           cities={cities}
           setComparisonList={setComparisonList}
           getData={getData}
         />
-
+        <div
+          role="button"
+          className="more-filters-button"
+          onClick={() => history.push("/advanced-search")}
+        >
+          More Filters
+        </div>
         {isComparing && (
           <div className="comparison-container">
             <div className="comparison">

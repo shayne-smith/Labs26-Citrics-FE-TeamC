@@ -97,6 +97,8 @@ function CityCard(props) {
   const { setIsComparing, getData, city, image, cities, weather } = props;
   const [modalShow, setModalShow] = React.useState(false);
 
+  console.log("CityCard Render");
+
   return (
     <CardComparison
       style={{ background: `url(${image}) no-repeat center` }}

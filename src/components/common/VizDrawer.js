@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { CityContext } from "../../contexts/CityContext";
-import { Drawer, Button } from "antd";
+import { Drawer, Alert } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
 import styled from "styled-components";
 
@@ -37,10 +37,19 @@ const CityNameContainer = styled.div`
   align-items: center;
   padding: 0.3rem 0;
 `;
+const LimitError = styled.div`
+  margin: 0.5rem 0;
+`;
 
 const VizDrawer = () => {
   const [visible, setVisible] = useState(false);
-  const { comparisonList, getData, removeCity } = useContext(CityContext);
+  const {
+    comparisonList,
+    getData,
+    removeCity,
+    showLimitError,
+    handleClose
+  } = useContext(CityContext);
 
   const showDrawer = () => {
     setVisible(true);
@@ -67,6 +76,18 @@ const VizDrawer = () => {
         visible={visible}
       >
         <MiniSearchBar getData={getData} />
+        {showLimitError && (
+          <LimitError>
+            <Alert
+              className="limit-error-alert"
+              description="Only 3 cities can be compared at a time."
+              type="warning"
+              showIcon
+              closable
+              afterClose={handleClose}
+            />
+          </LimitError>
+        )}
         <CityListContainer>
           <h6>Selected Cities</h6>
           {comparisonList.map((city, index) => (
