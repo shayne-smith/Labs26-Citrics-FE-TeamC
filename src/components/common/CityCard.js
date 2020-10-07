@@ -94,10 +94,20 @@ const CardFooter = styled.div`
 `;
 
 function CityCard(props) {
-  const { setIsComparing, getData, city, image, cities, weather } = props;
+  const {
+    setIsComparing,
+    getData,
+    city,
+    image,
+    cities,
+    weather,
+    jobs,
+    housing,
+    covid
+  } = props;
   const [modalShow, setModalShow] = React.useState(false);
 
-  console.log("CityCard Render");
+  //console.log("CityCard Render");
 
   return (
     <CardComparison
@@ -120,6 +130,9 @@ function CityCard(props) {
         cities={cities}
         cityName={city}
         weather={weather}
+        housing={housing}
+        jobs={jobs}
+        covid={covid}
       />
 
       <CardHeader>{city}</CardHeader>
