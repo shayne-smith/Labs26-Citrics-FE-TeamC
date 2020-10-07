@@ -104,8 +104,8 @@ function App() {
     axios
       .get(`${baseURL}/weather`)
       .then(res => {
-        setWeather(JSON.parse(res.data));
-        console.log("running getWeatherData()"); // runs 1 time
+        const weatherData = JSON.parse(res.data);
+        setWeather(weatherData);
       })
       .catch(err => console.log(err));
 
@@ -171,6 +171,7 @@ function App() {
         isComparing,
         setIsComparing,
         getData,
+        weather,
         showLimitError,
         setShowLimitError,
         handleClose
