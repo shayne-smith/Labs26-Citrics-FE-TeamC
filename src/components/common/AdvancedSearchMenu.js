@@ -41,47 +41,78 @@ class AdvancedSearchMenu extends React.Component {
         onOpenChange={this.onOpenChange}
         className="advanced-search-menu"
       >
-        <SubMenu
-          key="sub1"
-          icon={<UserOutlined />}
-          title="Population"
-          className="advanced-search-submenu"
-        >
+        <SubMenu key="sub1" icon={<UserOutlined />} title="Population">
           <p className="advanced-search-option-title">Choose City Size</p>
-          <RadioButtons />
+          <RadioButtons
+            buttonNames={[
+              "Small | <500K",
+              "Medium | 500K - 1M",
+              "Large | 1M - 2M",
+              "Mega | 2M+"
+            ]}
+            rowFormat={false}
+          />
         </SubMenu>
         <SubMenu key="sub2" icon={<AppstoreOutlined />} title="Weather">
           <p className="advanced-search-option-title">
-            Choose Average Summer Temperature (°F)
+            Filter By Average Summer Temperature
           </p>
-          <DecimalSlider min={-20} max={100} />
+          <RadioButtons
+            buttonNames={["Cold", "Mild", "Hot"]}
+            rowFormat={true}
+          />
           <p className="advanced-search-option-title">
-            Choose Average UV Index (0-10)
+            Filter By Average UV Index (0-10)
           </p>
-          <DecimalSlider min={0} max={10} />
+          <GraduatedSlider
+            min={0}
+            max={10}
+            defaultValue={[0, 10]}
+            marks={{
+              0: "0",
+              10: "10"
+            }}
+            step={0.1}
+          />
           <p className="advanced-search-option-title">
-            Choose Average Cloud Cover (%)
+            Filter By Average Cloud Cover (%)
           </p>
-          <DecimalSlider min={0} max={100} />
+          <GraduatedSlider
+            min={0}
+            max={100}
+            defaultValue={[0, 100]}
+            marks={{
+              0: "0",
+              100: "100"
+            }}
+            step={1.0}
+          />
         </SubMenu>
-        <SubMenu key="sub3" icon={<SettingOutlined />} title="Job Industry">
-          <Menu.Item key="9">Option 9</Menu.Item>
-          <Menu.Item key="10">Option 10</Menu.Item>
-          <Menu.Item key="11">Option 11</Menu.Item>
-          <Menu.Item key="12">Option 12</Menu.Item>
-        </SubMenu>
+        <SubMenu
+          key="sub3"
+          icon={<SettingOutlined />}
+          title="Job Industry"
+        ></SubMenu>
         <SubMenu key="sub4" icon={<SettingOutlined />} title="Housing">
           <p className="advanced-search-option-title">
-            Choose Average 1BR Home Prices
+            Filter By Average 1BR Home Prices
           </p>
-          <GraduatedSlider />
+          <GraduatedSlider
+            min={0}
+            max={100}
+            defaultValue={[0, 100]}
+            marks={{
+              0: "0",
+              100: "100"
+            }}
+            step={1.0}
+          />
         </SubMenu>
-        <SubMenu key="sub5" icon={<SettingOutlined />} title="COVID-19">
-          <Menu.Item key="9">Option 9</Menu.Item>
-          <Menu.Item key="10">Option 10</Menu.Item>
-          <Menu.Item key="11">Option 11</Menu.Item>
-          <Menu.Item key="12">Option 12</Menu.Item>
-        </SubMenu>
+        <SubMenu
+          key="sub5"
+          icon={<SettingOutlined />}
+          title="COVID-19"
+        ></SubMenu>
       </Menu>
     );
   }
