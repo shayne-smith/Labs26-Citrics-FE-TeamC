@@ -4,7 +4,9 @@ import { Modal, Button, Tabs, Tab } from "react-bootstrap";
 
 export default class TestComponent extends React.Component {
   state = {
-    weather: [this.props.weather]
+    weather: [this.props.weather],
+    housing: [this.props.housing],
+    jobs: [this.props.jobs]
   };
 
   stateCode = Object.keys(this.state.weather[0]);
@@ -12,6 +14,9 @@ export default class TestComponent extends React.Component {
   dataArray = [];
   cityNames = [];
   megaArray = [];
+  housingArray = Object.values(this.state.housing[0]);
+  jobsStates = Object.entries(this.state.jobs[0]);
+  jobsArray = Object.values(this.state.jobs[0]);
 
   componentDidMount() {
     this.allCitiesArray.map(cities => {
@@ -29,15 +34,11 @@ export default class TestComponent extends React.Component {
       // )
     });
 
-    //console.log('pushed', this.dataArray)
-
     this.cityNames.map(array => {
       array.map(cityName => {
         this.megaArray.push(cityName);
       });
     });
-    //each individual city name in an array
-    //console.log('city names', this.megaArray)
   }
 
   render() {
@@ -360,8 +361,163 @@ export default class TestComponent extends React.Component {
                     });
                   })}
                 </Tab>
-                <Tab eventKey="housing" title="Housing"></Tab>
-                <Tab eventKey="jobs" title="Jobs"></Tab>
+                <Tab eventKey="housing" title="Housing">
+                  {this.housingArray.map(housingData => {
+                    return Object.entries(housingData).map(entry => {
+                      return entry[0] === this.props.cityName ? (
+                        <div className="modalContainer">
+                          <div className="modal-leftSide">
+                            <div className="modalData">
+                              <span className="modalKey">
+                                Average Home Purchase Cost
+                              </span>
+                              {entry[1]}$
+                            </div>
+                          </div>
+                        </div>
+                      ) : (
+                        false
+                      );
+                    });
+                  })}
+                </Tab>
+
+                <Tab eventKey="jobs" title="Jobs">
+                  {//compare this.props.cityName.slice(0, 2).toUpperCase() to entry[0], if they match
+                  // return entry[1]['Total Durable Goods']
+
+                  this.jobsStates.map(entry => {
+                    // console.log(entry[1])
+                    return entry[0] ===
+                      this.props.cityName
+                        .slice(
+                          this.props.cityName.length - 2,
+                          this.props.cityName.length
+                        )
+                        .toUpperCase() ? (
+                      <div className="modalContainer">
+                        <div className="modal-leftSide">
+                          <div className="modalData">
+                            <span className="modalKey"></span>
+                            People Employed
+                          </div>
+
+                          <div className="modalData">
+                            <span className="modalKey">
+                              Total Manufacturing
+                            </span>
+
+                            {(entry[1]["Total Manufacturing"] * 1000).toFixed(
+                              0
+                            )}
+                          </div>
+                          <div className="modalData">
+                            <span className="modalKey">
+                              Total Private Sector
+                            </span>
+                            {(entry[1]["Total Private Sector"] * 1000).toFixed(
+                              0
+                            )}
+                          </div>
+                          <div className="modalData">
+                            <span className="modalKey">
+                              Total Wholesale Trade
+                            </span>
+                            {(entry[1]["Total Wholesale Trade"] * 1000).toFixed(
+                              0
+                            )}
+                          </div>
+                          <div className="modalData">
+                            <span className="modalKey">
+                              Total Goods-Producing
+                            </span>
+                            {(entry[1]["Total Goods-Producing"] * 1000).toFixed(
+                              0
+                            )}
+                          </div>
+                          <div className="modalData">
+                            <span className="modalKey">Total Real Estate</span>
+                            {(entry[1]["Total Real Estate"] * 1000).toFixed(0)}
+                          </div>
+                          <div className="modalData">
+                            <span className="modalKey">
+                              Total Service-Providing{" "}
+                            </span>
+                            {(
+                              entry[1]["Total Service-Providing"] * 1000
+                            ).toFixed(0)}
+                          </div>
+                          <div className="modalData">
+                            <span className="modalKey">
+                              Total Commercial Banking{" "}
+                            </span>
+                            {(
+                              entry[1]["Total Commercial Banking"] * 1000
+                            ).toFixed(0)}
+                          </div>
+                        </div>
+
+                        <div className="modal-rightSide">
+                          <div className="modalData">
+                            <span className="modalKey"></span>
+                            People Employed
+                          </div>
+                          <div className="modalData">
+                            <span className="modalKey">
+                              Total Government Sector{" "}
+                            </span>
+                            {(
+                              entry[1]["Total Government Sector"] * 1000
+                            ).toFixed(0)}
+                          </div>
+                          <div className="modalData">
+                            <span className="modalKey">
+                              Total Telecommunications{" "}
+                            </span>
+                            {(
+                              entry[1]["Total Telecommunications"] * 1000
+                            ).toFixed(0)}
+                          </div>
+                          <div className="modalData">
+                            <span className="modalKey">
+                              Total Durable Goods{" "}
+                            </span>
+                            {(entry[1]["Total Durable Goods"] * 1000).toFixed(
+                              0
+                            )}
+                          </div>
+                          <div className="modalData">
+                            <span className="modalKey">
+                              Total Transportation{" "}
+                            </span>
+                            {(entry[1]["Total Transportation"] * 1000).toFixed(
+                              0
+                            )}
+                          </div>
+                          <div className="modalData">
+                            <span className="modalKey">
+                              Total Transportation and Utilities{" "}
+                            </span>
+                            {(
+                              entry[1]["Total Transportation and Utilities"] *
+                              1000
+                            ).toFixed(0)}
+                          </div>
+                          <div className="modalData">
+                            <span className="modalKey">
+                              Total Mining and Logging{" "}
+                            </span>
+                            {(
+                              entry[1]["Total Mining and Logging"] * 1000
+                            ).toFixed(0)}
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      false
+                    );
+                  })}
+                </Tab>
                 <Tab eventKey="covid" title="Covid"></Tab>
                 <Tab eventKey="overview" title="Overview"></Tab>
               </Tabs>

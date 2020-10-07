@@ -171,6 +171,8 @@ function App() {
         setIsComparing,
         getData,
         weather,
+        housing,
+        jobs,
         showLimitError,
         setShowLimitError,
         handleClose
