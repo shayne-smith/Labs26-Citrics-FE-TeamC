@@ -47,6 +47,7 @@ function App() {
   const [housing, setHousing] = useState([]);
   const [weather, setWeather] = useState([]);
   const [jobs, setJobs] = useState([]);
+  const [covid, setCovid] = useState([]);
 
   const [isComparing, setIsComparing] = useState(false);
   const [showLimitError, setShowLimitError] = useState(false);
@@ -61,6 +62,7 @@ function App() {
     getHousingData();
     getWeatherData();
     getJobsData();
+    getCovidData();
   }, []);
 
   const checkComparisonListLength = () => {
@@ -105,6 +107,15 @@ function App() {
       .then(res => {
         const weatherData = JSON.parse(res.data);
         setWeather(weatherData);
+      })
+      .catch(err => console.log(err));
+
+  const getCovidData = () =>
+    axios
+      .get(`${baseURL}/covid`)
+      .then(res => {
+        const covidData = JSON.parse(res.data);
+        setCovid(covidData);
       })
       .catch(err => console.log(err));
 
@@ -173,6 +184,7 @@ function App() {
         weather,
         housing,
         jobs,
+        covid,
         showLimitError,
         setShowLimitError,
         handleClose

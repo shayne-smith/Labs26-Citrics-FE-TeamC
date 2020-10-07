@@ -102,7 +102,8 @@ function CityCard(props) {
     cities,
     weather,
     jobs,
-    housing
+    housing,
+    covid
   } = props;
   const [modalShow, setModalShow] = React.useState(false);
 
@@ -131,6 +132,7 @@ function CityCard(props) {
         weather={weather}
         housing={housing}
         jobs={jobs}
+        covid={covid}
       />
 
       <CardHeader>{city}</CardHeader>

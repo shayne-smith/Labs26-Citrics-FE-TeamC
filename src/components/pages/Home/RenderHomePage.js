@@ -19,7 +19,8 @@ function RenderHomePage() {
     getData,
     weather,
     jobs,
-    housing
+    housing,
+    covid
   } = useContext(CityContext);
 
   const [showStats, setShowStats] = useState(false);
@@ -90,6 +91,7 @@ function RenderHomePage() {
               weather={weather}
               jobs={jobs}
               housing={housing}
+              covid={covid}
             />
           ))}
         </div>

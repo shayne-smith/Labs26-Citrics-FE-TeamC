@@ -6,7 +6,8 @@ export default class TestComponent extends React.Component {
   state = {
     weather: [this.props.weather],
     housing: [this.props.housing],
-    jobs: [this.props.jobs]
+    jobs: [this.props.jobs],
+    covid: [this.props.covid]
   };
 
   stateCode = Object.keys(this.state.weather[0]);
@@ -16,24 +17,13 @@ export default class TestComponent extends React.Component {
   megaArray = [];
   housingArray = Object.values(this.state.housing[0]);
   jobsStates = Object.entries(this.state.jobs[0]);
-  jobsArray = Object.values(this.state.jobs[0]);
+  covidArray = Object.entries(this.state.covid[0]);
 
   componentDidMount() {
     this.allCitiesArray.map(cities => {
-      // console.log('this is cities', cities);
-      // //cities keys has each city name
-      //console.log('this is cities keys', Object.keys(cities));
-      this.cityNames.push(Object.keys(cities));
-      // console.log('this is cities values', Object.values(cities)[0]);
       this.dataArray.push(Object.values(cities));
-
-      // return Object.keys(cities) === this.props.cityName ? (
-      //   <div>
-
-      //   </div>
-      // )
+      this.cityNames.push(Object.keys(cities));
     });
-
     this.cityNames.map(array => {
       array.map(cityName => {
         this.megaArray.push(cityName);
@@ -383,10 +373,7 @@ export default class TestComponent extends React.Component {
                 </Tab>
 
                 <Tab eventKey="jobs" title="Jobs">
-                  {//compare this.props.cityName.slice(0, 2).toUpperCase() to entry[0], if they match
-                  // return entry[1]['Total Durable Goods']
-
-                  this.jobsStates.map(entry => {
+                  {this.jobsStates.map(entry => {
                     // console.log(entry[1])
                     return entry[0] ===
                       this.props.cityName
@@ -399,7 +386,7 @@ export default class TestComponent extends React.Component {
                         <div className="modal-leftSide">
                           <div className="modalData">
                             <span className="modalKey"></span>
-                            People Employed
+                            People Employed in the state of {entry[0]}
                           </div>
 
                           <div className="modalData">
@@ -460,7 +447,7 @@ export default class TestComponent extends React.Component {
                         <div className="modal-rightSide">
                           <div className="modalData">
                             <span className="modalKey"></span>
-                            People Employed
+                            People Employed in the state of {entry[0]}
                           </div>
                           <div className="modalData">
                             <span className="modalKey">
@@ -518,7 +505,41 @@ export default class TestComponent extends React.Component {
                     );
                   })}
                 </Tab>
-                <Tab eventKey="covid" title="Covid"></Tab>
+                <Tab eventKey="covid" title="Covid">
+                  {this.covidArray.map(entry => {
+                    // console.log(entry[1])
+                    return entry[0] ===
+                      this.props.cityName
+                        .slice(
+                          this.props.cityName.length - 2,
+                          this.props.cityName.length
+                        )
+                        .toUpperCase() ? (
+                      <div className="modalContainer">
+                        <div className="modal-leftSide">
+                          <div className="modalData">
+                            <span className="modalKey"></span>
+                            Amount of People in the state of {entry[0]}
+                          </div>
+                          <div className="modalData">
+                            <span className="modalKey">Tested</span>
+                            {entry[1].tested.toFixed(0)}
+                          </div>
+                          <div className="modalData">
+                            <span className="modalKey">Positive</span>
+                            {entry[1].positive.toFixed(0)}
+                          </div>
+                          <div className="modalData">
+                            <span className="modalKey">Deaths</span>
+                            {entry[1].deaths.toFixed(0)}
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      false
+                    );
+                  })}
+                </Tab>
                 <Tab eventKey="overview" title="Overview"></Tab>
               </Tabs>
             </Modal.Body>
