@@ -7,7 +7,10 @@ import {
   Switch
 } from "react-router-dom";
 import axios from "axios";
-import { Security, LoginCallback, SecureRoute } from "@okta/okta-react";
+
+import { Security, SecureRoute, LoginCallback } from "@okta/okta-react";
+import Login from "./components/Login";
+import Home from "./components/Home";
 
 import "antd/dist/antd.less";
 import "./index.css";
@@ -102,8 +105,8 @@ function App() {
     axios
       .get(`${baseURL}/weather`)
       .then(res => {
-        setWeather(JSON.parse(res.data));
-        console.log("running getWeatherData()"); // runs 1 time
+        const weatherData = JSON.parse(res.data);
+        setWeather(weatherData);
       })
       .catch(err => console.log(err));
 
@@ -153,6 +156,10 @@ function App() {
     );
   };
 
+  function onAuthRequired() {
+    history.push("/login");
+  }
+
   return (
     // <Security {...config} onAuthRequired={authHandler}>
     <CityContext.Provider
@@ -165,26 +172,42 @@ function App() {
         isComparing,
         setIsComparing,
         getData,
+        weather,
         showLimitError,
         setShowLimitError,
         handleClose
       }}
     >
       <Switch>
-        <Route path="/login" component={LoginPage} />
-        <Route path="/implicit/callback" component={LoginCallback} />
-        {/* any of the routes you need secured should be registered as SecureRoutes */}
-        <Route
-          path="/"
-          exact
-          component={() => <HomePage LoadingComponent={LoadingComponent} />}
-        />
-        <Route path="/about" component={About} />
-        <Route path="/example-list" component={ExampleListPage} />
-        <Route path="/profile-list" component={ProfileListPage} />
-        <Route path="/dataviz" component={DataViz} />
-        <Route path="/advanced-search" component={AdvancedSearch} />
-        <Route component={NotFoundPage} />
+        <Security
+          issuer="https://dev-783756.okta.com/oauth2/default"
+          clientId="0oazj0xl0ZxIKVnSR4x6"
+          redirectUri={window.location.origin + "/implicit/callback"}
+          onAuthRequired={onAuthRequired}
+        >
+          {/* <Route path="/login" component={LoginPage} /> */}
+          {/* <Route path="/implicit/callback" component={LoginCallback} /> */}
+          {/* any of the routes you need secured should be registered as SecureRoutes */}
+          <Route path="/" exact={true} component={Home} />
+          <SecureRoute
+            path="/home"
+            exact
+            component={() => <HomePage LoadingComponent={LoadingComponent} />}
+          />
+
+          <Route
+            path="/login"
+            render={() => <Login baseUrl="https://dev-783756.okta.com" />}
+          />
+          <Route path="/implicit/callback" component={LoginCallback} />
+
+          <SecureRoute path="/about" exact={true} component={About} />
+          <Route path="/example-list" component={ExampleListPage} />
+          <Route path="/profile-list" component={ProfileListPage} />
+          <Route path="/dataviz" component={DataViz} />
+          <Route path="/advanced-search" component={AdvancedSearch} />
+          {/* <Route component={NotFoundPage} /> */}
+        </Security>
       </Switch>
     </CityContext.Provider>
     // </Security>

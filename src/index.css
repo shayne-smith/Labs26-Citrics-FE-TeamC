@@ -105,6 +105,7 @@ code {
 }
 
 /* SEARCH BAR */
+
 .search {
   display: flex;
   flex-direction: column-reverse;
@@ -178,33 +179,6 @@ code {
   border: 1px solid rgb(34, 34, 34);
   cursor: pointer;
 }
-
-/* .searchbox {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-.search-input {
-  display: block;
-  width: 35%;
-  height: 40px;
-}
-.grid {
-  width: 35%;
-}
-.result {
-  width: 100%;
-  margin: 0.2rem 0;
-  padding: 0.3rem 1rem;
-  background-color: #FFFFFF;
-  
-  border: 2px solid rgb(118, 118, 118);
-  border-radius: 6px;
-}
-.result:hover {
-  cursor: pointer;
-  background-color: rgba(112, 199, 131, 0.7);
-} */
 
 /* COMPARISON CONTAINER */
 .comparison {
