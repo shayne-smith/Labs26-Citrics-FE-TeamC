@@ -77,7 +77,7 @@ function RenderHomePage() {
           </div>
         )}
 
-        <div className="container">
+        <div className="card-container">
           {cities.map((city, index) => (
             <CityCard
               key={index}
