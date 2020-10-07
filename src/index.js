@@ -48,14 +48,14 @@ function App() {
   const [housing, setHousing] = useState([]);
   const [weather, setWeather] = useState([]);
   const [jobs, setJobs] = useState([]);
+  const [covid, setCovid] = useState([]);
 
   const [isComparing, setIsComparing] = useState(false);
   const [showLimitError, setShowLimitError] = useState(false);
   // The reason to declare App this way is so that we can use any helper functions we'd need for business logic, in our case auth.
   // React Router has a nifty useHistory hook we can use at this level to ensure we have security around our routes.
 
-  const baseURL =
-    "http://driftly-ds-api.eba-pqp2r6up.us-east-2.elasticbeanstalk.com";
+  const baseURL = "https://c-ds-driftly.citrics.dev";
   const history = useHistory();
 
   useEffect(() => {
@@ -63,6 +63,7 @@ function App() {
     getHousingData();
     getWeatherData();
     getJobsData();
+    getCovidData();
   }, []);
 
   const checkComparisonListLength = () => {
@@ -107,6 +108,15 @@ function App() {
       .then(res => {
         const weatherData = JSON.parse(res.data);
         setWeather(weatherData);
+      })
+      .catch(err => console.log(err));
+
+  const getCovidData = () =>
+    axios
+      .get(`${baseURL}/covid`)
+      .then(res => {
+        const covidData = JSON.parse(res.data);
+        setCovid(covidData);
       })
       .catch(err => console.log(err));
 
@@ -173,6 +183,9 @@ function App() {
         setIsComparing,
         getData,
         weather,
+        housing,
+        jobs,
+        covid,
         showLimitError,
         setShowLimitError,
         handleClose
