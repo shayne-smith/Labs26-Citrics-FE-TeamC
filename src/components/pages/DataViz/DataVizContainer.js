@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
+import { useHistory, Link } from "react-router-dom";
 import { CityContext } from "../../../contexts/CityContext";
 import RenderDataViz from "./RenderDataViz";
 import styled from "styled-components";
@@ -48,6 +49,7 @@ const DataOption = styled.div`
 
 function DataVizContainer(props) {
   const { comparisonList } = useContext(CityContext);
+  const history = useHistory();
 
   const [showData, setShowData] = useState({
     jobs: false,
@@ -75,7 +77,9 @@ function DataVizContainer(props) {
   return (
     <Container>
       <MenuWrapper>
-        <DriftlyLogo className="menuLogo" />
+        <Link id="menuLogoWrapper">
+          <DriftlyLogo id="menuLogo" onClick={() => history.push("/")} />
+        </Link>
         <DataOptionsList>
           <DataOption
             onClick={() =>
