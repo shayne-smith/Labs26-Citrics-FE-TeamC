@@ -38,6 +38,9 @@ const AdvancedSearch = () => {
     addCity,
     getData,
     weather,
+    jobs,
+    housing,
+    covid,
     suggestions
   } = useContext(CityContext);
   const history = useHistory();
@@ -70,6 +73,9 @@ const AdvancedSearch = () => {
               addCity={addCity}
               getData={getData}
               cities={cities}
+              jobs={jobs}
+              housing={housing}
+              covid={covid}
               weather={weather}
             />
           ))}
