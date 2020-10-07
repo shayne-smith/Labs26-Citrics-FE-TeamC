@@ -15,7 +15,6 @@ const Navigation = styled.nav`
   align-items: center;
   width: 50%;
   margin: 1rem;
-  padding: 0.2rem;
 
   font-family: Amatic SC;
   font-style: normal;
@@ -23,11 +22,11 @@ const Navigation = styled.nav`
   font-size: 1.5rem;
 `;
 
-function Header(props) {
+function Header() {
   return (
     <Wrapper>
       <Navigation>
-        <Link className="header-link" to="/">
+        <Link className="header-link" to="/home">
           Home
         </Link>
         <Link className="header-link" to="/about">
