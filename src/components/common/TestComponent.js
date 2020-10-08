@@ -14,10 +14,14 @@ export default class TestComponent extends React.Component {
   allCitiesArray = Object.values(this.state.weather[0]);
   dataArray = [];
   cityNames = [];
-  megaArray = [];
+  allCityNamesArray = [];
   housingArray = Object.values(this.state.housing[0]);
   jobsStates = Object.entries(this.state.jobs[0]);
   covidArray = Object.entries(this.state.covid[0]);
+
+  numberWithCommas(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
 
   componentDidMount() {
     this.allCitiesArray.map(cities => {
@@ -26,7 +30,7 @@ export default class TestComponent extends React.Component {
     });
     this.cityNames.map(array => {
       array.map(cityName => {
-        this.megaArray.push(cityName);
+        this.allCityNamesArray.push(cityName);
       });
     });
   }
@@ -50,7 +54,7 @@ export default class TestComponent extends React.Component {
               }}
             >
               <Modal.Title id="contained-modal-title-vcenter">
-                {this.megaArray.map(city => {
+                {this.allCityNamesArray.map(city => {
                   //remove this ternary when all cities get added to the DB
                   return city === this.props.cityName ? (
                     <div>{city}</div>
@@ -61,15 +65,23 @@ export default class TestComponent extends React.Component {
               </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <div className="modalSubheader">City Guide</div>
-              <Tabs defaultActiveKey="weather" id="modal-tabs">
+              <div className="modalSubheader">City Report</div>
+              <Tabs
+                className="modalTabs"
+                defaultActiveKey="weather"
+                id="modal-tabs"
+              >
                 <Tab eventKey="weather" title="Weather">
                   {this.allCitiesArray.map(cities => {
                     let entries = Object.entries(cities);
 
                     return entries.map(entry => {
                       return entry[0] === this.props.cityName ? (
-                        <Tabs defaultActiveKey="summer" id="modal-subtabs">
+                        <Tabs
+                          className="modalTabs"
+                          defaultActiveKey="summer"
+                          id="modal-subtabs"
+                        >
                           <Tab eventKey="summer" title="Summer">
                             <div className="modalContainer">
                               <div className="modal-leftSide">
@@ -361,7 +373,7 @@ export default class TestComponent extends React.Component {
                               <span className="modalKey">
                                 Average Home Purchase Cost
                               </span>
-                              {entry[1]}$
+                              ${entry[1]}
                             </div>
                           </div>
                         </div>
@@ -374,7 +386,6 @@ export default class TestComponent extends React.Component {
 
                 <Tab eventKey="jobs" title="Jobs">
                   {this.jobsStates.map(entry => {
-                    // console.log(entry[1])
                     return entry[0] ===
                       this.props.cityName
                         .slice(
@@ -384,119 +395,129 @@ export default class TestComponent extends React.Component {
                         .toUpperCase() ? (
                       <div className="modalContainer">
                         <div className="modal-leftSide">
-                          <div className="modalData">
+                          <div className="modalData bold">
                             <span className="modalKey"></span>
                             People Employed in the state of {entry[0]}
                           </div>
 
                           <div className="modalData">
-                            <span className="modalKey">
-                              Total Manufacturing
-                            </span>
+                            <span className="modalKey">Manufacturing</span>
 
-                            {(entry[1]["Total Manufacturing"] * 1000).toFixed(
-                              0
+                            {this.numberWithCommas(
+                              (entry[1]["Total Manufacturing"] * 1000).toFixed(
+                                0
+                              )
+                            )}
+                          </div>
+                          <div className="modalData">
+                            <span className="modalKey">Private Sector</span>
+                            {this.numberWithCommas(
+                              (entry[1]["Total Private Sector"] * 1000).toFixed(
+                                0
+                              )
+                            )}
+                          </div>
+                          <div className="modalData">
+                            <span className="modalKey">Wholesale Trade</span>
+                            {this.numberWithCommas(
+                              (
+                                entry[1]["Total Wholesale Trade"] * 1000
+                              ).toFixed(0)
+                            )}
+                          </div>
+                          <div className="modalData">
+                            <span className="modalKey">Goods-Producing</span>
+                            {this.numberWithCommas(
+                              (
+                                entry[1]["Total Goods-Producing"] * 1000
+                              ).toFixed(0)
+                            )}
+                          </div>
+                          <div className="modalData">
+                            <span className="modalKey">Real Estate</span>
+                            {this.numberWithCommas(
+                              (entry[1]["Total Real Estate"] * 1000).toFixed(0)
+                            )}
+                          </div>
+                          <div className="modalData">
+                            <span className="modalKey">Service-Providing </span>
+                            {this.numberWithCommas(
+                              (
+                                entry[1]["Total Service-Providing"] * 1000
+                              ).toFixed(0)
                             )}
                           </div>
                           <div className="modalData">
                             <span className="modalKey">
-                              Total Private Sector
+                              Commercial Banking{" "}
                             </span>
-                            {(entry[1]["Total Private Sector"] * 1000).toFixed(
-                              0
+                            {this.numberWithCommas(
+                              (
+                                entry[1]["Total Commercial Banking"] * 1000
+                              ).toFixed(0)
                             )}
-                          </div>
-                          <div className="modalData">
-                            <span className="modalKey">
-                              Total Wholesale Trade
-                            </span>
-                            {(entry[1]["Total Wholesale Trade"] * 1000).toFixed(
-                              0
-                            )}
-                          </div>
-                          <div className="modalData">
-                            <span className="modalKey">
-                              Total Goods-Producing
-                            </span>
-                            {(entry[1]["Total Goods-Producing"] * 1000).toFixed(
-                              0
-                            )}
-                          </div>
-                          <div className="modalData">
-                            <span className="modalKey">Total Real Estate</span>
-                            {(entry[1]["Total Real Estate"] * 1000).toFixed(0)}
-                          </div>
-                          <div className="modalData">
-                            <span className="modalKey">
-                              Total Service-Providing{" "}
-                            </span>
-                            {(
-                              entry[1]["Total Service-Providing"] * 1000
-                            ).toFixed(0)}
-                          </div>
-                          <div className="modalData">
-                            <span className="modalKey">
-                              Total Commercial Banking{" "}
-                            </span>
-                            {(
-                              entry[1]["Total Commercial Banking"] * 1000
-                            ).toFixed(0)}
                           </div>
                         </div>
 
                         <div className="modal-rightSide">
-                          <div className="modalData">
+                          <div className="modalData bold">
                             <span className="modalKey"></span>
                             People Employed in the state of {entry[0]}
                           </div>
                           <div className="modalData">
-                            <span className="modalKey">
-                              Total Government Sector{" "}
-                            </span>
-                            {(
-                              entry[1]["Total Government Sector"] * 1000
-                            ).toFixed(0)}
-                          </div>
-                          <div className="modalData">
-                            <span className="modalKey">
-                              Total Telecommunications{" "}
-                            </span>
-                            {(
-                              entry[1]["Total Telecommunications"] * 1000
-                            ).toFixed(0)}
-                          </div>
-                          <div className="modalData">
-                            <span className="modalKey">
-                              Total Durable Goods{" "}
-                            </span>
-                            {(entry[1]["Total Durable Goods"] * 1000).toFixed(
-                              0
+                            <span className="modalKey">Government Sector </span>
+                            {this.numberWithCommas(
+                              (
+                                entry[1]["Total Government Sector"] * 1000
+                              ).toFixed(0)
                             )}
                           </div>
                           <div className="modalData">
                             <span className="modalKey">
-                              Total Transportation{" "}
+                              Telecommunications{" "}
                             </span>
-                            {(entry[1]["Total Transportation"] * 1000).toFixed(
-                              0
+                            {this.numberWithCommas(
+                              (
+                                entry[1]["Total Telecommunications"] * 1000
+                              ).toFixed(0)
+                            )}
+                          </div>
+                          <div className="modalData">
+                            <span className="modalKey">Durable Goods </span>
+                            {this.numberWithCommas(
+                              (entry[1]["Total Durable Goods"] * 1000).toFixed(
+                                0
+                              )
+                            )}
+                          </div>
+                          <div className="modalData">
+                            <span className="modalKey">Transportation </span>
+                            {this.numberWithCommas(
+                              (entry[1]["Total Transportation"] * 1000).toFixed(
+                                0
+                              )
                             )}
                           </div>
                           <div className="modalData">
                             <span className="modalKey">
-                              Total Transportation and Utilities{" "}
+                              Transportation and Utilities{" "}
                             </span>
-                            {(
-                              entry[1]["Total Transportation and Utilities"] *
-                              1000
-                            ).toFixed(0)}
+                            {this.numberWithCommas(
+                              (
+                                entry[1]["Total Transportation and Utilities"] *
+                                1000
+                              ).toFixed(0)
+                            )}
                           </div>
                           <div className="modalData">
                             <span className="modalKey">
-                              Total Mining and Logging{" "}
+                              Mining and Logging{" "}
                             </span>
-                            {(
-                              entry[1]["Total Mining and Logging"] * 1000
-                            ).toFixed(0)}
+                            {this.numberWithCommas(
+                              (
+                                entry[1]["Total Mining and Logging"] * 1000
+                              ).toFixed(0)
+                            )}
                           </div>
                         </div>
                       </div>
@@ -517,21 +538,23 @@ export default class TestComponent extends React.Component {
                         .toUpperCase() ? (
                       <div className="modalContainer">
                         <div className="modal-leftSide">
-                          <div className="modalData">
+                          <div className="modalData bold">
                             <span className="modalKey"></span>
                             Amount of People in the state of {entry[0]}
                           </div>
                           <div className="modalData">
                             <span className="modalKey">Tested</span>
-                            {entry[1].tested.toFixed(0)}
+                            {this.numberWithCommas(entry[1].tested.toFixed(0))}
                           </div>
                           <div className="modalData">
                             <span className="modalKey">Positive</span>
-                            {entry[1].positive.toFixed(0)}
+                            {this.numberWithCommas(
+                              entry[1].positive.toFixed(0)
+                            )}
                           </div>
                           <div className="modalData">
                             <span className="modalKey">Deaths</span>
-                            {entry[1].deaths.toFixed(0)}
+                            {this.numberWithCommas(entry[1].deaths.toFixed(0))}
                           </div>
                         </div>
                       </div>
