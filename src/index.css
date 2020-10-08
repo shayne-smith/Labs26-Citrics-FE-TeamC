@@ -323,31 +323,40 @@ code {
   font-family: Amatic SC;
   font-style: normal;
   font-weight: bold;
-  font-size: 2.5rem;
+  font-size: 3rem;
   text-align: center;
 } 
 
 
 .modalData{
 
-  font-family: Amatic SC;
+  font-family: Oswald;
   font-style: normal;
-  font-weight: bold;
-  font-size: 1.8rem;
+  font-weight: 300;
+  font-size: 1.2rem;
   text-align: center;
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid lightgrey;
+  padding: 1% 0;
 
 }
 
 .modalKey{
 
-  font-family: sans-serif;
+  font-family: Oswald;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 1.2rem;
   display: flex;
   align-items: center;
+}
+
+.bold{
+  font-family: Oswald;
+  font-weight: normal;
+  font-size: 1.2rem;
+  padding: 1% 0;
+  border-bottom: 2px solid grey;
 }
 
 .modalBtn{
@@ -370,13 +379,7 @@ code {
  opacity: 0.8;
  font-family: Amatic SC;
  
-
-
 }
-
-/* button.close{
-  display: none;
-} */
 
 .modal-header{
   height: 150px;
@@ -410,6 +413,26 @@ code {
  
   padding-left: 1%;
 }
+
+.modalTabs{
+
+  font-family: Amatic SC;
+  font-style: normal;
+  font-weight: Bold;
+  font-size: 1.5rem;
+  text-align: center;
+
+}
+.nav-tabs .nav-link{
+  color: rgba(112, 199, 131);
+}
+
+
+.nav-tabs .nav-link.active{
+  color: #656665;
+  
+}
+
 
 /* ADVANCED SEARCH MENU */
 #advanced-search-title {
