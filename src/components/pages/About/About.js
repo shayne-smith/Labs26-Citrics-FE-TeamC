@@ -2,11 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import Header from "../../common/Header.js";
-import {
-  GithubOutlined,
-  LinkedinOutlined,
-  UserOutlined
-} from "@ant-design/icons";
+import { GithubOutlined, LinkedinOutlined } from "@ant-design/icons";
 
 const Wrapper = styled.div`
   display: flex;
@@ -15,22 +11,35 @@ const Wrapper = styled.div`
   flex-wrap: wrap;
   margin: 2rem;
   font-family: Amatic SC;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const El = styled.div`
   margin: 1.5rem;
   padding-top: 1%;
-  width: 40%;
+  width: 25%;
   background: rgba(112, 199, 131, 0.9);
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 768px) {
+    width: 70%;
+  }
 `;
 
 const Footer = styled.div`
   text-align: center;
+`;
+
+const Image = styled.img`
+  width: 15%;
+  border-radius: 0.5rem;
 `;
 function About() {
   return (
@@ -48,12 +57,12 @@ function About() {
       <Wrapper>
         {data.map((e, index) => (
           <El key={index}>
-            <UserOutlined />
-            <h3 style={{ fontWeight: "700", fontSize: "1.2rem" }}>{e.name}</h3>
+            <Image alt="img" src={e.image} />
+            <h3 style={{ fontWeight: "700", fontSize: "1.4rem" }}>{e.name}</h3>
             <p
               style={{
                 fontWeight: "700",
-                fontSize: "1.1rem",
+                fontSize: "1.3rem",
                 marginBottom: "0"
               }}
             >
@@ -95,49 +104,57 @@ const data = [
     name: "Vlad",
     role: "APL",
     github: "",
-    linkedIn: ""
+    linkedIn: "",
+    image: "https://ca.slack-edge.com/ESZCHB482-W012X6RQ5G9-833633f70058-512"
   },
   {
-    name: "Xander Bennett",
+    name: "Connor Angelis",
     role: "TPL",
     github: "",
-    linkedIn: ""
+    linkedIn: "",
+    image: "https://ca.slack-edge.com/ESZCHB482-W0138D6L6UQ-bbfef33c1387-512"
   },
   {
     name: "Shayne Smith",
     role: "Full Stack Engineer",
     github: "",
-    linkedIn: ""
+    linkedIn: "",
+    image: "https://ca.slack-edge.com/ESZCHB482-W0123RTM51V-bf749dc3288f-512"
   },
   {
     name: "Guillermo Alfaro",
     role: "Full Stack Engineer",
     github: "",
-    linkedIn: ""
+    linkedIn: "",
+    image: "https://ca.slack-edge.com/ESZCHB482-W0123RTV5QX-3ba8de22b37c-512"
   },
   {
     name: "Nathan Nguyen",
     role: "Full Stack Engineer",
     github: "https://github.com/NathanNNguyen/",
-    linkedIn: "https://www.linkedin.com/in/nathannnguyen/"
+    linkedIn: "https://www.linkedin.com/in/nathannnguyen/",
+    image: "https://ca.slack-edge.com/ESZCHB482-W012QNUUE6Q-79b5f4d3d5d8-512"
   },
   {
     name: "Michael Toce",
     role: "Data Scientist",
     github: "",
-    linkedIn: ""
+    linkedIn: "",
+    image: "https://ca.slack-edge.com/ESZCHB482-W012JHYTBU2-f789bad4aa18-512"
   },
   {
     name: "Rourke Struthers",
     role: "Data Scientist",
     github: "",
-    linkedIn: ""
+    linkedIn: "",
+    image: "https://ca.slack-edge.com/ESZCHB482-W012QNXTZMJ-4c660cb71977-512"
   },
   {
     name: "Fatai King",
     role: "Data Scientist",
     github: "",
-    linkedIn: ""
+    linkedIn: "",
+    image: "https://ca.slack-edge.com/ESZCHB482-W012BRSS6EA-1757906d14b2-512"
   }
 ];
 
