@@ -2,11 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import Header from "../../common/Header.js";
-import {
-  GithubOutlined,
-  LinkedinOutlined,
-  UserOutlined
-} from "@ant-design/icons";
+import { GithubOutlined, LinkedinOutlined } from "@ant-design/icons";
 
 const Wrapper = styled.div`
   display: flex;
@@ -15,6 +11,10 @@ const Wrapper = styled.div`
   flex-wrap: wrap;
   margin: 2rem;
   font-family: Amatic SC;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const El = styled.div`
@@ -27,6 +27,10 @@ const El = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 768px) {
+    width: 70%;
+  }
 `;
 
 const Footer = styled.div`
