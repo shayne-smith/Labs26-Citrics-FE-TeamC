@@ -442,9 +442,31 @@ code {
 .ant-row {
   padding: 0 1rem;
 }
+.ant-slider {
+  display: inline-block;
+  margin: 10px 12px 10px;
+  width: 80%;
+}
 .ant-slider-with-marks {
   margin: 1.2rem 2.0rem;
   font-family: 'Oswald', 'sans serif';
+}
+.slider-wrapper {
+  display: flex;
+}
+#uv-index-slider {
+  width: 350px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#housing-slider {
+  width: 380px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .ant-menu-sub {
   padding-bottom: 1rem !important;
@@ -480,4 +502,32 @@ code {
 }
 #get-results-button:hover {
   opacity: 0.85;
+}
+.icon-wrapper {
+  position: relative;
+  padding: 0px 30px;
+  display: flex;
+  width: 300px;
+}
+
+.icon-wrapper .anticon {
+  position: absolute;
+  top: -2px;
+  width: 16px;
+  height: 16px;
+  line-height: 1;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.25);
+}
+
+.icon-wrapper .icon-wrapper-active {
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.icon-wrapper .anticon:first-child {
+  left: 0;
+}
+
+.icon-wrapper .anticon:last-child {
+  right: 0;
 }

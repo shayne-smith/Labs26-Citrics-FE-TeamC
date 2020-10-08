@@ -15,6 +15,7 @@ const RadioButtons = props => {
       {rowFormat &&
         buttonNames.map((name, index) => (
           <Radio
+            key={index}
             style={{ display: "inline" }}
             className="radio-buttons"
             value={index + 1}
