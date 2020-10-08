@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState, useContext } from "react";
+import { CityContext } from "../../contexts/CityContext";
 import { Link } from "react-router-dom";
 import { SearchOutlined } from "@ant-design/icons";
 
-export const AutoComplete = props => {
+export const AutoComplete = () => {
   const [suggestions] = useState([
     "Alpharetta, GA",
     "Atlanta, GA",
@@ -694,6 +694,7 @@ export const AutoComplete = props => {
     "Washington, DC"
   ]);
   const [result, setResult] = useState([]);
+  const { getData, getImage } = useContext(CityContext);
 
   const changeText = e => {
     let value = e.target.value;
@@ -727,7 +728,8 @@ export const AutoComplete = props => {
                 className="result"
                 key={index}
                 onClick={() => {
-                  props.getData(item);
+                  getImage(item);
+                  getData(item);
                 }}
               >
                 {item}
