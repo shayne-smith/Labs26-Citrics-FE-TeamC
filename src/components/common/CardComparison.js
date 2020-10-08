@@ -16,6 +16,7 @@ const CardContainer = styled.div`
   margin: 2rem;
   border-radius: 3px;
   flex-grow: 1;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 
   @media (max-width: 768px) {
@@ -25,8 +26,9 @@ const CardContainer = styled.div`
 
 const CardHeader = styled.div`
   position: absolute;
-  width: 25%;
-  height: 15%;
+  /* width: 40%; */
+  /* height: 15%; */
+  padding: 1%;
   left: 0px;
   top: 10px;
 
@@ -70,20 +72,6 @@ const CardHeader = styled.div`
   }
 `;
 
-const CardFooter = styled.div`
-  width: 100%;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  border-radius: 3px;
-  background: rgba(112, 199, 131, 0.9);
-
-  font-family: Amatic SC;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 1.1rem;
-`;
-
 function CardComparison(props) {
   return (
     <CardContainer
@@ -105,6 +93,7 @@ function CardComparison(props) {
             <li>Housing: ${props.data.housing}</li>
             <li>Total Manufacturing: {props.data.jobs.toFixed(2)}</li>
             <li>Weather: {props.data.weather.toFixed(0)} degree</li>
+            <li>Covid Positive Cases: {props.data.covid.toFixed(0)} cases</li>
           </ul>
         </div>
       )}

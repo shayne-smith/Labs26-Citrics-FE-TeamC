@@ -1,6 +1,36 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { withOktaAuth } from "@okta/okta-react";
+import styled from "styled-components";
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: Amatic SC;
+`;
+
+const Header = styled.h1`
+  color: rgba(112, 199, 131, 0.9);
+  font-size: 4rem;
+`;
+
+const Text = styled.h4`
+  font-size: 3rem;
+`;
+
+const Button = styled.button`
+  border-radius: 1rem;
+  background: rgba(112, 199, 131, 0.9);
+  color: white;
+  width: 10rem;
+  border: none;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0.2rem auto;
+  box-shadow: 5px 5px 10px rgba(112, 199, 131, 0.6);
+`;
 
 export default withOktaAuth(
   class Home extends Component {
@@ -23,27 +53,32 @@ export default withOktaAuth(
 
       const mainContent = this.props.authState.isAuthenticated ? (
         <div>
-          <p>
-            You have entered the staff portal,{" "}
-            <Link to="/home">click here</Link>
-          </p>
-          <button onClick={this.logout}>Logout</button>
+          <Text>
+            Welcome to the staff portal,{" "}
+            <Link style={{ color: "rgba(112, 199, 131, 0.9)" }} to="/home">
+              click here{" "}
+            </Link>
+            to go to the home page.
+          </Text>
+          <Button onClick={this.logout}>Logout</Button>
         </div>
       ) : (
         <div>
-          <p>
+          <Text>
             If you are a staff member, please log in to get to{" "}
-            <Link to="/home">Main Site</Link>
-          </p>
-          <button onClick={this.login}>Login</button>
+            <Link style={{ color: "rgba(112, 199, 131, 0.9)" }} to="/home">
+              main site
+            </Link>
+          </Text>
+          <Button onClick={this.login}>Login</Button>
         </div>
       );
 
       return (
-        <div>
-          <h1>Driftly Staff Portal</h1>
+        <Container>
+          <Header>Driftly Staff Portal</Header>
           {mainContent}
-        </div>
+        </Container>
       );
     }
   }

@@ -77,7 +77,7 @@ function RenderHomePage() {
           </div>
         )}
 
-        <div className="card-container">
+        {/* <div className="card-container">
           {cities.map((city, index) => (
             <CityCard
               key={index}
@@ -94,7 +94,7 @@ function RenderHomePage() {
               covid={covid}
             />
           ))}
-        </div>
+        </div> */}
       </div>
     );
   } else if (comparisonList.length > 3) {
