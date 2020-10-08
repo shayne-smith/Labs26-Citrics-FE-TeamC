@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { SearchOutlined } from "@ant-design/icons";
 
 export const AutoComplete = () => {
+  const { getData, getImage } = useContext(CityContext);
   const [suggestions] = useState([
     "Alpharetta, GA",
     "Atlanta, GA",
@@ -694,7 +695,6 @@ export const AutoComplete = () => {
     "Washington, DC"
   ]);
   const [result, setResult] = useState([]);
-  const { getData, getImage } = useContext(CityContext);
 
   const changeText = e => {
     let value = e.target.value;
