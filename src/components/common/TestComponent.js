@@ -18,9 +18,14 @@ export default class TestComponent extends React.Component {
   housingArray = Object.values(this.state.housing[0]);
   jobsStates = Object.entries(this.state.jobs[0]);
   covidArray = Object.entries(this.state.covid[0]);
+  overviewArray = [];
 
   numberWithCommas(number) {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  overviewData(element) {
+    this.overviewArray.push(element);
   }
 
   componentDidMount() {
@@ -118,28 +123,28 @@ export default class TestComponent extends React.Component {
                                   °C
                                 </div>
                                 <div className="modalData">
-                                  <span className="modalKey"> Dew Point</span>
+                                  <span className="modalKey">Dew Point</span>
                                   {Number.parseFloat(
                                     entry[1].summer.DewPointC
                                   ).toFixed(2)}
                                   °C
                                 </div>
                                 <div className="modalData">
-                                  <span className="modalKey"> Wind Gust</span>
+                                  <span className="modalKey">Wind Gust</span>
                                   {Number.parseFloat(
                                     entry[1].summer.WindGust_kmph
                                   ).toFixed(2)}{" "}
                                   km/hr
                                 </div>
                                 <div className="modalData">
-                                  <span className="modalKey"> Cloud Cover</span>
+                                  <span className="modalKey">Cloud Cover</span>
                                   {Number.parseFloat(
                                     entry[1].summer.CloudCover
                                   ).toFixed(2)}
                                   %
                                 </div>
                                 <div className="modalData">
-                                  <span className="modalKey"> Humidity</span>
+                                  <span className="modalKey">Humidity</span>
                                   {Number.parseFloat(
                                     entry[1].summer.Humidity
                                   ).toFixed(2)}
@@ -255,28 +260,28 @@ export default class TestComponent extends React.Component {
                                   °C
                                 </div>
                                 <div className="modalData">
-                                  <span className="modalKey"> Dew Point</span>
+                                  <span className="modalKey">Dew Point</span>
                                   {Number.parseFloat(
                                     entry[1].winter.DewPointC
                                   ).toFixed(2)}
                                   °C
                                 </div>
                                 <div className="modalData">
-                                  <span className="modalKey"> Wind Gust</span>
+                                  <span className="modalKey">Wind Gust</span>
                                   {Number.parseFloat(
                                     entry[1].winter.WindGust_kmph
                                   ).toFixed(2)}{" "}
                                   km/hr
                                 </div>
                                 <div className="modalData">
-                                  <span className="modalKey"> Cloud Cover</span>
+                                  <span className="modalKey">Cloud Cover</span>
                                   {Number.parseFloat(
                                     entry[1].winter.CloudCover
                                   ).toFixed(2)}
                                   %
                                 </div>
                                 <div className="modalData">
-                                  <span className="modalKey"> Humidity</span>
+                                  <span className="modalKey">Humidity</span>
                                   {Number.parseFloat(
                                     entry[1].winter.Humidity
                                   ).toFixed(2)}
@@ -403,6 +408,13 @@ export default class TestComponent extends React.Component {
                           <div className="modalData">
                             <span className="modalKey">Manufacturing</span>
 
+                            {this.overviewData(
+                              this.numberWithCommas(
+                                (
+                                  entry[1]["Total Manufacturing"] * 1000
+                                ).toFixed(0)
+                              )
+                            )}
                             {this.numberWithCommas(
                               (entry[1]["Total Manufacturing"] * 1000).toFixed(
                                 0
@@ -411,6 +423,15 @@ export default class TestComponent extends React.Component {
                           </div>
                           <div className="modalData">
                             <span className="modalKey">Private Sector</span>
+
+                            {this.overviewData(
+                              this.numberWithCommas(
+                                (
+                                  entry[1]["Total Private Sector"] * 1000
+                                ).toFixed(0)
+                              )
+                            )}
+
                             {this.numberWithCommas(
                               (entry[1]["Total Private Sector"] * 1000).toFixed(
                                 0
@@ -563,7 +584,20 @@ export default class TestComponent extends React.Component {
                     );
                   })}
                 </Tab>
-                <Tab eventKey="overview" title="Overview"></Tab>
+                <Tab eventKey="overview" title="Overview">
+                  <div className="modalContainer">
+                    <div className="modal-leftSide">
+                      <div className="modalData">
+                        <span className="modalKey">Manufactoring</span>
+                        {this.overviewArray[0]}
+                      </div>
+                      <div className="modalData">
+                        <span className="modalKey">Private Sector</span>
+                        {this.overviewArray[1]}
+                      </div>
+                    </div>
+                  </div>
+                </Tab>
               </Tabs>
             </Modal.Body>
             <Modal.Footer>
