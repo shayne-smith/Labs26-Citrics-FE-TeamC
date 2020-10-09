@@ -1,13 +1,17 @@
 import React from "react";
 import { Slider } from "antd";
 
-const GraduatedSlider = props => {
+import { ReactComponent as Cloud } from "../../assets/cloud.svg";
+import { ReactComponent as Sun } from "../../assets/sun.svg";
+
+const IconSlider = props => {
   const { id, min, max, marks, step, defaultValue } = props;
 
   console.log("running");
 
   return (
     <div className="slider-wrapper" id={id}>
+      <Cloud />
       <Slider
         range={true}
         min={min}
@@ -16,8 +20,9 @@ const GraduatedSlider = props => {
         step={step}
         defaultValue={defaultValue}
       />
+      <Sun />
     </div>
   );
 };
 
-export default GraduatedSlider;
+export default IconSlider;
