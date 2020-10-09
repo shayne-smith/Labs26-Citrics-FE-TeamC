@@ -739,6 +739,7 @@ function App() {
   ]);
   const [result, setResult] = useState([]);
   const [covid, setCovid] = useState([]);
+  const [image, setImage] = useState();
 
   const [isComparing, setIsComparing] = useState(false);
   const [showLimitError, setShowLimitError] = useState(false);
@@ -812,6 +813,17 @@ function App() {
       })
       .catch(err => console.log(err));
 
+  const getImage = async query => {
+    try {
+      const res = await axios.get(
+        `https://api.unsplash.com/search/photos?query=${query}&client_id=${process.env.REACT_APP_CLIENT_ID}`
+      );
+      setImage(res.data.results);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const getData = str => {
     const s = str.charAt(str.length - 2) + str.charAt(str.length - 1);
     try {
@@ -821,10 +833,11 @@ function App() {
           {
             // this doesn't seem to be finding city image
             city: str,
-            image: cities.find(city => (city.location = str)).image,
+            // image: cities.find(city => (city.location = str)).image,
             housing: housing[s][str],
             weather: weather[s][str].summer.MaxTempF,
-            jobs: jobs[s]["Total Manufacturing"]
+            jobs: jobs[s]["Total Manufacturing"],
+            image: image[0].urls.full
           }
         ]);
         setIsComparing(true);
@@ -885,6 +898,7 @@ function App() {
         isComparing,
         setIsComparing,
         getData,
+        getImage,
         weather,
         housing,
         jobs,
