@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Slider, InputNumber, Row, Col } from "antd";
 
 const DecimalSlider = props => {
-  const { min, max, step } = props;
+  const { min, max, step, marks } = props;
   const [inputValue, setInputValue] = useState(0);
 
   const onChange = value => {
@@ -12,27 +12,32 @@ const DecimalSlider = props => {
     setInputValue(value);
   };
 
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
   return (
     <Row>
-      <Col span={12}>
+      <Col span={16} className="slider-wrapper">
         <Slider
           min={min}
           max={max}
           onChange={onChange}
           value={typeof inputValue === "number" ? inputValue : 0}
           step={step}
+          marks={marks}
         />
       </Col>
-      <Col span={4}>
-        <InputNumber
-          className="advanced-search-input"
-          min={min}
-          max={max}
-          style={{ margin: "0 16px" }}
-          step={step}
-          value={inputValue}
-          onChange={onChange}
-        />
+      <Col span={8}>
+        <div className="advanced-search-input">
+          <InputNumber
+            min={min}
+            max={max}
+            step={step}
+            value={inputValue}
+            onChange={onChange}
+          />
+        </div>
       </Col>
     </Row>
   );

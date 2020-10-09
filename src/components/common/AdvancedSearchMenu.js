@@ -50,12 +50,10 @@ const AdvancedSearchMenu = () => {
       </SubMenu>
       <SubMenu key="sub2" icon={<AppstoreOutlined />} title="Weather">
         <p className="advanced-search-option-title">
-          Filter By Average Summer Temperature
+          Average Summer Temperature
         </p>
         <RadioButtons buttonNames={["Cold", "Mild", "Hot"]} rowFormat={true} />
-        <p className="advanced-search-option-title">
-          Filter By Average UV Index (0-10)
-        </p>
+        <p className="advanced-search-option-title">Average UV Index (0-10)</p>
         <IconSlider
           id="uv-index-slider"
           min={0}
@@ -67,9 +65,7 @@ const AdvancedSearchMenu = () => {
           }}
           step={1.0}
         />
-        <p className="advanced-search-option-title">
-          Filter By Average Cloud Cover (%)
-        </p>
+        <p className="advanced-search-option-title">Average Cloud Cover (%)</p>
         <GraduatedSlider
           id="cloud-cover-slider"
           min={0}
@@ -84,14 +80,32 @@ const AdvancedSearchMenu = () => {
       </SubMenu>
       <SubMenu key="sub3" icon={<SettingOutlined />} title="Job Industry">
         <p className="advanced-search-option-title">
-          Filter By Minimum Number Of Service Jobs
+          Minimum Number Of Service Jobs
         </p>
-        <DecimalSlider min={0} max={10000000} step={1000} />
+        <DecimalSlider
+          min={0}
+          max={10000000}
+          step={1000}
+          marks={{
+            0: "0",
+            10000000: "10,000,000"
+          }}
+        />
+        <p className="advanced-search-option-title">
+          Minimum Number Of Government Jobs
+        </p>
+        <DecimalSlider
+          min={0}
+          max={10000000}
+          step={1000}
+          marks={{
+            0: "0",
+            10000000: "10,000,000"
+          }}
+        />
       </SubMenu>
       <SubMenu key="sub4" icon={<SettingOutlined />} title="Housing">
-        <p className="advanced-search-option-title">
-          Filter By Average 1BR Home Prices
-        </p>
+        <p className="advanced-search-option-title">Average 1BR Home Prices</p>
         <GraduatedSlider
           id="housing-slider"
           min={50000}
@@ -104,7 +118,20 @@ const AdvancedSearchMenu = () => {
           step={1000}
         />
       </SubMenu>
-      <SubMenu key="sub5" icon={<SettingOutlined />} title="COVID-19"></SubMenu>
+      <SubMenu key="sub5" icon={<SettingOutlined />} title="COVID-19">
+        <p className="advanced-search-option-title">
+          Max Number of Positive COVID-19 Patients
+        </p>
+        <DecimalSlider
+          min={0}
+          max={1000000}
+          step={1000}
+          marks={{
+            0: "0",
+            1000000: "1,000,000"
+          }}
+        />
+      </SubMenu>
     </Menu>
   );
 };

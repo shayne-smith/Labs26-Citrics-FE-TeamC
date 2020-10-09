@@ -438,6 +438,7 @@ code {
 }
 .advanced-search-input {
   font-family: 'Oswald', 'sans serif';
+  margin: 0 32px;
 }
 .ant-row {
   padding: 0 1rem;
@@ -447,12 +448,10 @@ code {
   margin: 10px 12px 10px;
   width: 80%;
 }
-.ant-slider-with-marks {
-  margin: 1.2rem 2.0rem;
-  font-family: 'Oswald', 'sans serif';
-}
 .slider-wrapper {
   display: flex;
+  justify-content: center;
+  font-family: 'Oswald', 'sans serif';
 }
 #uv-index-slider {
   width: 350px;
