@@ -15,6 +15,13 @@ const Loading = styled.h4`
   font-size: 3rem;
 `;
 
+const End = styled.h4`
+  text-align: center;
+  color: rgba(112, 199, 131, 0.9);
+  font-family: Amatic SC;
+  font-size: 3rem;
+`;
+
 function RenderHomePage() {
   const {
     cities,
@@ -104,7 +111,7 @@ function RenderHomePage() {
             />
           ))}
         </div>
-        {loading && <Loading>Loading ...</Loading>}
+        {loading ? <Loading>Loading ...</Loading> : <End>No more data!</End>}
       </div>
     );
   } else if (comparisonList.length > 3) {
