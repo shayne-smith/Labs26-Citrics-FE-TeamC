@@ -20,8 +20,10 @@ function RenderHomePage() {
     weather,
     jobs,
     housing,
-    covid
+    covid,
+    handleScroll
   } = useContext(CityContext);
+  // console.log(handleScroll)
 
   const [showStats, setShowStats] = useState(false);
 
@@ -29,7 +31,7 @@ function RenderHomePage() {
 
   if (comparisonList.length <= 3) {
     return (
-      <div className="home-page-container">
+      <div className="home-page-container" onScroll={handleScroll}>
         <Header />
         <Hero />
 
@@ -47,7 +49,7 @@ function RenderHomePage() {
           More Filters
         </div>
         {isComparing && (
-          <div className="comparison-container">
+          <div className="comparison-container" onScroll={handleScroll}>
             <div className="comparison">
               {comparisonList.map((data, index) => (
                 <CardComparison
@@ -77,24 +79,42 @@ function RenderHomePage() {
           </div>
         )}
 
-        {/* <div className="card-container">
-          {cities.map((city, index) => (
-            <CityCard
-              key={index}
-              city={city.location}
-              image={city.image}
-              index={index}
-              setIsComparing={setIsComparing}
-              addCity={addCity}
-              getData={getData}
-              cities={cities}
-              weather={weather}
-              jobs={jobs}
-              housing={housing}
-              covid={covid}
-            />
-          ))}
-        </div> */}
+        <div className="card-container">
+          {cities.map((city, index) => {
+            // if (cities.length === index + 1) {
+            //   return <CityCard key={index}
+            //     city={city.location}
+            //     image={city.image}
+            //     index={index}
+            //     setIsComparing={setIsComparing}
+            //     addCity={addCity}
+            //     getData={getData}
+            //     cities={cities}
+            //     weather={weather}
+            //     jobs={jobs}
+            //     housing={housing}
+            //     covid={covid}
+            //   />
+            // } else {
+            return (
+              <CityCard
+                key={index}
+                city={city.location}
+                image={city.image}
+                index={index}
+                setIsComparing={setIsComparing}
+                addCity={addCity}
+                getData={getData}
+                cities={cities}
+                weather={weather}
+                jobs={jobs}
+                housing={housing}
+                covid={covid}
+              />
+            );
+            // }
+          })}
+        </div>
       </div>
     );
   } else if (comparisonList.length > 3) {

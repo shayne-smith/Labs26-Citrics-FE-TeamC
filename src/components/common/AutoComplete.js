@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { SearchOutlined } from "@ant-design/icons";
 
 export const AutoComplete = () => {
-  const { getData, getImage } = useContext(CityContext);
+  const { getData } = useContext(CityContext);
   const [suggestions] = useState([
     "Alpharetta, GA",
     "Atlanta, GA",
@@ -728,7 +728,7 @@ export const AutoComplete = () => {
                 className="result"
                 key={index}
                 onClick={() => {
-                  getImage(item);
+                  // getImage(item);
                   getData(item);
                 }}
               >

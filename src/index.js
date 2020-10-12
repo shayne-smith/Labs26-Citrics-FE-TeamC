@@ -43,7 +43,7 @@ ReactDOM.render(
 );
 
 function App() {
-  const [cities, setCities] = useState([]);
+  // const [cities, setCities] = useState([]);
   const [comparisonList, setComparisonList] = useState([]);
   const [housing, setHousing] = useState([]);
   const [weather, setWeather] = useState([]);
@@ -750,12 +750,16 @@ function App() {
   const history = useHistory();
 
   useEffect(() => {
-    getCityData();
+    // getCityData();
     getHousingData();
     getWeatherData();
     getJobsData();
     getCovidData();
   }, []);
+
+  useEffect(() => {
+    checkComparisonListLength();
+  }, [comparisonList]);
 
   const checkComparisonListLength = () => {
     if (comparisonList.length === 0) {
@@ -763,27 +767,54 @@ function App() {
     }
   };
 
+  const [page, setPage] = useState(1);
+  const [cities, setCities] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    checkComparisonListLength();
-  }, [comparisonList]);
+    const loadCities = async () => {
+      setLoading(true);
+      const newCities = await getCityData(page);
+      setCities(prev => [...prev, ...newCities]);
+      setLoading(false);
+    };
 
-  const getCityData = () =>
-    axios
-      .get("https://citrics-c-api.herokuapp.com/cities")
-      .then(res => {
-        console.log(res.data);
-        setCities(res.data);
+    loadCities();
+  }, [page]);
 
-        // console.log("running getCityData()");  runs 1 time
-      })
-      .catch(err => console.log(err));
+  const getCityData = async page => {
+    const res = await (
+      await fetch(
+        `https://citrics-c-api.herokuapp.com/cities?page=${page}&limit=9`
+      )
+    ).json();
+    return res.data;
+  };
+
+  const handleScroll = event => {
+    console.log("scrolling");
+    const { scrollTop, clientHeight, scrollHeight } = event.currentTarget;
+    if (scrollHeight - scrollTop === clientHeight) {
+      setPage(prev => prev + 1);
+    }
+  };
+
+  // const getCityData = async (page) =>
+  //   axios
+  //     .get(`https://citrics-c-api.herokuapp.com/cities?page=${page}`)
+  //     .then(res => {
+  //       console.log(res.data)
+  //       setCities(res.data);
+  //       // console.log("running getCityData()");  runs 1 time
+  //     })
+  //     .catch(err => console.log(err));
 
   const getHousingData = () =>
     axios
       .get(`${baseURL}/housing`)
       .then(res => {
         setHousing(JSON.parse(res.data));
-        console.log("running getHousingData()"); // runs 1 time
+        // console.log("running getHousingData()"); // runs 1 time
       })
       .catch(err => console.log(err));
 
@@ -814,6 +845,7 @@ function App() {
       .catch(err => console.log(err));
 
   const getImage = async query => {
+    console.log(query);
     try {
       const res = await axios.get(
         `https://api.unsplash.com/search/photos?query=${query}&client_id=${process.env.REACT_APP_CLIENT_ID}`
@@ -833,11 +865,12 @@ function App() {
           {
             // this doesn't seem to be finding city image
             city: str,
-            // image: cities.find(city => (city.location = str)).image,
+            image: cities.find(city => (city.location = str)).image,
             housing: housing[s][str],
             weather: weather[s][str].summer.MaxTempF,
             jobs: jobs[s]["Total Manufacturing"],
-            image: image[0].urls.full
+            covid: covid[s].positive
+            // image: image[0].urls.full
           }
         ]);
         setIsComparing(true);
@@ -847,12 +880,6 @@ function App() {
     } catch (err) {
       console.log(err);
     }
-  };
-
-  const authHandler = () => {
-    // We pass this to our <Security /> component that wraps our routes.
-    // It'll automatically check if userToken is available and push back to login if not :)
-    history.push("/login");
   };
 
   const handleClose = () => {
@@ -909,7 +936,8 @@ function App() {
         suggestions,
         result,
         setResult,
-        changeText
+        changeText,
+        handleScroll
       }}
     >
       <Switch>

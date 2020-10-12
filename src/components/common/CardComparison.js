@@ -73,6 +73,10 @@ const CardHeader = styled.div`
 `;
 
 function CardComparison(props) {
+  const numberWithCommas = x => {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+
   return (
     <CardContainer
       style={{ background: `url(${props.data.image}) no-repeat center` }}
@@ -93,7 +97,10 @@ function CardComparison(props) {
             <li>Housing: ${props.data.housing}</li>
             <li>Total Manufacturing: {props.data.jobs.toFixed(2)}</li>
             <li>Weather: {props.data.weather.toFixed(0)} degree</li>
-            <li>Covid Positive Cases: {props.data.covid.toFixed(0)} cases</li>
+            <li>
+              Covid Positive Cases:{" "}
+              {numberWithCommas(props.data.covid.toFixed(0))} cases
+            </li>
           </ul>
         </div>
       )}
