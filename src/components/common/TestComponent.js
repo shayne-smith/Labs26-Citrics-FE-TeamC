@@ -588,7 +588,7 @@ export default class TestComponent extends React.Component {
                   <div className="modalContainer">
                     <div className="modal-leftSide">
                       <div className="modalData">
-                        <span className="modalKey">Manufactoring</span>
+                        <span className="modalKey">Manufacturing</span>
                         {this.overviewArray[0]}
                       </div>
                       <div className="modalData">
