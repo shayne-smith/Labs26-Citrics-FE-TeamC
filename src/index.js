@@ -9,8 +9,8 @@ import {
 import axios from "axios";
 
 import { Security, SecureRoute, LoginCallback } from "@okta/okta-react";
-import Login from "./components/Login";
-import Home from "./components/Home";
+
+import { Login, Home } from "./components/pages/Login";
 
 import "antd/dist/antd.less";
 import "./index.css";
@@ -18,12 +18,10 @@ import "./index.css";
 import { NotFoundPage } from "./components/pages/NotFound";
 import { ExampleListPage } from "./components/pages/ExampleList";
 import { ProfileListPage } from "./components/pages/ProfileList";
-import { LoginPage } from "./components/pages/Login";
 import { HomePage } from "./components/pages/Home";
 import { About } from "./components/pages/About";
 import { ExampleDataViz } from "./components/pages/ExampleDataViz";
 import { DataViz } from "./components/pages/DataViz";
-import { config } from "./utils/oktaConfig";
 import { LoadingComponent } from "./components/common";
 import { AdvancedSearch } from "./components/pages/AdvancedSearch";
 
@@ -925,19 +923,7 @@ function App() {
     history.push("/login");
   }
 
-  const changeText = e => {
-    let value = e.target.value;
-    let regex = new RegExp(`^${value}`, "i");
-    let arr = [];
-    if (value.length !== 0) {
-      arr = suggestions.filter(v => regex.test(v));
-    }
-
-    setResult(arr.slice(0, 5));
-  };
-
   return (
-    // <Security {...config} onAuthRequired={authHandler}>
     <CityContext.Provider
       value={{
         cities,
@@ -958,7 +944,6 @@ function App() {
         suggestions,
         result,
         setResult,
-        changeText,
         loading
       }}
     >
@@ -969,9 +954,6 @@ function App() {
           redirectUri={window.location.origin + "/implicit/callback"}
           onAuthRequired={onAuthRequired}
         >
-          {/* <Route path="/login" component={LoginPage} /> */}
-          {/* <Route path="/implicit/callback" component={LoginCallback} /> */}
-          {/* any of the routes you need secured should be registered as SecureRoutes */}
           <Route path="/" exact={true} component={Home} />
           <SecureRoute
             path="/home"
@@ -990,10 +972,8 @@ function App() {
           <Route path="/profile-list" component={ProfileListPage} />
           <Route path="/dataviz" component={DataViz} />
           <Route path="/advanced-search" component={AdvancedSearch} />
-          {/* <Route component={NotFoundPage} /> */}
         </Security>
       </Switch>
     </CityContext.Provider>
-    // </Security>
   );
 }
