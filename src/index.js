@@ -43,11 +43,14 @@ ReactDOM.render(
 );
 
 function App() {
-  // const [cities, setCities] = useState([]);
   const [comparisonList, setComparisonList] = useState([]);
+
+  // state for cities data
+  const [cities, setCities] = useState([]);
   const [housing, setHousing] = useState([]);
   const [weather, setWeather] = useState([]);
   const [jobs, setJobs] = useState([]);
+
   const [suggestions] = useState([
     "Alpharetta, GA",
     "Atlanta, GA",
@@ -739,8 +742,13 @@ function App() {
   ]);
   const [result, setResult] = useState([]);
   const [covid, setCovid] = useState([]);
-  const [image, setImage] = useState();
+  // const [image, setImage] = useState();
+
   const [cityImages, setCityImages] = useState({});
+
+  // state for infinite scroll
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(true);
 
   const [isComparing, setIsComparing] = useState(false);
   const [showLimitError, setShowLimitError] = useState(false);
@@ -768,10 +776,6 @@ function App() {
     checkComparisonListLength();
   }, [comparisonList]);
 
-  const [page, setPage] = useState(1);
-  const [cities, setCities] = useState([]);
-  const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     const loadCities = async () => {
       setLoading(true);
@@ -780,21 +784,25 @@ function App() {
       setLoading(false);
     };
 
+    window.addEventListener("scroll", handleScroll);
     loadCities();
   }, [page]);
 
   const getCityData = async page => {
     const res = await (
       await fetch(
-        `https://citrics-c-api.herokuapp.com/cities?page=${page}&limit=9`
+        `https://citrics-c-api.herokuapp.com/cities?page=${page}&limit=6`
       )
     ).json();
     return res.data;
   };
 
-  const handleScroll = event => {
-    console.log("scrolling");
-    const { scrollTop, clientHeight, scrollHeight } = event.currentTarget;
+  const handleScroll = e => {
+    // const { scrollTop, clientHeight, scrollHeight } = e.currentTarget;
+    const scrollTop = document.documentElement.scrollTop;
+    const clientHeight = document.documentElement.clientHeight;
+    const scrollHeight = document.documentElement.scrollHeight;
+
     if (scrollHeight - scrollTop === clientHeight) {
       setPage(prev => prev + 1);
     }
@@ -832,7 +840,7 @@ function App() {
       .get(`${baseURL}/housing`)
       .then(res => {
         setHousing(JSON.parse(res.data));
-        console.log("running getHousingData()"); // runs 1 time
+        // console.log("running getHousingData()"); // runs 1 time
       })
       .catch(err => console.log(err));
 
@@ -880,7 +888,6 @@ function App() {
         setComparisonList([
           ...comparisonList,
           {
-            // this doesn't seem to be finding city image
             city: str,
             image: cities.find(city => (city.location = str)).image,
             housing: housing[s][str],
@@ -951,7 +958,8 @@ function App() {
         suggestions,
         result,
         setResult,
-        changeText
+        changeText,
+        loading
       }}
     >
       <Switch>
