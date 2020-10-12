@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { useHistory, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { CityContext } from "../../../contexts/CityContext";
 import styled from "styled-components";
 import _ from "lodash";
@@ -44,71 +44,93 @@ const AdvancedSearch = () => {
     covid,
     suggestions
   } = useContext(CityContext);
+
   const [filteredCities, setFilteredCities] = useState(suggestions);
+  const [summerTempInput, setSummerTempInput] = useState("mild");
   const [filters, setFilters] = useState([
     { name: "weatherData", value: "cold" }
   ]);
-  const history = useHistory();
 
-  const weatherFilter = weatherData => {
-    return;
-    // let result = {}, key;
+  // filter cities based on average summer "feels like F" data
+  const avgSumTempFilter = temp => {
+    // convert weather data object to array
+    const weatherArray = Object.entries(weather);
 
-    // for (key in obj) {
-    //   if (obj.hasOwnProperty(key)) {
-    //     result[key] = obj[key];
-    //   }
-    // }
+    // initialize array to store filtered cities
+    const filteredResults = [];
 
-    // return result;
+    // loop through all states in array
+    weatherArray.map(state => {
+      // convert state weather object to array
+      const stateWeatherArray = Object.entries(state[1]);
 
-    // if (weatherStat === 'cold') {
-    //   return data.filter(o => o)
-    // }
+      // loop through all cities in state array
+      stateWeatherArray.map(city => {
+        // access cities' weather arrays
+        const cityWeatherArray = Object.entries(city[1]);
+
+        // access summer weather object
+        const weatherObj = cityWeatherArray[0][1];
+
+        // filter cities by summer "feels like F" temps <60
+        if (temp === "cold") {
+          if (weatherObj.FeelsLikeF < 65) {
+            filteredResults.push(city[0]);
+          }
+        } else if (temp === "mild") {
+          if (weatherObj.FeelsLikeF >= 65 && weatherObj.FeelsLikeF <= 80) {
+            filteredResults.push(city[0]);
+          }
+        } else if (temp === "hot") {
+          if (weatherObj.FeelsLikeF > 80) {
+            filteredResults.push(city[0]);
+          }
+        }
+      });
+    });
+    console.log(filteredResults);
+    return filteredResults;
   };
 
-  // const filterFunctions = _.overEvery([weatherFilter]);
-  const [counttest, setCounttest] = useState(0);
+  {
+    Object.keys(weather).length !== 0 && avgSumTempFilter(weather);
+  }
 
-  var priceFrom = 2000;
-  var priceTo = 3000;
+  const testFilters = [{ name: "avgSumTempFilter", value: 60 }];
 
-  const dataset = [
-    { price: 2590, location: "Miami, FL" },
-    { price: 1500, location: "Miami, FL" },
-    { price: 2590, location: "Sellersburg, IN" }
-  ];
-  const testFilters = [{ name: "location", value: "Miami, FL" }];
+  let filterFunctions = _.overEvery([avgSumTempFilter]);
 
   function locationFilter(data, location) {
     return data.filter(o => o.location === location);
   }
 
-  function priceFilter(data) {
-    return data.filter(o => o.price >= priceFrom && o.price <= priceTo);
-  }
-
-  var filterFunctions = _.overEvery([locationFilter, priceFilter]);
-
-  var result;
+  let result;
   testFilters.map(f => {
     switch (f.name) {
       case "location":
-        result = locationFilter(dataset, f.value);
+        // result = locationFilter(dataset, f.value);
+        break;
+      case "avgSumTempFilter":
+        result = avgSumTempFilter(summerTempInput);
         break;
     }
   });
 
-  console.log(result);
+  {
+    result.length !== 0 && console.log(result);
+  }
 
   return (
     <Container>
       <MenuWrapper>
-        <Link id="menuLogoWrapper">
-          <DriftlyLogo id="menuLogo" onClick={() => history.push("/home")} />
+        <Link id="menuLogoWrapper" to="/home">
+          <DriftlyLogo id="menuLogo" />
         </Link>
         <h3 id="advanced-search-title">Refine your search</h3>
-        <AdvancedSearchMenu id="advanced-search-menu" />
+        <AdvancedSearchMenu
+          id="advanced-search-menu"
+          setSummerTempInput={setSummerTempInput}
+        />
         <div id="get-results-button" role="button">
           Get Results
         </div>

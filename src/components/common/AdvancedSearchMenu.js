@@ -13,7 +13,8 @@ import IconSlider from "./IconSlider";
 
 const { SubMenu } = Menu;
 
-const AdvancedSearchMenu = () => {
+const AdvancedSearchMenu = props => {
+  const { setSummerTempInput } = props;
   // submenu keys of first level
   const rootSubmenuKeys = ["sub1", "sub2", "sub3", "sub4", "sub5"];
   const [openKeys, setOpenKeys] = useState([]);
@@ -52,7 +53,11 @@ const AdvancedSearchMenu = () => {
         <p className="advanced-search-option-title">
           Average Summer Temperature
         </p>
-        <RadioButtons buttonNames={["Cold", "Mild", "Hot"]} rowFormat={true} />
+        <RadioButtons
+          buttonNames={["Cold", "Mild", "Hot"]}
+          rowFormat={true}
+          setSummerTempInput={setSummerTempInput}
+        />
         <p className="advanced-search-option-title">Average UV Index (0-10)</p>
         <IconSlider
           id="uv-index-slider"

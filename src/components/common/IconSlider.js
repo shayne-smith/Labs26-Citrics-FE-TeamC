@@ -7,8 +7,6 @@ import { ReactComponent as Sun } from "../../assets/sun.svg";
 const IconSlider = props => {
   const { id, min, max, marks, step, defaultValue } = props;
 
-  console.log("running");
-
   return (
     <div className="slider-wrapper" id={id}>
       <Cloud />

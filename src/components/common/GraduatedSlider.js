@@ -4,8 +4,6 @@ import { Slider } from "antd";
 const GraduatedSlider = props => {
   const { id, min, max, marks, step, defaultValue } = props;
 
-  console.log("running");
-
   return (
     <div className="slider-wrapper" id={id}>
       <Slider
