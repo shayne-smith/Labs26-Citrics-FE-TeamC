@@ -43,7 +43,7 @@ ReactDOM.render(
 );
 
 function App() {
-  const [cities, setCities] = useState([]);
+  // const [cities, setCities] = useState([]);
   const [comparisonList, setComparisonList] = useState([]);
   const [housing, setHousing] = useState([]);
   const [weather, setWeather] = useState([]);
@@ -750,7 +750,7 @@ function App() {
   const history = useHistory();
 
   useEffect(() => {
-    getCityData();
+    // getCityData();
     getHousingData();
     getWeatherData();
     getJobsData();
@@ -767,16 +767,48 @@ function App() {
     checkComparisonListLength();
   }, [comparisonList]);
 
-  const getCityData = () =>
-    axios
-      .get("https://citrics-c-api.herokuapp.com/cities")
-      .then(res => {
-        console.log(res.data);
-        setCities(res.data);
+  const [page, setPage] = useState(1);
+  const [cities, setCities] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-        // console.log("running getCityData()");  runs 1 time
-      })
-      .catch(err => console.log(err));
+  useEffect(() => {
+    const loadCities = async () => {
+      setLoading(true);
+      const newCities = await getCityData(page);
+      setCities(prev => [...prev, ...newCities]);
+      setLoading(false);
+    };
+
+    loadCities();
+  }, [page]);
+
+  const getCityData = async page => {
+    const res = await (
+      await fetch(
+        `https://citrics-c-api.herokuapp.com/cities?page=${page}&limit=9`
+      )
+    ).json();
+    return res.data;
+  };
+
+  const handleScroll = event => {
+    console.log("scrolling");
+    const { scrollTop, clientHeight, scrollHeight } = event.currentTarget;
+    if (scrollHeight - scrollTop === clientHeight) {
+      setPage(prev => prev + 1);
+    }
+  };
+
+  // const getCityData = () =>
+  //   axios
+  //     .get("https://citrics-c-api.herokuapp.com/cities")
+  //     .then(res => {
+  //       console.log(res.data);
+  //       setCities(res.data);
+
+  //       // console.log("running getCityData()");  runs 1 time
+  //     })
+  //     .catch(err => console.log(err));
 
   const getHousingData = () =>
     axios
@@ -813,16 +845,16 @@ function App() {
       })
       .catch(err => console.log(err));
 
-  const getImage = async query => {
-    try {
-      const res = await axios.get(
-        `https://api.unsplash.com/search/photos?query=${query}&client_id=${process.env.REACT_APP_CLIENT_ID}`
-      );
-      setImage(res.data.results);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // const getImage = async query => {
+  //   try {
+  //     const res = await axios.get(
+  //       `https://api.unsplash.com/search/photos?query=${query}&client_id=${process.env.REACT_APP_CLIENT_ID}`
+  //     );
+  //     setImage(res.data.results);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   const getData = str => {
     const s = str.charAt(str.length - 2) + str.charAt(str.length - 1);
@@ -833,11 +865,11 @@ function App() {
           {
             // this doesn't seem to be finding city image
             city: str,
-            // image: cities.find(city => (city.location = str)).image,
+            image: cities.find(city => (city.location = str)).image,
             housing: housing[s][str],
             weather: weather[s][str].summer.MaxTempF,
-            jobs: jobs[s]["Total Manufacturing"],
-            image: image[0].urls.full
+            jobs: jobs[s]["Total Manufacturing"]
+            // image: image[0].urls.full
           }
         ]);
         setIsComparing(true);
@@ -847,12 +879,6 @@ function App() {
     } catch (err) {
       console.log(err);
     }
-  };
-
-  const authHandler = () => {
-    // We pass this to our <Security /> component that wraps our routes.
-    // It'll automatically check if userToken is available and push back to login if not :)
-    history.push("/login");
   };
 
   const handleClose = () => {
@@ -898,7 +924,6 @@ function App() {
         isComparing,
         setIsComparing,
         getData,
-        getImage,
         weather,
         housing,
         jobs,
