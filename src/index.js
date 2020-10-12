@@ -740,6 +740,7 @@ function App() {
   const [result, setResult] = useState([]);
   const [covid, setCovid] = useState([]);
   const [image, setImage] = useState();
+  const [cityImages, setCityImages] = useState({});
 
   const [isComparing, setIsComparing] = useState(false);
   const [showLimitError, setShowLimitError] = useState(false);
@@ -809,6 +810,22 @@ function App() {
   //       // console.log("running getCityData()");  runs 1 time
   //     })
   //     .catch(err => console.log(err));
+
+  const extractCityImages = cityData => {
+    const updateCityImage = city => {
+      const location = city.location.slice(-2);
+      const image = city.image;
+
+      setCityImages(cityImages => ({
+        ...cityImages,
+        [location]: image
+      }));
+    };
+
+    cityData.map(city => {
+      updateCityImage(city);
+    })``;
+  };
 
   const getHousingData = () =>
     axios
