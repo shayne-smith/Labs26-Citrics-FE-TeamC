@@ -32,8 +32,8 @@ function Header() {
         <Link className="header-link" to="/about">
           About
         </Link>
-        <Link id="login" className="header-link" to="/login">
-          Login
+        <Link id="login" className="header-link" to="/">
+          Logout
         </Link>
       </Navigation>
     </Wrapper>
