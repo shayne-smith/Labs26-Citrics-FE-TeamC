@@ -119,7 +119,7 @@ const AdvancedSearch = () => {
           {}Showing 20 of {filteredCities.length} results
         </div>
         <div className="card-container">
-          {cities.slice(30).map((city, index) => (
+          {cities.map((city, index) => (
             <CityCard
               key={index}
               city={city.location}
