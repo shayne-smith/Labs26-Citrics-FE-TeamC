@@ -1,6 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
-import { useOktaAuth } from "@okta/okta-react";
-
+import React from "react";
 import RenderHomePage from "./RenderHomePage";
 
 function HomeContainer() {
