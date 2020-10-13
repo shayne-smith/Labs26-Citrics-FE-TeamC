@@ -73,7 +73,7 @@ export default class TestComponent extends React.Component {
               <div className="modalSubheader">City Report</div>
               <Tabs
                 className="modalTabs"
-                defaultActiveKey="weather"
+                defaultActiveKey="overview"
                 id="modal-tabs"
               >
                 <Tab eventKey="weather" title="Weather">
@@ -91,15 +91,32 @@ export default class TestComponent extends React.Component {
                             <div className="modalContainer">
                               <div className="modal-leftSide">
                                 <div className="modalData">
+                                  {/* Overview */}
+                                  {this.overviewData(
+                                    this.numberWithCommas(
+                                      Number.parseFloat(
+                                        entry[1].summer.FeelsLikeF
+                                      ).toFixed(2)
+                                    )
+                                  )}
                                   <span className="modalKey">
                                     Average Temp (F)
                                   </span>
                                   {Number.parseFloat(
-                                    entry[1].summer.MaxTempF
+                                    entry[1].summer.FeelsLikeF
                                   ).toFixed(2)}
                                   °F
                                 </div>
+
                                 <div className="modalData">
+                                  {/* Overview */}
+                                  {this.overviewData(
+                                    this.numberWithCommas(
+                                      Number.parseFloat(
+                                        entry[1].summer.FeelsLikeC
+                                      ).toFixed(2)
+                                    )
+                                  )}
                                   <span className="modalKey">
                                     Average Temp (C)
                                   </span>
@@ -228,15 +245,31 @@ export default class TestComponent extends React.Component {
                             <div className="modalContainer">
                               <div className="modal-leftSide">
                                 <div className="modalData">
+                                  {/* Overview */}
+                                  {this.overviewData(
+                                    this.numberWithCommas(
+                                      Number.parseFloat(
+                                        entry[1].winter.FeelsLikeF
+                                      ).toFixed(2)
+                                    )
+                                  )}
                                   <span className="modalKey">
                                     Average Temp (F)
                                   </span>
                                   {Number.parseFloat(
-                                    entry[1].winter.MaxTempF
+                                    entry[1].winter.FeelsLikeF
                                   ).toFixed(2)}
                                   °F
                                 </div>
                                 <div className="modalData">
+                                  {/* Overview */}
+                                  {this.overviewData(
+                                    this.numberWithCommas(
+                                      Number.parseFloat(
+                                        entry[1].winter.FeelsLikeC
+                                      ).toFixed(2)
+                                    )
+                                  )}
                                   <span className="modalKey">
                                     Average Temp (C)
                                   </span>
@@ -375,6 +408,10 @@ export default class TestComponent extends React.Component {
                         <div className="modalContainer">
                           <div className="modal-leftSide">
                             <div className="modalData">
+                              {/* Overview */}
+                              {this.overviewData(
+                                this.numberWithCommas(entry[1])
+                              )}
                               <span className="modalKey">
                                 Average Home Purchase Cost
                               </span>
@@ -404,10 +441,8 @@ export default class TestComponent extends React.Component {
                             <span className="modalKey"></span>
                             People Employed in the state of {entry[0]}
                           </div>
-
                           <div className="modalData">
-                            <span className="modalKey">Manufacturing</span>
-
+                            {/* Overview */}
                             {this.overviewData(
                               this.numberWithCommas(
                                 (
@@ -415,6 +450,7 @@ export default class TestComponent extends React.Component {
                                 ).toFixed(0)
                               )
                             )}
+                            <span className="modalKey">Manufacturing</span>
                             {this.numberWithCommas(
                               (entry[1]["Total Manufacturing"] * 1000).toFixed(
                                 0
@@ -423,15 +459,6 @@ export default class TestComponent extends React.Component {
                           </div>
                           <div className="modalData">
                             <span className="modalKey">Private Sector</span>
-
-                            {this.overviewData(
-                              this.numberWithCommas(
-                                (
-                                  entry[1]["Total Private Sector"] * 1000
-                                ).toFixed(0)
-                              )
-                            )}
-
                             {this.numberWithCommas(
                               (entry[1]["Total Private Sector"] * 1000).toFixed(
                                 0
@@ -461,7 +488,15 @@ export default class TestComponent extends React.Component {
                             )}
                           </div>
                           <div className="modalData">
-                            <span className="modalKey">Service-Providing </span>
+                            {/* Overview */}
+                            {this.overviewData(
+                              this.numberWithCommas(
+                                (
+                                  entry[1]["Total Service-Providing"] * 1000
+                                ).toFixed(0)
+                              )
+                            )}
+                            <span className="modalKey">Service-Providing</span>
                             {this.numberWithCommas(
                               (
                                 entry[1]["Total Service-Providing"] * 1000
@@ -486,6 +521,14 @@ export default class TestComponent extends React.Component {
                             People Employed in the state of {entry[0]}
                           </div>
                           <div className="modalData">
+                            {/* Overview */}
+                            {this.overviewData(
+                              this.numberWithCommas(
+                                (
+                                  entry[1]["Total Government Sector"] * 1000
+                                ).toFixed(0)
+                              )
+                            )}
                             <span className="modalKey">Government Sector </span>
                             {this.numberWithCommas(
                               (
@@ -564,10 +607,20 @@ export default class TestComponent extends React.Component {
                             Amount of People in the state of {entry[0]}
                           </div>
                           <div className="modalData">
+                            {/* Overview */}
+                            {this.overviewData(
+                              this.numberWithCommas(entry[1].tested.toFixed(0))
+                            )}
                             <span className="modalKey">Tested</span>
                             {this.numberWithCommas(entry[1].tested.toFixed(0))}
                           </div>
                           <div className="modalData">
+                            {/* Overview */}
+                            {this.overviewData(
+                              this.numberWithCommas(
+                                entry[1].positive.toFixed(0)
+                              )
+                            )}
                             <span className="modalKey">Positive</span>
                             {this.numberWithCommas(
                               entry[1].positive.toFixed(0)
@@ -588,12 +641,56 @@ export default class TestComponent extends React.Component {
                   <div className="modalContainer">
                     <div className="modal-leftSide">
                       <div className="modalData">
-                        <span className="modalKey">Manufacturing</span>
-                        {this.overviewArray[0]}
+                        <span className="modalKey">
+                          ☀️ Average Temp (F Summer)
+                        </span>
+                        {this.overviewArray[0]}°F
                       </div>
                       <div className="modalData">
-                        <span className="modalKey">Private Sector</span>
-                        {this.overviewArray[1]}
+                        <span className="modalKey">
+                          ☀️ Average Temp (C Summer)
+                        </span>
+                        {this.overviewArray[1]}°C
+                      </div>
+                      <div className="modalData">
+                        <span className="modalKey">
+                          ❄️ Average Temp (F Winter)
+                        </span>
+                        {this.overviewArray[2]}°F
+                      </div>
+                      <div className="modalData">
+                        <span className="modalKey">
+                          ❄️ Average Temp (C Winter)
+                        </span>
+                        {this.overviewArray[3]}°C
+                      </div>
+                      <div className="modalData">
+                        <span className="modalKey">
+                          🏠 Average Home Purchase Cost
+                        </span>
+                        ${this.overviewArray[4]}
+                      </div>
+                    </div>
+                    <div className="modal-rightSide">
+                      <div className="modalData">
+                        <span className="modalKey">🏭 Manufacturing</span>
+                        {this.overviewArray[5]} Employed
+                      </div>
+                      <div className="modalData">
+                        <span className="modalKey">🛎️ Services Sector</span>
+                        {this.overviewArray[6]} Employed
+                      </div>
+                      <div className="modalData">
+                        <span className="modalKey">🗳️ Government Sector</span>
+                        {this.overviewArray[7]} Employed
+                      </div>
+                      <div className="modalData">
+                        <span className="modalKey">💉 Covid Tested</span>
+                        {this.overviewArray[8]} Cases
+                      </div>
+                      <div className="modalData">
+                        <span className="modalKey">😷 Covid Positive</span>
+                        {this.overviewArray[9]} Cases
                       </div>
                     </div>
                   </div>
