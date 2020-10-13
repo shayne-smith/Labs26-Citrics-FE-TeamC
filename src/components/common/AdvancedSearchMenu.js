@@ -7,7 +7,8 @@ import {
   UserOutlined
 } from "@ant-design/icons";
 import DecimalSlider from "./DecimalSlider";
-import GraduatedSlider from "./GraduatedSlider";
+import CloudCoverGraduatedSlider from "./CloudCoverGraduatedSlider";
+import HousingPriceGraduatedSlider from "./HousingPriceGraduatedSlider";
 import WeatherRadioButtons from "./WeatherRadioButtons";
 import PopRadioButtons from "./PopRadioButtons";
 import IconSlider from "./IconSlider";
@@ -74,7 +75,7 @@ const AdvancedSearchMenu = props => {
           setFilters={setFilters}
         />
         <p className="advanced-search-option-title">Average Cloud Cover (%)</p>
-        <GraduatedSlider
+        <CloudCoverGraduatedSlider
           id="cloud-cover-slider"
           min={0}
           max={100}
@@ -117,13 +118,13 @@ const AdvancedSearchMenu = props => {
       </SubMenu>
       <SubMenu key="sub4" icon={<SettingOutlined />} title="Housing">
         <p className="advanced-search-option-title">Average 1BR Home Prices</p>
-        <GraduatedSlider
+        <HousingPriceGraduatedSlider
           id="housing-slider"
-          min={50000}
+          min={0}
           max={1000000}
-          defaultValue={[50000, 1000000]}
+          defaultValue={[0, 1000000]}
           marks={{
-            50000: "$50,000",
+            0: "$0",
             1000000: "$1,000,000"
           }}
           step={1000}
