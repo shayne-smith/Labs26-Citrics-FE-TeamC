@@ -134,13 +134,12 @@ function CityCard(props) {
         jobs={jobs}
         covid={covid}
       />
-
       <CardHeader>{city}</CardHeader>
       <button
         className="plus-button"
         onClick={() => {
           setIsComparing(true);
-          getData(city);
+          getData(city, image);
         }}
       >
         <PlusCircleOutlined className="plus-sign" />

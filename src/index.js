@@ -764,15 +764,20 @@ function App() {
     getCovidData();
   }, []);
 
-  const checkComparisonListLength = () => {
-    if (comparisonList.length === 0) {
-      setIsComparing(false);
-    }
-  };
+  // const checkComparisonListLength = () => {
+  //   if (comparisonList.length === 0) {
+  //     setIsComparing(false);
+  //   }
+  // };
 
   useEffect(() => {
+    const checkComparisonListLength = () => {
+      if (comparisonList.length === 0) {
+        setIsComparing(false);
+      }
+    };
     checkComparisonListLength();
-  }, [comparisonList]);
+  }, [comparisonList.length]);
 
   useEffect(() => {
     const loadCities = async () => {
@@ -879,7 +884,7 @@ function App() {
   //   }
   // };
 
-  const getData = str => {
+  const getData = (str, img) => {
     const s = str.charAt(str.length - 2) + str.charAt(str.length - 1);
     try {
       if (comparisonList.length < 3) {
@@ -887,11 +892,11 @@ function App() {
           ...comparisonList,
           {
             city: str,
-            image: cities.find(city => (city.location = str)).image,
+            image: img,
             housing: housing[s][str],
             weather: weather[s][str].summer.MaxTempF,
+            covid: covid[s]["positive"],
             jobs: jobs[s]["Total Manufacturing"]
-            // image: image[0].urls.full
           }
         ]);
         setIsComparing(true);
