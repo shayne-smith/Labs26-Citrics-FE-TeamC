@@ -1,8 +1,7 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { CityContext } from "../../../contexts/CityContext";
 import styled from "styled-components";
-import _ from "lodash";
 
 import { ReactComponent as DriftlyLogo } from "../../../assets/driftlyLogo.svg";
 import Header from "../../common/Header";
@@ -274,8 +273,8 @@ const AdvancedSearch = () => {
         if (result.indexOf(currentValue) === -1) {
           if (
             lists.filter(function(obj) {
-              return obj.indexOf(currentValue) == -1;
-            }).length == 0
+              return obj.indexOf(currentValue) === -1;
+            }).length === 0
           ) {
             result.push(currentValue);
           }
