@@ -5,9 +5,7 @@ import { ReactComponent as Cloud } from "../../assets/cloud.svg";
 import { ReactComponent as Sun } from "../../assets/sun.svg";
 
 const IconSlider = props => {
-  const { id, min, max, marks, step, defaultValue } = props;
-
-  console.log("running");
+  const { id, min, max, marks, step, defaultValue, setFilters } = props;
 
   return (
     <div className="slider-wrapper" id={id}>
@@ -19,6 +17,13 @@ const IconSlider = props => {
         marks={marks}
         step={step}
         defaultValue={defaultValue}
+        onChange={value => {
+          console.log(value);
+          setFilters(prev => ({
+            ...prev,
+            avgUVIndexFilter: { low: value[0], high: value[1] }
+          }));
+        }}
       />
       <Sun />
     </div>

@@ -8,12 +8,14 @@ import {
 } from "@ant-design/icons";
 import DecimalSlider from "./DecimalSlider";
 import GraduatedSlider from "./GraduatedSlider";
-import RadioButtons from "./RadioButtons";
+import WeatherRadioButtons from "./WeatherRadioButtons";
+import PopRadioButtons from "./PopRadioButtons";
 import IconSlider from "./IconSlider";
 
 const { SubMenu } = Menu;
 
-const AdvancedSearchMenu = () => {
+const AdvancedSearchMenu = props => {
+  const { setFilters } = props;
   // submenu keys of first level
   const rootSubmenuKeys = ["sub1", "sub2", "sub3", "sub4", "sub5"];
   const [openKeys, setOpenKeys] = useState([]);
@@ -38,7 +40,7 @@ const AdvancedSearchMenu = () => {
     >
       <SubMenu key="sub1" icon={<UserOutlined />} title="Population">
         <p className="advanced-search-option-title">Choose City Size</p>
-        <RadioButtons
+        <PopRadioButtons
           buttonNames={[
             "Small | <500K",
             "Medium | 500K - 1M",
@@ -46,13 +48,18 @@ const AdvancedSearchMenu = () => {
             "Mega | 2M+"
           ]}
           rowFormat={false}
+          setFilters={setFilters}
         />
       </SubMenu>
       <SubMenu key="sub2" icon={<AppstoreOutlined />} title="Weather">
         <p className="advanced-search-option-title">
           Average Summer Temperature
         </p>
-        <RadioButtons buttonNames={["Cold", "Mild", "Hot"]} rowFormat={true} />
+        <WeatherRadioButtons
+          buttonNames={["Cold", "Mild", "Hot"]}
+          rowFormat={true}
+          setFilters={setFilters}
+        />
         <p className="advanced-search-option-title">Average UV Index (0-10)</p>
         <IconSlider
           id="uv-index-slider"
@@ -64,6 +71,7 @@ const AdvancedSearchMenu = () => {
             10: "10"
           }}
           step={1.0}
+          setFilters={setFilters}
         />
         <p className="advanced-search-option-title">Average Cloud Cover (%)</p>
         <GraduatedSlider
@@ -76,6 +84,7 @@ const AdvancedSearchMenu = () => {
             100: "100"
           }}
           step={1.0}
+          setFilters={setFilters}
         />
       </SubMenu>
       <SubMenu key="sub3" icon={<SettingOutlined />} title="Job Industry">
@@ -90,6 +99,7 @@ const AdvancedSearchMenu = () => {
             0: "0",
             10000000: "10,000,000"
           }}
+          setFilters={setFilters}
         />
         <p className="advanced-search-option-title">
           Minimum Number Of Government Jobs
@@ -102,6 +112,7 @@ const AdvancedSearchMenu = () => {
             0: "0",
             10000000: "10,000,000"
           }}
+          setFilters={setFilters}
         />
       </SubMenu>
       <SubMenu key="sub4" icon={<SettingOutlined />} title="Housing">
@@ -116,6 +127,7 @@ const AdvancedSearchMenu = () => {
             1000000: "$1,000,000"
           }}
           step={1000}
+          setFilters={setFilters}
         />
       </SubMenu>
       <SubMenu key="sub5" icon={<SettingOutlined />} title="COVID-19">
@@ -130,6 +142,7 @@ const AdvancedSearchMenu = () => {
             0: "0",
             1000000: "1,000,000"
           }}
+          setFilters={setFilters}
         />
       </SubMenu>
     </Menu>

@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { useHistory, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { CityContext } from "../../../contexts/CityContext";
 import styled from "styled-components";
 import _ from "lodash";
@@ -44,79 +44,201 @@ const AdvancedSearch = () => {
     covid,
     suggestions
   } = useContext(CityContext);
+
   const [filteredCities, setFilteredCities] = useState(suggestions);
-  const [filters, setFilters] = useState([
-    { name: "weatherData", value: "cold" }
-  ]);
-  const history = useHistory();
-
-  const weatherFilter = weatherData => {
-    return;
-    // let result = {}, key;
-
-    // for (key in obj) {
-    //   if (obj.hasOwnProperty(key)) {
-    //     result[key] = obj[key];
-    //   }
-    // }
-
-    // return result;
-
-    // if (weatherStat === 'cold') {
-    //   return data.filter(o => o)
-    // }
-  };
-
-  // const filterFunctions = _.overEvery([weatherFilter]);
-  const [counttest, setCounttest] = useState(0);
-
-  var priceFrom = 2000;
-  var priceTo = 3000;
-
-  const dataset = [
-    { price: 2590, location: "Miami, FL" },
-    { price: 1500, location: "Miami, FL" },
-    { price: 2590, location: "Sellersburg, IN" }
-  ];
-  const testFilters = [{ name: "location", value: "Miami, FL" }];
-
-  function locationFilter(data, location) {
-    return data.filter(o => o.location === location);
-  }
-
-  function priceFilter(data) {
-    return data.filter(o => o.price >= priceFrom && o.price <= priceTo);
-  }
-
-  var filterFunctions = _.overEvery([locationFilter, priceFilter]);
-
-  var result;
-  testFilters.map(f => {
-    switch (f.name) {
-      case "location":
-        result = locationFilter(dataset, f.value);
-        break;
-    }
+  const [filters, setFilters] = useState({
+    avgSumTempFilter: "mild",
+    avgUVIndexFilter: { low: 0, high: 10 },
+    avgCloudCoverFilter: { low: 0, high: 100 }
   });
 
-  console.log(result);
+  // filter cities based on average summer "feels like F" data
+  const avgSumTempFilter = temp => {
+    // convert weather data object to array
+    const weatherArray = Object.entries(weather);
+
+    // initialize array to store filtered cities
+    const filteredResults = [];
+
+    // loop through all states in array
+    weatherArray.map(state => {
+      // convert state weather object to array
+      const stateWeatherArray = Object.entries(state[1]);
+
+      // loop through all cities in state array
+      stateWeatherArray.map(city => {
+        // access cities' weather arrays
+        const cityWeatherArray = Object.entries(city[1]);
+
+        // access summer weather object
+        const weatherObj = cityWeatherArray[0][1];
+
+        // filter cities by summer "feels like F" temps
+        if (temp === "cold") {
+          if (weatherObj.FeelsLikeF < 65) {
+            filteredResults.push(city[0]);
+          }
+        } else if (temp === "mild") {
+          if (weatherObj.FeelsLikeF >= 65 && weatherObj.FeelsLikeF <= 80) {
+            filteredResults.push(city[0]);
+          }
+        } else if (temp === "hot") {
+          if (weatherObj.FeelsLikeF > 80) {
+            filteredResults.push(city[0]);
+          }
+        }
+      });
+    });
+    console.log(filteredResults);
+    return filteredResults;
+  };
+
+  // filter cities based on average summer UV index data
+  const avgUVIndexFilter = (low, high) => {
+    // convert weather data object to array
+    const weatherArray = Object.entries(weather);
+
+    // initialize array to store filtered cities
+    const filteredResults = [];
+
+    // loop through all states in array
+    weatherArray.map(state => {
+      // convert state weather object to array
+      const stateWeatherArray = Object.entries(state[1]);
+
+      // loop through all cities in state array
+      stateWeatherArray.map(city => {
+        // access cities' weather arrays
+        const cityWeatherArray = Object.entries(city[1]);
+
+        // access summer weather object
+        const weatherObj = cityWeatherArray[0][1];
+
+        // filter cities by summer UV index
+        if (low <= weatherObj.UVindex && weatherObj.UVindex <= high) {
+          filteredResults.push(city[0]);
+        }
+      });
+    });
+    console.log(filteredResults);
+    return filteredResults;
+  };
+
+  // filter cities based on average summer cloud cover data
+  const avgCloudCoverFilter = (low, high) => {
+    // convert weather data object to array
+    const weatherArray = Object.entries(weather);
+
+    // initialize array to store filtered cities
+    const filteredResults = [];
+
+    // loop through all states in array
+    weatherArray.map(state => {
+      // convert state weather object to array
+      const stateWeatherArray = Object.entries(state[1]);
+
+      // loop through all cities in state array
+      stateWeatherArray.map(city => {
+        // access cities' weather arrays
+        const cityWeatherArray = Object.entries(city[1]);
+
+        // access summer weather object
+        const weatherObj = cityWeatherArray[0][1];
+
+        // filter cities by summer cloud cover
+        if (low <= weatherObj.CloudCover && weatherObj.CloudCover <= high) {
+          filteredResults.push(city[0]);
+        }
+      });
+    });
+    // console.log(filteredResults);
+    return filteredResults;
+  };
+
+  const intersection = (...cities) => {
+    let result = [];
+    let lists;
+
+    if (cities.length === 1) {
+      lists = cities[0];
+    } else {
+      lists = cities;
+      console.log(lists);
+    }
+
+    // filter empty arrays out
+    lists = lists.filter(el => {
+      return el !== [] && el !== undefined;
+    });
+
+    for (let i = 0; i < lists.length; i++) {
+      let currentList = lists[i];
+      for (let y = 0; y < currentList.length; y++) {
+        let currentValue = currentList[y];
+        if (result.indexOf(currentValue) === -1) {
+          if (
+            lists.filter(function(obj) {
+              return obj.indexOf(currentValue) == -1;
+            }).length == 0
+          ) {
+            result.push(currentValue);
+          }
+        }
+      }
+    }
+    console.log(result);
+    return result;
+  };
+
+  const filterCities = () => {
+    let result = [];
+    let { output1, output2, output3, output4, output5, output6, output7 } = [];
+    const filtersArray = Object.entries(filters);
+    filtersArray.map(f => {
+      switch (f[0]) {
+        case "avgSumTempFilter":
+          output1 = avgSumTempFilter(f[1]);
+          break;
+        case "avgUVIndexFilter":
+          output2 = avgUVIndexFilter(f[1].low, f[1].high);
+          break;
+        case "avgCloudCoverFilter":
+          output3 = avgCloudCoverFilter(f[1].low, f[1].high);
+          break;
+      }
+    });
+    result = intersection(
+      output1,
+      output2,
+      output3,
+      output4,
+      output5,
+      output6,
+      output7
+    );
+    return result;
+  };
 
   return (
     <Container>
       <MenuWrapper>
-        <Link id="menuLogoWrapper">
-          <DriftlyLogo id="menuLogo" onClick={() => history.push("/home")} />
+        <Link id="menuLogoWrapper" to="/home">
+          <DriftlyLogo id="menuLogo" />
         </Link>
         <h3 id="advanced-search-title">Refine your search</h3>
-        <AdvancedSearchMenu id="advanced-search-menu" />
-        <div id="get-results-button" role="button">
+        <AdvancedSearchMenu id="advanced-search-menu" setFilters={setFilters} />
+        <div
+          id="get-results-button"
+          role="button"
+          onClick={() => setFilteredCities(filterCities())}
+        >
           Get Results
         </div>
       </MenuWrapper>
       <ResultsWrapper>
         <Header />
         <div className="results-title">
-          {}Showing 20 of {filteredCities.length} results
+          Showing 20 of {filteredCities.length} results
         </div>
         <div className="card-container">
           {cities.map((city, index) => (
