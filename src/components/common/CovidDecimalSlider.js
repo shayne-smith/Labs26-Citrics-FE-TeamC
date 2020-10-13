@@ -22,12 +22,11 @@ const DecimalSlider = props => {
         <Slider
           min={min}
           max={max}
-          onChange={onChange}
           value={typeof inputValue === "number" ? inputValue : 0}
           step={step}
           marks={marks}
           onChange={value => {
-            console.log(value);
+            onChange(value);
             setFilters(prev => ({
               ...prev,
               covidFilter: value

@@ -7,6 +7,7 @@ import {
   UserOutlined
 } from "@ant-design/icons";
 import DecimalSlider from "./DecimalSlider";
+import CovidDecimalSlider from "./CovidDecimalSlider";
 import CloudCoverGraduatedSlider from "./CloudCoverGraduatedSlider";
 import HousingPriceGraduatedSlider from "./HousingPriceGraduatedSlider";
 import WeatherRadioButtons from "./WeatherRadioButtons";
@@ -135,13 +136,13 @@ const AdvancedSearchMenu = props => {
         <p className="advanced-search-option-title">
           Max Number of Positive COVID-19 Patients
         </p>
-        <DecimalSlider
+        <CovidDecimalSlider
           min={0}
-          max={1000000}
+          max={500000}
           step={1000}
           marks={{
             0: "0",
-            1000000: "1,000,000"
+            500000: "500,000"
           }}
           setFilters={setFilters}
         />
