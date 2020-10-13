@@ -22,6 +22,19 @@ const End = styled.h4`
   font-size: 3rem;
 `;
 
+const Button = styled.button`
+  border-radius: 1rem;
+  background: rgba(112, 199, 131, 0.9);
+  color: white;
+  width: 10rem;
+  border: none;
+  font-size: 1.4rem;
+  font-family: Amatic SC;
+  font-weight: 700;
+  margin: 0.2rem auto;
+  box-shadow: 5px 5px 10px rgba(112, 199, 131, 0.6);
+`;
+
 function RenderHomePage() {
   const {
     cities,
@@ -43,79 +56,79 @@ function RenderHomePage() {
 
   let history = useHistory();
 
-  if (comparisonList.length <= 3) {
-    return (
-      <div className="home-page-container">
-        <Header />
-        <Hero />
+  // if (comparisonList.length <= 3) {
+  return (
+    <div className="home-page-container">
+      <Header />
+      <Hero />
 
-        <AutoComplete
-          addCity={addCity}
-          cities={cities}
-          setComparisonList={setComparisonList}
-          getData={getData}
-        />
-        <div
-          role="button"
-          className="more-filters-button"
-          onClick={() => history.push("/advanced-search")}
-        >
-          More Filters
-        </div>
-        {isComparing && (
-          <div className="comparison-container">
-            <div className="comparison">
-              {comparisonList.map((data, index) => (
-                <CardComparison
-                  key={index}
-                  removeCity={() => removeCity(index)}
-                  showStats={showStats}
-                  data={data}
-                />
-              ))}
-            </div>
-            <button
-              className="compareButton"
-              onClick={() => {
-                setShowStats(true);
-              }}
-            >
-              Compare Cities
-            </button>
-            <button
-              className="moreInfoButton"
-              onClick={() => {
-                history.push("/dataviz");
-              }}
-            >
-              More Info
-            </button>
-          </div>
-        )}
-
-        <div className="card-container">
-          {cities.map((city, index) => (
-            <CityCard
-              key={index}
-              city={city.location}
-              image={city.image}
-              index={index}
-              setIsComparing={setIsComparing}
-              addCity={addCity}
-              getData={getData}
-              cities={cities}
-              weather={weather}
-              jobs={jobs}
-              housing={housing}
-              covid={covid}
-            />
-          ))}
-        </div>
-        {loading ? <Loading>Loading ...</Loading> : <End>No more data!</End>}
+      <AutoComplete
+        addCity={addCity}
+        cities={cities}
+        setComparisonList={setComparisonList}
+        getData={getData}
+      />
+      <div
+        role="button"
+        className="more-filters-button"
+        onClick={() => history.push("/advanced-search")}
+      >
+        More Filters
       </div>
-    );
-  } else if (comparisonList.length > 3) {
-    alert("Can only compare at most 3 cities!");
-  }
+      {isComparing && (
+        <div className="comparison-container">
+          <div className="comparison">
+            {comparisonList.map((data, index) => (
+              <CardComparison
+                key={index}
+                removeCity={() => removeCity(index)}
+                showStats={showStats}
+                data={data}
+              />
+            ))}
+          </div>
+          <Button
+            className="compareButton"
+            onClick={() => {
+              setShowStats(true);
+            }}
+          >
+            Compare Cities
+          </Button>
+          <Button
+            className="moreInfoButton"
+            onClick={() => {
+              history.push("/dataviz");
+            }}
+          >
+            More Info
+          </Button>
+        </div>
+      )}
+
+      <div className="card-container">
+        {cities.map((city, index) => (
+          <CityCard
+            key={index}
+            city={city.location}
+            image={city.image}
+            index={index}
+            setIsComparing={setIsComparing}
+            addCity={addCity}
+            getData={getData}
+            cities={cities}
+            weather={weather}
+            jobs={jobs}
+            housing={housing}
+            covid={covid}
+          />
+        ))}
+      </div>
+      {loading ? <Loading>Loading ...</Loading> : <End>No more data!</End>}
+    </div>
+  );
+  // } else if (comparisonList.length > 3) {
+  //   alert("Can only compare at most 3 cities!");
+  // }
 }
 export default RenderHomePage;
