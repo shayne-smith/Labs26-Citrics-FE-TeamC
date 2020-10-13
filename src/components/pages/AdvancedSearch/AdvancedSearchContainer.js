@@ -53,7 +53,7 @@ const AdvancedSearch = () => {
     serviceJobsFilter: 0,
     governmentJobsFilter: 0,
     housingPriceFilter: { low: 0, high: 9999999999 },
-    covidFilter: 10000
+    covidFilter: 0
   });
 
   // filter cities based on average summer "feels like F" data
