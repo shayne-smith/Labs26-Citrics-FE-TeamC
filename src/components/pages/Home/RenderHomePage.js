@@ -6,6 +6,21 @@ import CardComparison from "../../common/CardComparison.js";
 import Header from "../../common/Header.js";
 import Hero from "../../common/Hero.js";
 import { AutoComplete } from "../../common/AutoComplete.js";
+import styled from "styled-components";
+
+const Loading = styled.h4`
+  text-align: center;
+  color: rgba(112, 199, 131, 0.9);
+  font-family: Amatic SC;
+  font-size: 3rem;
+`;
+
+const End = styled.h4`
+  text-align: center;
+  color: rgba(112, 199, 131, 0.9);
+  font-family: Amatic SC;
+  font-size: 3rem;
+`;
 
 function RenderHomePage() {
   const {
@@ -20,7 +35,8 @@ function RenderHomePage() {
     weather,
     jobs,
     housing,
-    covid
+    covid,
+    loading
   } = useContext(CityContext);
 
   const [showStats, setShowStats] = useState(false);
@@ -95,6 +111,7 @@ function RenderHomePage() {
             />
           ))}
         </div>
+        {loading ? <Loading>Loading ...</Loading> : <End>No more data!</End>}
       </div>
     );
   } else if (comparisonList.length > 3) {
