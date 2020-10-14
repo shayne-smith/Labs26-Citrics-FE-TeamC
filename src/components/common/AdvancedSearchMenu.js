@@ -6,7 +6,9 @@ import {
   SettingOutlined,
   UserOutlined
 } from "@ant-design/icons";
-import DecimalSlider from "./DecimalSlider";
+import ServiceJobsDecimalSlider from "./ServiceJobsDecimalSlider";
+import GovernmentJobsDecimalSlider from "./GovernmentJobsDecimalSlider";
+import ManufacturingJobsDecimalSlider from "./ManufacturingJobsDecimalSlider";
 import CovidDecimalSlider from "./CovidDecimalSlider";
 import CloudCoverGraduatedSlider from "./CloudCoverGraduatedSlider";
 import HousingPriceGraduatedSlider from "./HousingPriceGraduatedSlider";
@@ -93,7 +95,7 @@ const AdvancedSearchMenu = props => {
         <p className="advanced-search-option-title">
           Minimum Number Of Service Jobs
         </p>
-        <DecimalSlider
+        <ServiceJobsDecimalSlider
           min={0}
           max={10000000}
           step={1000}
@@ -106,7 +108,20 @@ const AdvancedSearchMenu = props => {
         <p className="advanced-search-option-title">
           Minimum Number Of Government Jobs
         </p>
-        <DecimalSlider
+        <GovernmentJobsDecimalSlider
+          min={0}
+          max={10000000}
+          step={1000}
+          marks={{
+            0: "0",
+            10000000: "10,000,000"
+          }}
+          setFilters={setFilters}
+        />
+        <p className="advanced-search-option-title">
+          Minimum Number Of Manufacturing Jobs
+        </p>
+        <ManufacturingJobsDecimalSlider
           min={0}
           max={10000000}
           step={1000}
