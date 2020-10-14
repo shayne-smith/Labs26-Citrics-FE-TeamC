@@ -51,6 +51,7 @@ const AdvancedSearch = () => {
     avgCloudCoverFilter: { low: 0, high: 100 },
     serviceJobsFilter: 0,
     governmentJobsFilter: 0,
+    manufacturingJobsFilter: 0,
     housingPriceFilter: { low: 0, high: 9999999999 },
     covidFilter: 0
   });
@@ -92,7 +93,7 @@ const AdvancedSearch = () => {
         }
       });
     });
-    console.log(filteredResults);
+    console.log("weather", filteredResults);
     return filteredResults;
   };
 
@@ -171,6 +172,72 @@ const AdvancedSearch = () => {
     jobsArray.map(state => {
       // check for states that have more than minimum number of service jobs
       if (state[1]["Total Service-Providing"] * 1000 >= minimum) {
+        // loop through weather array to gather all cities in the states that meet criteria above
+        weatherArray.map(w => {
+          // check if state codes match between weather and state job arrays
+          if (w[0] === state[0]) {
+            // extract cities from weather data
+            const weatherData = Object.entries(w[1]);
+
+            // add all cities from selected states to filtered results array
+            weatherData.map(city => {
+              filteredResults.push(city[0]);
+            });
+          }
+        });
+      }
+    });
+
+    console.log(filteredResults);
+    return filteredResults;
+  };
+
+  ///
+
+  const governmentJobsFilter = minimum => {
+    // convert jobs and weather data objects to arrays
+    const jobsArray = Object.entries(jobs);
+    const weatherArray = Object.entries(weather);
+
+    // initialize array to store filtered cities
+    const filteredResults = [];
+
+    // loop through all states in jobs array
+    jobsArray.map(state => {
+      // check for states that have more than minimum number of government jobs
+      if (state[1]["Total Government Sector"] * 1000 >= minimum) {
+        // loop through weather array to gather all cities in the states that meet criteria above
+        weatherArray.map(w => {
+          // check if state codes match between weather and state job arrays
+          if (w[0] === state[0]) {
+            // extract cities from weather data
+            const weatherData = Object.entries(w[1]);
+
+            // add all cities from selected states to filtered results array
+            weatherData.map(city => {
+              filteredResults.push(city[0]);
+            });
+          }
+        });
+      }
+    });
+
+    console.log(filteredResults);
+    return filteredResults;
+  };
+
+  const manufacturingJobsFilter = minimum => {
+    // convert jobs and weather data objects to arrays
+    const jobsArray = Object.entries(jobs);
+    const weatherArray = Object.entries(weather);
+
+    // initialize array to store filtered cities
+    const filteredResults = [];
+
+    // loop through all states in jobs array
+    jobsArray.map(state => {
+      // check for states that have more than minimum number of manufacturing jobs
+      if (state[1]["Total Manufacturing"] * 1000 >= minimum) {
         // loop through weather array to gather all cities in the states that meet criteria above
         weatherArray.map(w => {
           // check if state codes match between weather and state job arrays
@@ -287,7 +354,16 @@ const AdvancedSearch = () => {
 
   const filterCities = () => {
     let result = [];
-    let { output1, output2, output3, output4, output5, output6, output7 } = [];
+    let {
+      output1,
+      output2,
+      output3,
+      output4,
+      output5,
+      output6,
+      output7,
+      output8
+    } = [];
     const filtersArray = Object.entries(filters);
     filtersArray.map(f => {
       switch (f[0]) {
@@ -303,11 +379,17 @@ const AdvancedSearch = () => {
         case "serviceJobsFilter":
           output4 = serviceJobsFilter(f[1]);
           break;
+        case "governmentJobsFilter":
+          output5 = governmentJobsFilter(f[1]);
+          break;
+        case "manufacturingJobsFilter":
+          output6 = manufacturingJobsFilter(f[1]);
+          break;
         case "housingPriceFilter":
-          output5 = housingPriceFilter(f[1].low, f[1].high);
+          output7 = housingPriceFilter(f[1].low, f[1].high);
           break;
         case "covidFilter":
-          output6 = covidFilter(f[1]);
+          output8 = covidFilter(f[1]);
       }
     });
     result = intersection(
@@ -317,7 +399,8 @@ const AdvancedSearch = () => {
       output4,
       output5,
       output6,
-      output7
+      output7,
+      output8
     );
     return result;
   };

@@ -116,6 +116,19 @@ const AdvancedSearchMenu = props => {
           }}
           setFilters={setFilters}
         />
+        <p className="advanced-search-option-title">
+          Minimum Number Of Manufacturing Jobs
+        </p>
+        <DecimalSlider
+          min={0}
+          max={10000000}
+          step={1000}
+          marks={{
+            0: "0",
+            10000000: "10,000,000"
+          }}
+          setFilters={setFilters}
+        />
       </SubMenu>
       <SubMenu key="sub4" icon={<SettingOutlined />} title="Housing">
         <p className="advanced-search-option-title">Average 1BR Home Prices</p>

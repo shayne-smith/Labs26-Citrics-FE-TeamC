@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Slider, InputNumber, Row, Col } from "antd";
 
 const DecimalSlider = props => {
-  const { min, max, step, marks } = props;
+  const { min, max, step, marks, setFilters } = props;
   const [inputValue, setInputValue] = useState(0);
 
   const onChange = value => {
@@ -22,7 +22,14 @@ const DecimalSlider = props => {
         <Slider
           min={min}
           max={max}
-          onChange={onChange}
+          // onChange={onChange}
+          onChange={value => {
+            onChange(value);
+            setFilters(prev => ({
+              ...prev,
+              covidFilter: value
+            }));
+          }}
           value={typeof inputValue === "number" ? inputValue : 0}
           step={step}
           marks={marks}
