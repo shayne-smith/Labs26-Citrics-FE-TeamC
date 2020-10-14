@@ -53,7 +53,7 @@ const AdvancedSearch = () => {
     governmentJobsFilter: 0,
     manufacturingJobsFilter: 0,
     housingPriceFilter: { low: 0, high: 9999999999 },
-    covidFilter: 0
+    covidFilter: 99999999
   });
 
   // filter cities based on average summer "feels like F" data
@@ -100,7 +100,7 @@ const AdvancedSearch = () => {
   // filter cities based on average summer UV index data
   const avgUVIndexFilter = (low, high) => {
     // convert weather data object to array
-    const weatherArray = Object.keys(weather);
+    const weatherArray = Object.entries(weather);
 
     // initialize array to store filtered cities
     const filteredResults = [];
