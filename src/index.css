@@ -30,7 +30,7 @@ code {
   margin: 0 auto;
   padding: 0 1rem;
 
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Oswald', 'sans-serif';
   font-weight: 400;
   font-size: 1.5rem;
   color: #656665;
@@ -77,12 +77,23 @@ code {
   align-items: center;
   padding: 0.3rem;
 }
-.rent-price {
-  width: 30%;
+.house-price {
+  width: 50%;
   text-align: left;
+  font-family: 'Oswald', 'sans-serif';
+  margin-left: 4px;
 }
 .checked {
   color: #CAE00D;
+}
+.temperature {
+  font-family: 'Oswald', 'sans-serif';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.temp-text {
+  margin-left: 3px;
 }
 
 /* HERO SECTION */
@@ -330,7 +341,7 @@ code {
 
 .modalData{
 
-  font-family: Oswald;
+  font-family: 'Oswald', 'sans-serif';
   font-style: normal;
   font-weight: 300;
   font-size: 1.2rem;
@@ -344,7 +355,7 @@ code {
 
 .modalKey{
 
-  font-family: Oswald;
+  font-family: 'Oswald', 'sans-serif';
   font-weight: bold;
   font-size: 1.2rem;
   display: flex;
@@ -352,7 +363,7 @@ code {
 }
 
 .bold{
-  font-family: Oswald;
+  font-family: 'Oswald', 'sans-serif';
   font-weight: normal;
   font-size: 1.2rem;
   padding: 1% 0;
@@ -460,7 +471,7 @@ code {
   padding: 2rem 1rem 0 1rem;
 }
 .advanced-search-input {
-  font-family: 'Oswald', 'sans serif';
+  font-family: 'Oswald', 'sans-serif';
   margin: 0 32px;
 }
 .ant-row {
@@ -474,7 +485,7 @@ code {
 .slider-wrapper {
   display: flex;
   justify-content: center;
-  font-family: 'Oswald', 'sans serif';
+  font-family: 'Oswald', 'sans-serif';
 }
 #uv-index-slider {
   width: 350px;
@@ -502,7 +513,7 @@ code {
   display: block;
   height: '30px';
   line-height: '30px';
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Oswald', 'sans-serif';
   font-weight: 400;
   font-size: 1.0rem;
   padding: 0.5rem 1rem;

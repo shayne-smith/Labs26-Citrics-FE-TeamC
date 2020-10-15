@@ -192,8 +192,6 @@ const AdvancedSearch = () => {
     return filteredResults;
   };
 
-  ///
-
   const governmentJobsFilter = minimum => {
     // convert jobs and weather data objects to arrays
     const jobsArray = Object.entries(jobs);
@@ -330,7 +328,7 @@ const AdvancedSearch = () => {
 
     // filter empty arrays out
     lists = lists.filter(el => {
-      return el !== undefined && el.length !== 0;
+      return el !== undefined;
     });
 
     for (let i = 0; i < lists.length; i++) {
@@ -424,7 +422,7 @@ const AdvancedSearch = () => {
       <ResultsWrapper>
         <Header />
         <div className="results-title">
-          Showing 20 of {filteredCities.length} results
+          Showing {cities.length} of {filteredCities.length} results
         </div>
         <div className="card-container">
           {cities.map((city, index) => (

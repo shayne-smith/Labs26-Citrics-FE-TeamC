@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { ReactComponent as Arrow } from "../../assets/Arrow.svg";
 
-import { PlusCircleOutlined } from "@ant-design/icons";
+import { PlusCircleOutlined, FrownOutlined } from "@ant-design/icons";
 //import CityCardModal from "./CityCardModal";
 
 import { Modal, Button } from "react-bootstrap";
 
 import TestComponent from "./TestComponent";
+import WeatherIcon from "./WeatherIcon";
 
 //cardComparison height from 150 to 250 px
 
@@ -79,13 +81,22 @@ const CardHeader = styled.div`
   }
 `;
 
+const CardHeader2 = styled.div`
+  position: relative;
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 24px 0;
+`;
+
 const CardFooter = styled.div`
   width: 100%;
   position: absolute;
   left: 0;
   bottom: 0;
   border-radius: 3px;
-  background: rgba(112, 199, 131, 0.8);
+  background: rgba(112, 199, 131, 0.9);
 
   font-family: Amatic SC;
   font-style: normal;
@@ -108,6 +119,14 @@ function CityCard(props) {
   const [modalShow, setModalShow] = React.useState(false);
 
   //console.log("CityCard Render");
+
+  const avgHousePrice = () => {
+    return housing[city.slice(-2)][city];
+  };
+
+  const feelsLike = season => {
+    return Math.round(Number(weather[city.slice(-2)][city][season].FeelsLikeF));
+  };
 
   return (
     <CardComparison
@@ -134,7 +153,23 @@ function CityCard(props) {
         jobs={jobs}
         covid={covid}
       />
-      <CardHeader>{city}</CardHeader>
+      {/* <CardHeader>{city}</CardHeader> */}
+      <CardHeader2>
+        <Arrow style={{ position: "absolute", left: 0 }} />
+        <div
+          style={{
+            position: "absolute",
+            left: 10,
+            top: -17,
+            fontSize: "20px",
+            width: 200,
+            fontFamily: "Oswald, sans-serif"
+          }}
+        >
+          {city}
+        </div>
+      </CardHeader2>
+
       <button
         className="plus-button"
         onClick={() => {
@@ -146,13 +181,38 @@ function CityCard(props) {
       </button>
       <CardFooter>
         <div className="attributes">
-          <span className="rent-price">{"$1,379 / mo"}</span>
-          <span className="star-rating bottom-right">
+          <span className="house-price">
+            {housing[city.slice(-2)] !== undefined &&
+            housing[city.slice(-2)][city] !== undefined ? (
+              `1BR: $${avgHousePrice().slice(0, -2)}`
+            ) : (
+              <span
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  alignItems: "center"
+                }}
+              >
+                <FrownOutlined />
+                <span style={{ marginLeft: "5px" }}>No Housing Data</span>
+              </span>
+            )}
+          </span>
+
+          {/* <span className="star-rating bottom-right">
             <span className="fa fa-star checked"></span>
             <span className="fa fa-star checked"></span>
             <span className="fa fa-star checked"></span>
             <span className="fa fa-star"></span>
             <span className="fa fa-star"></span>
+          </span> */}
+
+          <span className="bottom-right">
+            {Object.entries(weather).length !== 0 ? (
+              <WeatherIcon feelsLike={feelsLike} />
+            ) : (
+              "No Weather Data"
+            )}
           </span>
         </div>
       </CardFooter>
