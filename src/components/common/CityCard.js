@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { ReactComponent as Arrow } from "../../assets/arrow.svg";
+import { ReactComponent as Arrow } from "../../assets/Arrow.svg";
 
 import { PlusCircleOutlined, FrownOutlined } from "@ant-design/icons";
 //import CityCardModal from "./CityCardModal";
