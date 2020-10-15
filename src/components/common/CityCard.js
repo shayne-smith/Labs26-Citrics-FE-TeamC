@@ -199,14 +199,6 @@ function CityCard(props) {
             )}
           </span>
 
-          {/* <span className="star-rating bottom-right">
-            <span className="fa fa-star checked"></span>
-            <span className="fa fa-star checked"></span>
-            <span className="fa fa-star checked"></span>
-            <span className="fa fa-star"></span>
-            <span className="fa fa-star"></span>
-          </span> */}
-
           <span className="bottom-right">
             {Object.entries(weather).length !== 0 ? (
               <WeatherIcon feelsLike={feelsLike} />
