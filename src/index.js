@@ -740,7 +740,7 @@ function App() {
   ]);
   const [result, setResult] = useState([]);
   const [covid, setCovid] = useState([]);
-  // const [image, setImage] = useState();
+  const [data, setData] = useState([]);
 
   const [cityImages, setCityImages] = useState({});
 
@@ -757,7 +757,6 @@ function App() {
   const history = useHistory();
 
   useEffect(() => {
-    // getCityData();
     getHousingData();
     getWeatherData();
     getJobsData();
@@ -791,11 +790,27 @@ function App() {
     loadCities();
   }, [page]);
 
+  useEffect(() => {
+    const fetchCities = async () => {
+      const newCities = await fetchData();
+      setData(prev => [...prev, newCities]);
+    };
+
+    fetchCities();
+  }, []);
+
   const getCityData = async page => {
     const res = await (
       await fetch(
         `https://citrics-c-api.herokuapp.com/cities?page=${page}&limit=6`
       )
+    ).json();
+    return res.data;
+  };
+
+  const fetchData = async () => {
+    const res = await (
+      await fetch(`https://citrics-c-api.herokuapp.com/cities?page=1&limit=700`)
     ).json();
     return res.data;
   };
@@ -873,17 +888,6 @@ function App() {
       })
       .catch(err => console.log(err));
 
-  // const getImage = async query => {
-  //   try {
-  //     const res = await axios.get(
-  //       `https://api.unsplash.com/search/photos?query=${query}&client_id=${process.env.REACT_APP_CLIENT_ID}`
-  //     );
-  //     setImage(res.data.results);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-
   const getData = (str, img) => {
     const s = str.charAt(str.length - 2) + str.charAt(str.length - 1);
     try {
@@ -949,7 +953,8 @@ function App() {
         suggestions,
         result,
         setResult,
-        loading
+        loading,
+        data
       }}
     >
       <Switch>

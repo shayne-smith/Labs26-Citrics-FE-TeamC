@@ -240,6 +240,7 @@ code {
   background-color: rgba(112, 199, 131, 0.9);
 }
 .stat-section ul {
+  font-family: Oswald, sans-serif;
   display: flex;
   flex-direction: column;
   margin: 1rem 0;

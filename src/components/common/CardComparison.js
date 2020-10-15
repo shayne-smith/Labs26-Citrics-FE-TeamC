@@ -10,7 +10,7 @@ const CardContainer = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   color: whitesmoke;
-  width: 25%;
+  max-width: 30%;
   height: 200px;
   min-width: 300px;
   margin: 2rem;
@@ -26,8 +26,6 @@ const CardContainer = styled.div`
 
 const CardHeader = styled.div`
   position: absolute;
-  /* width: 40%; */
-  /* height: 15%; */
   padding: 1%;
   left: 0px;
   top: 10px;
@@ -36,11 +34,10 @@ const CardHeader = styled.div`
   justify-content: center;
   align-items: center;
 
-  font-family: Amatic SC;
+  font-family: Oswald, sans-serif;
   font-style: normal;
   font-weight: bold;
-  font-size: 1.2rem;
-  font-size: 1.25vw;
+  font-size: 1rem;
   text-align: center;
 
   background: rgba(112, 199, 131, 0.9);
