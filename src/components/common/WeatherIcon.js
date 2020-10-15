@@ -26,11 +26,7 @@ const WeatherIcon = props => {
   return (
     <span className="temperature">
       {isCold && <span>❄️</span>}
-      {isModerate && (
-        <span>
-          <SunAndCloud />
-        </span>
-      )}
+      {isModerate && <span>⛅</span>}
       {isHot && <span>☀️</span>}
       <span className="temp-text">{`${temp}° F`}</span>
     </span>
