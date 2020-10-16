@@ -55,7 +55,8 @@ export default class TestComponent extends React.Component {
               className="modalHeader"
               closeButton
               style={{
-                background: `url(${this.props.image}) no-repeat center`
+                background: `url(${this.props.image}) no-repeat center`,
+                backgroundSize: "cover"
               }}
             >
               <Modal.Title id="contained-modal-title-vcenter">
