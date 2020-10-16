@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import useWindowSize from "../../utils/useWindowSize";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const Wrapper = styled.div`
+import NavDrawer from "./NavDrawer";
+
+const Wrapper = styled.header`
   display: flex;
   justify-content: flex-end;
   width: 90%;
@@ -23,20 +26,27 @@ const Navigation = styled.nav`
 `;
 
 function Header() {
+  const { width } = useWindowSize();
+
   return (
-    <Wrapper>
-      <Navigation>
-        <Link className="header-link" to="/home">
-          Home
-        </Link>
-        <Link className="header-link" to="/about">
-          About
-        </Link>
-        <Link id="login" className="header-link" to="/">
-          Logout
-        </Link>
-      </Navigation>
-    </Wrapper>
+    <>
+      <Wrapper className="Header">
+        {width > 700 && (
+          <Navigation className="Nav">
+            <Link className="header-link" to="/home">
+              Home
+            </Link>
+            <Link className="header-link" to="/about">
+              About
+            </Link>
+            <Link id="login" className="header-link" to="/">
+              Logout
+            </Link>
+          </Navigation>
+        )}
+      </Wrapper>
+      {width <= 700 && <NavDrawer />}
+    </>
   );
 }
 

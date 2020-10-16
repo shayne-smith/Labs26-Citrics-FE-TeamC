@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { ReactComponent as Arrow } from "../../assets/arrow.svg";
+import { ReactComponent as Arrow } from "../../assets/Arrow.svg";
 
 import { PlusCircleOutlined, FrownOutlined } from "@ant-design/icons";
 //import CityCardModal from "./CityCardModal";
@@ -198,14 +198,6 @@ function CityCard(props) {
               </span>
             )}
           </span>
-
-          {/* <span className="star-rating bottom-right">
-            <span className="fa fa-star checked"></span>
-            <span className="fa fa-star checked"></span>
-            <span className="fa fa-star checked"></span>
-            <span className="fa fa-star"></span>
-            <span className="fa fa-star"></span>
-          </span> */}
 
           <span className="bottom-right">
             {Object.entries(weather).length !== 0 ? (

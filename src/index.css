@@ -565,3 +565,51 @@ code {
 .icon-wrapper .anticon:last-child {
   right: 0;
 }
+
+/* MOBILE VERSION */
+
+/* MOBILE NAVIGATION DRAWER */
+@media (max-width: 700px) {
+  .Header {
+    display: none !important;
+  }
+  .hamburger-icon {
+    margin: 2rem 0 0 2rem;
+    font-size: 1.5rem;
+    color: #656665;
+  }
+  .ant-drawer-content-wrapper {
+    width: 100vw !important;
+    height: auto !important;
+  }
+  .ant-drawer-wrapper-body {
+    background-color: #2f3640;
+  }
+  .ant-drawer-header {
+    background-color: #2f3640;
+    border-bottom: #ffffff solid 1px;
+  }
+  .ant-drawer-title, .ant-drawer-close, .menu-link {
+    color: #ffffff;
+  }
+  .ant-drawer-close {
+    padding: 19px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .menu-link {
+    display: block;
+    padding: 0.5rem 0;
+  }
+
+  .Nav {
+    grid-area: nav;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-rows: repeat(3, auto);
+    grid-template-columns: none;
+    grid-row-gap: 20px;
+  }
+}
