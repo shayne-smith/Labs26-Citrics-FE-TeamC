@@ -140,7 +140,7 @@ const data = [
     role: "Data Scientist",
     github: "",
     linkedIn: "",
-    image: "https://ca.slack-edge.com/ESZCHB482-W012JHYTBU2-f789bad4aa18-512"
+    image: "https://ca.slack-edge.com/ESZCHB482-W012JHYTBU2-e56d9a3755f2-512"
   },
   {
     name: "Rourke Struthers",

@@ -740,7 +740,6 @@ function App() {
   ]);
   const [result, setResult] = useState([]);
   const [covid, setCovid] = useState([]);
-  const [data, setData] = useState([]);
 
   const [cityImages, setCityImages] = useState({});
 
@@ -790,27 +789,11 @@ function App() {
     loadCities();
   }, [page]);
 
-  useEffect(() => {
-    const fetchCities = async () => {
-      const newCities = await fetchData();
-      setData(prev => [...prev, newCities]);
-    };
-
-    fetchCities();
-  }, []);
-
   const getCityData = async page => {
     const res = await (
       await fetch(
         `https://citrics-c-api.herokuapp.com/cities?page=${page}&limit=6`
       )
-    ).json();
-    return res.data;
-  };
-
-  const fetchData = async () => {
-    const res = await (
-      await fetch(`https://citrics-c-api.herokuapp.com/cities?page=1&limit=700`)
     ).json();
     return res.data;
   };
@@ -953,8 +936,7 @@ function App() {
         suggestions,
         result,
         setResult,
-        loading,
-        data
+        loading
       }}
     >
       <Switch>
@@ -965,7 +947,7 @@ function App() {
           onAuthRequired={onAuthRequired}
         >
           <Route path="/" exact={true} component={Home} />
-          <SecureRoute
+          <Route
             path="/home"
             exact
             component={() => <HomePage LoadingComponent={LoadingComponent} />}
@@ -977,7 +959,7 @@ function App() {
           />
           <Route path="/implicit/callback" component={LoginCallback} />
 
-          <SecureRoute path="/about" exact={true} component={About} />
+          <Route path="/about" exact={true} component={About} />
           <Route path="/example-list" component={ExampleListPage} />
           <Route path="/profile-list" component={ProfileListPage} />
           <Route path="/dataviz" component={DataViz} />
