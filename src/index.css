@@ -215,7 +215,6 @@ code {
   display: flex;
   align-items: center;
   flex-direction: column;
-  /* border: 2px solid gold; */
   border-radius: 6px;
 }
 .card-list {
@@ -611,5 +610,17 @@ code {
     grid-template-rows: repeat(3, auto);
     grid-template-columns: none;
     grid-row-gap: 20px;
+  }
+
+  /* CITY COMPARISON CARDS CONTAINER */
+  .comparison {
+    flex-direction: column;
+  }
+  .comparison-container {
+    box-shadow: 3px 4px 22px -4px rgba(0,0,0,.46);
+    padding: 0.5rem;
+  }
+  .moreInfoButton {
+    margin-bottom: 1.5rem !important;
   }
 }
