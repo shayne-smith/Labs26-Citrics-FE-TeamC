@@ -60,9 +60,9 @@ export const AutoComplete = () => {
       {display && (
         <div className="grid">
           {options
-            .filter(
-              ({ location }) => location.indexOf(search.toLowerCase()) !== -1
-            )
+            .filter(item => {
+              return item.location.toLowerCase().indexOf(search) >= 0;
+            })
             .slice(0, 5)
             .map((item, index) => {
               console.log(item.location);
