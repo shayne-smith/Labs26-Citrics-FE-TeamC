@@ -10,7 +10,7 @@ import axios from "axios";
 
 import { Security, SecureRoute, LoginCallback } from "@okta/okta-react";
 
-import { Login, Home } from "./components/pages/Login";
+import { Login, Home, LoginPage } from "./components/pages/Login";
 
 import "antd/dist/antd.less";
 import "./index.css";
@@ -971,10 +971,11 @@ function App() {
             component={() => <HomePage LoadingComponent={LoadingComponent} />}
           />
 
-          <Route
+          {/* <Route
             path="/login"
             render={() => <Login baseUrl="https://dev-783756.okta.com" />}
-          />
+          /> */}
+          <Route path="/login" component={LoginPage} />
           <Route path="/implicit/callback" component={LoginCallback} />
 
           <SecureRoute path="/about" exact={true} component={About} />
