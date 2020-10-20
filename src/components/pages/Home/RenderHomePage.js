@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { CityContext } from "../../../contexts/CityContext";
 import CityCard from "../../common/CityCard.js";
@@ -38,6 +38,7 @@ const Button = styled.button`
 function RenderHomePage() {
   const {
     cities,
+    setCities,
     comparisonList,
     setComparisonList,
     addCity,
@@ -65,6 +66,8 @@ function RenderHomePage() {
 
   console.log(popEntries);
   //console.log('sorted by pop', sortedByPop)
+
+  console.log("cities", cities);
 
   // if (comparisonList.length <= 3) {
   return (
@@ -117,7 +120,7 @@ function RenderHomePage() {
       )}
 
       <div className="card-container">
-        {sortedByPop.map((entry, index) => {
+        {sortedByPop.map(entry => {
           return cities.map((city, index) => {
             return entry[1] === city.location ? (
               <CityCard

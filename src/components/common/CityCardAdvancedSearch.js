@@ -122,6 +122,7 @@ function CityCard(props) {
   const [uvindexData, setUvindexData] = useState({});
   const [humidityData, setHumidityData] = useState({});
   const [windData, setWindData] = useState({});
+  const [housingData, setHousingData] = useState({});
 
   const avgHousePrice = () => {
     return housing[city.slice(-2)][city];
@@ -180,6 +181,13 @@ function CityCard(props) {
         setWindData(JSON.parse(res.data));
       })
       .catch(err => console.log(err));
+
+    axios
+      .post("https://c-ds-driftly.citrics.dev/housing_viz/", cityList)
+      .then(res => {
+        setHousingData(JSON.parse(res.data));
+      })
+      .catch(err => console.log(err));
   };
 
   return (
@@ -208,6 +216,7 @@ function CityCard(props) {
         uvindexData={uvindexData}
         humidityData={humidityData}
         windData={windData}
+        housingData={housingData}
       />
 
       <CardHeader2>

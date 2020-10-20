@@ -799,7 +799,7 @@ function App() {
   const getCityData = async page => {
     const res = await (
       await fetch(
-        `https://citrics-c-api.herokuapp.com/cities?page=${page}&limit=12`
+        `https://citrics-c-api.herokuapp.com/cities?page=${page}&limit=36`
       )
     ).json();
     return res.data;
@@ -933,6 +933,7 @@ function App() {
     <CityContext.Provider
       value={{
         cities,
+        setCities,
         comparisonList,
         setComparisonList,
         addCity,

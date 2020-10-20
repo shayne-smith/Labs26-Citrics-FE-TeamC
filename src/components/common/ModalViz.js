@@ -146,7 +146,16 @@ export default class TestComponent extends React.Component {
                     </Tab>
                   </Tabs>
                 </Tab>
-
+                <Tab eventKey="housing" title="Housing">
+                  <ChartContainer>
+                    <Plot
+                      className="data-viz"
+                      data={this.props.housingData.data}
+                      layout={this.props.housingData.layout}
+                      config={{ displayModeBar: false }}
+                    />
+                  </ChartContainer>
+                </Tab>
                 <Tab eventKey="covid" title="COVID-19">
                   <ChartContainer>
                     <Plot
