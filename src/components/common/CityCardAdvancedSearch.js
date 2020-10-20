@@ -117,6 +117,11 @@ function CityCard(props) {
   const [modalShow, setModalShow] = useState(false);
   const [covidData, setCovidData] = useState({});
   const [tempData, setTempData] = useState({});
+  const [precipData, setPrecipData] = useState({});
+  const [snowData, setSnowData] = useState({});
+  const [uvindexData, setUvindexData] = useState({});
+  const [humidityData, setHumidityData] = useState({});
+  const [windData, setWindData] = useState({});
 
   const avgHousePrice = () => {
     return housing[city.slice(-2)][city];
@@ -140,6 +145,41 @@ function CityCard(props) {
         setTempData(JSON.parse(res.data));
       })
       .catch(err => console.log(err));
+
+    axios
+      .post("https://c-ds-driftly.citrics.dev/precip_viz/", cityList)
+      .then(res => {
+        setPrecipData(JSON.parse(res.data));
+      })
+      .catch(err => console.log(err));
+
+    axios
+      .post("https://c-ds-driftly.citrics.dev/snow_viz/", cityList)
+      .then(res => {
+        setSnowData(JSON.parse(res.data));
+      })
+      .catch(err => console.log(err));
+
+    axios
+      .post("https://c-ds-driftly.citrics.dev/uvindex_viz/", cityList)
+      .then(res => {
+        setUvindexData(JSON.parse(res.data));
+      })
+      .catch(err => console.log(err));
+
+    axios
+      .post("https://c-ds-driftly.citrics.dev/humidity_viz/", cityList)
+      .then(res => {
+        setHumidityData(JSON.parse(res.data));
+      })
+      .catch(err => console.log(err));
+
+    axios
+      .post("https://c-ds-driftly.citrics.dev/wind_viz/", cityList)
+      .then(res => {
+        setWindData(JSON.parse(res.data));
+      })
+      .catch(err => console.log(err));
   };
 
   return (
@@ -149,21 +189,25 @@ function CityCard(props) {
       onClick={() => {
         setModalShow(true);
         fetchGraphs([city]);
-        //tempGraph([city]);
       }}
     >
       <ModalViz
         image={image}
         show={modalShow}
         onHide={() => setModalShow(false)}
-        cities={cities}
-        cityName={city}
-        weather={weather}
-        housing={housing}
-        jobs={jobs}
-        covid={covid}
+        // cities={cities}
+        // cityName={city}
+        // weather={weather}
+        // housing={housing}
+        // jobs={jobs}
+        // covid={covid}
         covidData={covidData}
         tempData={tempData}
+        precipData={precipData}
+        snowData={snowData}
+        uvindexData={uvindexData}
+        humidityData={humidityData}
+        windData={windData}
       />
 
       <CardHeader2>

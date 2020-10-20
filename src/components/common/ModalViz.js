@@ -12,21 +12,21 @@ const ChartContainer = styled.div`
 
 export default class TestComponent extends React.Component {
   state = {
-    weather: [this.props.weather],
-    housing: [this.props.housing],
-    jobs: [this.props.jobs],
-    covid: [this.props.covid]
+    // weather: [this.props.weather],
+    // housing: [this.props.housing],
+    // jobs: [this.props.jobs],
+    // covid: [this.props.covid]
   };
 
-  stateCode = Object.keys(this.state.weather[0]);
-  allCitiesArray = Object.values(this.state.weather[0]);
-  dataArray = [];
-  cityNames = [];
-  allCityNamesArray = [];
-  housingArray = Object.values(this.state.housing[0]);
-  jobsStates = Object.entries(this.state.jobs[0]);
-  covidArray = Object.entries(this.state.covid[0]);
-  overviewArray = [];
+  // stateCode = Object.keys(this.state.weather[0]);
+  // allCitiesArray = Object.values(this.state.weather[0]);
+  // dataArray = [];
+  // cityNames = [];
+  // allCityNamesArray = [];
+  // housingArray = Object.values(this.state.housing[0]);
+  // jobsStates = Object.entries(this.state.jobs[0]);
+  // covidArray = Object.entries(this.state.covid[0]);
+  // overviewArray = [];
 
   numberWithCommas(number) {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -37,15 +37,15 @@ export default class TestComponent extends React.Component {
   }
 
   componentDidMount() {
-    this.allCitiesArray.map(cities => {
-      this.dataArray.push(Object.values(cities));
-      this.cityNames.push(Object.keys(cities));
-    });
-    this.cityNames.map(array => {
-      array.map(cityName => {
-        this.allCityNamesArray.push(cityName);
-      });
-    });
+    // this.allCitiesArray.map(cities => {
+    //   this.dataArray.push(Object.values(cities));
+    //   this.cityNames.push(Object.keys(cities));
+    // });
+    // this.cityNames.map(array => {
+    //   array.map(cityName => {
+    //     this.allCityNamesArray.push(cityName);
+    //   });
+    // });
   }
 
   render() {
@@ -90,6 +90,56 @@ export default class TestComponent extends React.Component {
                           className="data-viz"
                           data={this.props.tempData.data}
                           layout={this.props.tempData.layout}
+                          config={{ displayModeBar: false }}
+                        />
+                      </ChartContainer>
+                    </Tab>
+                    <Tab eventKey="precipData" title="Precipitation">
+                      <ChartContainer>
+                        <Plot
+                          className="data-viz"
+                          data={this.props.precipData.data}
+                          layout={this.props.precipData.layout}
+                          config={{ displayModeBar: false }}
+                        />
+                      </ChartContainer>
+                    </Tab>
+                    <Tab eventKey="snowData" title="Snow">
+                      <ChartContainer>
+                        <Plot
+                          className="data-viz"
+                          data={this.props.snowData.data}
+                          layout={this.props.snowData.layout}
+                          config={{ displayModeBar: false }}
+                        />
+                      </ChartContainer>
+                    </Tab>
+                    <Tab eventKey="uvIndexData" title="UV Index">
+                      <ChartContainer>
+                        <Plot
+                          className="data-viz"
+                          data={this.props.uvindexData.data}
+                          layout={this.props.uvindexData.layout}
+                          config={{ displayModeBar: false }}
+                        />
+                      </ChartContainer>
+                    </Tab>
+                    <Tab eventKey="humidityData" title="Humidity">
+                      <ChartContainer>
+                        <Plot
+                          className="data-viz"
+                          data={this.props.humidityData.data}
+                          layout={this.props.humidityData.layout}
+                          config={{ displayModeBar: false }}
+                        />
+                      </ChartContainer>
+                    </Tab>
+                    <Tab eventKey="windData" title="Wind">
+                      <ChartContainer>
+                        <Plot
+                          className="data-viz"
+                          data={this.props.windData.data}
+                          layout={this.props.windData.layout}
                           config={{ displayModeBar: false }}
                         />
                       </ChartContainer>
