@@ -48,7 +48,6 @@ function App() {
   const [housing, setHousing] = useState([]);
   const [weather, setWeather] = useState([]);
   const [jobs, setJobs] = useState([]);
-
   const [suggestions] = useState([
     "Alpharetta, GA",
     "Atlanta, GA",
@@ -740,6 +739,7 @@ function App() {
   ]);
   const [result, setResult] = useState([]);
   const [covid, setCovid] = useState([]);
+  const [population, setPopulation] = useState([]);
   const [data, setData] = useState([]); // NECESSARY FOR ADVANCED SEARCH
 
   const [cityImages, setCityImages] = useState({});
@@ -761,6 +761,7 @@ function App() {
     getWeatherData();
     getJobsData();
     getCovidData();
+    getPopulationData();
   }, []);
 
   useEffect(() => {
@@ -798,7 +799,7 @@ function App() {
   const getCityData = async page => {
     const res = await (
       await fetch(
-        `https://citrics-c-api.herokuapp.com/cities?page=${page}&limit=6`
+        `https://citrics-c-api.herokuapp.com/cities?page=${page}&limit=12`
       )
     ).json();
     return res.data;
@@ -809,6 +810,7 @@ function App() {
     const res = await (
       await fetch(`https://citrics-c-api.herokuapp.com/cities?page=1&limit=700`)
     ).json();
+
     return res.data;
   };
 
@@ -874,6 +876,15 @@ function App() {
       })
       .catch(err => console.log(err));
 
+  const getPopulationData = () =>
+    axios
+      .get(`${baseURL}/population`)
+      .then(res => {
+        const populationData = JSON.parse(res.data);
+        setPopulation(populationData);
+      })
+      .catch(err => console.log(err));
+
   const getData = (str, img) => {
     const s = str.charAt(str.length - 2) + str.charAt(str.length - 1);
     try {
@@ -933,6 +944,7 @@ function App() {
         housing,
         jobs,
         covid,
+        population,
         showLimitError,
         setShowLimitError,
         handleClose,
