@@ -60,10 +60,10 @@ export default class TestComponent extends React.Component {
               }}
             >
               <Modal.Title id="contained-modal-title-vcenter">
-                {this.allCityNamesArray.map(city => {
+                {this.allCityNamesArray.map((city, index) => {
                   //remove this ternary when all cities get added to the DB
                   return city === this.props.cityName ? (
-                    <div>{city}</div>
+                    <div key={index}>{city}</div>
                   ) : (
                     false
                   );
@@ -428,7 +428,7 @@ export default class TestComponent extends React.Component {
                 </Tab>
 
                 <Tab eventKey="jobs" title="Jobs">
-                  {this.jobsStates.map(entry => {
+                  {this.jobsStates.map((entry, index) => {
                     return entry[0] ===
                       this.props.cityName
                         .slice(
@@ -436,7 +436,7 @@ export default class TestComponent extends React.Component {
                           this.props.cityName.length
                         )
                         .toUpperCase() ? (
-                      <div className="modalContainer">
+                      <div key={index} className="modalContainer">
                         <div className="modal-leftSide">
                           <div className="modalData bold">
                             <span className="modalKey"></span>
@@ -592,7 +592,7 @@ export default class TestComponent extends React.Component {
                   })}
                 </Tab>
                 <Tab eventKey="covid" title="Covid">
-                  {this.covidArray.map(entry => {
+                  {this.covidArray.map((entry, index) => {
                     // console.log(entry[1])
                     return entry[0] ===
                       this.props.cityName
@@ -601,7 +601,7 @@ export default class TestComponent extends React.Component {
                           this.props.cityName.length
                         )
                         .toUpperCase() ? (
-                      <div className="modalContainer">
+                      <div key={index} className="modalContainer">
                         <div className="modal-leftSide">
                           <div className="modalData bold">
                             <span className="modalKey"></span>

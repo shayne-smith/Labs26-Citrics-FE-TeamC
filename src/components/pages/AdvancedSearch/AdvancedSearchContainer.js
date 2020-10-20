@@ -1,11 +1,11 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { CityContext } from "../../../contexts/CityContext";
 import styled from "styled-components";
 
 import { ReactComponent as DriftlyLogo } from "../../../assets/driftlyLogo.svg";
 import Header from "../../common/Header";
-import CityCard from "../../common/CityCard.js";
+import CityCardAdvancedSearch from "../../common/CityCardAdvancedSearch.js";
 import AdvancedSearchMenu from "../../common/AdvancedSearchMenu";
 
 // STYLED COMPONENTS
@@ -21,7 +21,6 @@ const MenuWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: space-between; */
 `;
 const ResultsWrapper = styled.div`
   display: flex;
@@ -41,7 +40,8 @@ const AdvancedSearch = () => {
     jobs,
     housing,
     covid,
-    suggestions
+    suggestions,
+    data
   } = useContext(CityContext);
 
   const [filteredCities, setFilteredCities] = useState(suggestions);
@@ -55,6 +55,40 @@ const AdvancedSearch = () => {
     housingPriceFilter: { low: 0, high: 9999999999 },
     covidFilter: 99999999
   });
+  const [dictionary, setDictonary] = useState({});
+  const [pageNumber, setPageNumber] = useState(1);
+  const [pageLength, setPageLength] = useState(10);
+
+  // Create a dictionary to match filtered city names to images
+  useEffect(() => {
+    const createDictionary = () => {
+      const dict = {};
+      {
+        data[0] &&
+          data[0].map(c => {
+            dict[c.location] = c.image;
+          });
+      }
+
+      return dict;
+    };
+
+    setDictonary(createDictionary());
+  }, [data]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleScroll = () => {
+    const body = document.body,
+      html = document.documentElement;
+
+    if (window.innerHeight + window.scrollY >= body.scrollHeight) {
+      setPageNumber(prev => prev + 1);
+    }
+  };
 
   // filter cities based on average summer "feels like F" data
   const avgSumTempFilter = temp => {
@@ -93,7 +127,7 @@ const AdvancedSearch = () => {
         }
       });
     });
-    console.log("weather", filteredResults);
+
     return filteredResults;
   };
 
@@ -124,7 +158,7 @@ const AdvancedSearch = () => {
         }
       });
     });
-    console.log(filteredResults);
+
     return filteredResults;
   };
 
@@ -188,7 +222,6 @@ const AdvancedSearch = () => {
       }
     });
 
-    console.log(filteredResults);
     return filteredResults;
   };
 
@@ -220,7 +253,6 @@ const AdvancedSearch = () => {
       }
     });
 
-    console.log(filteredResults);
     return filteredResults;
   };
 
@@ -252,7 +284,6 @@ const AdvancedSearch = () => {
       }
     });
 
-    console.log(filteredResults);
     return filteredResults;
   };
 
@@ -323,7 +354,6 @@ const AdvancedSearch = () => {
       lists = cities[0];
     } else {
       lists = cities;
-      console.log(lists);
     }
 
     // filter empty arrays out
@@ -346,7 +376,7 @@ const AdvancedSearch = () => {
         }
       }
     }
-    console.log(result);
+
     return result;
   };
 
@@ -414,7 +444,10 @@ const AdvancedSearch = () => {
         <div
           id="get-results-button"
           role="button"
-          onClick={() => setFilteredCities(filterCities())}
+          onClick={() => {
+            setFilteredCities(filterCities());
+            setPageNumber(1);
+          }}
         >
           Get Results
         </div>
@@ -422,25 +455,28 @@ const AdvancedSearch = () => {
       <ResultsWrapper>
         <Header />
         <div className="results-title">
-          Showing {cities.length} of {filteredCities.length} results
+          Showing {filteredCities.slice(0, pageLength * pageNumber).length} of{" "}
+          {filteredCities.length} results
         </div>
         <div className="card-container">
-          {cities.map((city, index) => (
-            <CityCard
-              key={index}
-              city={city.location}
-              image={city.image}
-              index={index}
-              setIsComparing={setIsComparing}
-              addCity={addCity}
-              getData={getData}
-              cities={cities}
-              jobs={jobs}
-              housing={housing}
-              covid={covid}
-              weather={weather}
-            />
-          ))}
+          {filteredCities
+            .slice(0, pageLength * pageNumber)
+            .map((city, index) => (
+              <CityCardAdvancedSearch
+                key={index}
+                city={city}
+                image={dictionary[city]}
+                index={index}
+                setIsComparing={setIsComparing}
+                addCity={addCity}
+                getData={getData}
+                cities={cities}
+                jobs={jobs}
+                housing={housing}
+                covid={covid}
+                weather={weather}
+              />
+            ))}
         </div>
       </ResultsWrapper>
     </Container>
