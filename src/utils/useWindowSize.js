@@ -9,8 +9,6 @@ export default function useWindowSize() {
     height: window.innerHeight
   });
 
-  console.log("useWindowSize()");
-
   function changeWindowSize() {
     setWindowSize({ width: window.innerWidth, height: window.innerHeight });
   }

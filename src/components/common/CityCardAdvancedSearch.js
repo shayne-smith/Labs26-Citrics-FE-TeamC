@@ -1,13 +1,11 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import axios from "axios";
+
 import { ReactComponent as Arrow } from "../../assets/arrow.svg";
-
 import { PlusCircleOutlined, FrownOutlined } from "@ant-design/icons";
-//import CityCardModal from "./CityCardModal";
 
-import { Modal, Button } from "react-bootstrap";
-
-import TestComponent from "./TestComponent";
+import ModalViz from "./ModalViz";
 import WeatherIcon from "./WeatherIcon";
 
 //cardComparison height from 150 to 250 px
@@ -116,9 +114,8 @@ function CityCard(props) {
     housing,
     covid
   } = props;
-  const [modalShow, setModalShow] = React.useState(false);
-
-  //console.log("CityCard Render");
+  const [modalShow, setModalShow] = useState(false);
+  const [covidData, setCovidData] = useState({});
 
   const avgHousePrice = () => {
     return housing[city.slice(-2)][city];
@@ -128,13 +125,25 @@ function CityCard(props) {
     return Math.round(Number(weather[city.slice(-2)][city][season].FeelsLikeF));
   };
 
+  const fetchGraphs = cityList => {
+    axios
+      .post("https://c-ds-driftly.citrics.dev/covid_viz/", cityList)
+      .then(res => {
+        setCovidData(JSON.parse(res.data));
+      })
+      .catch(err => console.log(err));
+  };
+
   return (
     <CardComparison
-      className="city-card"
+      className="advanced-search-city-card"
       style={{ background: `url(${image}) no-repeat center` }}
-      onClick={() => setModalShow(true)}
+      onClick={() => {
+        setModalShow(true);
+        fetchGraphs([city]);
+      }}
     >
-      <TestComponent
+      <ModalViz
         image={image}
         show={modalShow}
         onHide={() => setModalShow(false)}
@@ -144,6 +153,7 @@ function CityCard(props) {
         housing={housing}
         jobs={jobs}
         covid={covid}
+        covidData={covidData}
       />
 
       <CardHeader2>
