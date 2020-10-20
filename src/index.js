@@ -740,6 +740,7 @@ function App() {
   ]);
   const [result, setResult] = useState([]);
   const [covid, setCovid] = useState([]);
+  const [data, setData] = useState([]); // NECESSARY FOR ADVANCED SEARCH
 
   const [cityImages, setCityImages] = useState({});
 
@@ -762,12 +763,6 @@ function App() {
     getCovidData();
   }, []);
 
-  // const checkComparisonListLength = () => {
-  //   if (comparisonList.length === 0) {
-  //     setIsComparing(false);
-  //   }
-  // };
-
   useEffect(() => {
     const checkComparisonListLength = () => {
       if (comparisonList.length === 0) {
@@ -789,11 +784,29 @@ function App() {
     loadCities();
   }, [page]);
 
+  // EFFECT HOOK TO ACCESS ALL CITIES AT ONCE - NECESSARY FOR ADVANCED SEARCH
+  useEffect(() => {
+    const fetchCities = async () => {
+      const newCities = await fetchData();
+      setData(prev => [...prev, newCities]);
+    };
+
+    fetchCities();
+  }, []);
+
   const getCityData = async page => {
     const res = await (
       await fetch(
         `https://citrics-c-api.herokuapp.com/cities?page=${page}&limit=6`
       )
+    ).json();
+    return res.data;
+  };
+
+  // NECESSARY FOR ADVANCED SEARCH
+  const fetchData = async () => {
+    const res = await (
+      await fetch(`https://citrics-c-api.herokuapp.com/cities?page=1&limit=700`)
     ).json();
     return res.data;
   };
@@ -809,17 +822,6 @@ function App() {
     }
   };
 
-  // const getCityData = () =>
-  //   axios
-  //     .get("https://citrics-c-api.herokuapp.com/cities")
-  //     .then(res => {
-  //       console.log(res.data);
-  //       setCities(res.data);
-
-  //       // console.log("running getCityData()");  runs 1 time
-  //     })
-  //     .catch(err => console.log(err));
-
   const extractCityImages = cityData => {
     const updateCityImage = city => {
       const location = city.location.slice(-2);
@@ -833,7 +835,7 @@ function App() {
 
     cityData.map(city => {
       updateCityImage(city);
-    })``;
+    });
   };
 
   const getHousingData = () =>
@@ -936,7 +938,8 @@ function App() {
         suggestions,
         result,
         setResult,
-        loading
+        loading,
+        data
       }}
     >
       <Switch>
