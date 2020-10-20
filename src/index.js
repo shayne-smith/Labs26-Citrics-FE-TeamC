@@ -950,10 +950,10 @@ function App() {
           redirectUri={window.location.origin + "/implicit/callback"}
           onAuthRequired={onAuthRequired}
         >
-          <Route path="/" exact={true} component={Home} />
+          {/* <Route path="/" exact={true} component={Home} /> */}
           <Route
-            path="/home"
-            exact
+            path="/"
+            exact={true}
             component={() => <HomePage LoadingComponent={LoadingComponent} />}
           />
 

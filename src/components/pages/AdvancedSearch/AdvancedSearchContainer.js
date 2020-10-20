@@ -436,7 +436,7 @@ const AdvancedSearch = () => {
   return (
     <Container>
       <MenuWrapper>
-        <Link id="menuLogoWrapper" to="/home">
+        <Link id="menuLogoWrapper" to="/">
           <DriftlyLogo id="menuLogo" />
         </Link>
         <h3 id="advanced-search-title">Refine your search</h3>
