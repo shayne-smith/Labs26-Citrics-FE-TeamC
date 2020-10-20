@@ -11,42 +11,9 @@ const ChartContainer = styled.div`
 `;
 
 export default class TestComponent extends React.Component {
-  state = {
-    // weather: [this.props.weather],
-    // housing: [this.props.housing],
-    // jobs: [this.props.jobs],
-    // covid: [this.props.covid]
-  };
+  state = {};
 
-  // stateCode = Object.keys(this.state.weather[0]);
-  // allCitiesArray = Object.values(this.state.weather[0]);
-  // dataArray = [];
-  // cityNames = [];
-  // allCityNamesArray = [];
-  // housingArray = Object.values(this.state.housing[0]);
-  // jobsStates = Object.entries(this.state.jobs[0]);
-  // covidArray = Object.entries(this.state.covid[0]);
-  // overviewArray = [];
-
-  numberWithCommas(number) {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  }
-
-  overviewData(element) {
-    this.overviewArray.push(element);
-  }
-
-  componentDidMount() {
-    // this.allCitiesArray.map(cities => {
-    //   this.dataArray.push(Object.values(cities));
-    //   this.cityNames.push(Object.keys(cities));
-    // });
-    // this.cityNames.map(array => {
-    //   array.map(cityName => {
-    //     this.allCityNamesArray.push(cityName);
-    //   });
-    // });
-  }
+  componentDidMount() {}
 
   render() {
     return (

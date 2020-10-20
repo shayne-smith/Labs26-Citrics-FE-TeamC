@@ -1,14 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
-
 import { ReactComponent as Arrow } from "../../assets/arrow.svg";
 import { PlusCircleOutlined, FrownOutlined } from "@ant-design/icons";
-
 import ModalViz from "./ModalViz";
 import WeatherIcon from "./WeatherIcon";
-
-//cardComparison height from 150 to 250 px
 
 const CardComparison = styled.div`
   background-size: cover;
@@ -203,12 +199,6 @@ function CityCard(props) {
         image={image}
         show={modalShow}
         onHide={() => setModalShow(false)}
-        // cities={cities}
-        // cityName={city}
-        // weather={weather}
-        // housing={housing}
-        // jobs={jobs}
-        // covid={covid}
         covidData={covidData}
         tempData={tempData}
         precipData={precipData}
