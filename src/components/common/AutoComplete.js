@@ -17,17 +17,6 @@ export const AutoComplete = () => {
     return res.data;
   };
 
-  // const changeText = e => {
-  //   let value = e.target.value;
-  //   let regex = new RegExp(`^${value}`, "i");
-  //   let arr = [];
-  //   if (value.length !== 0) {
-  //     arr = suggestions.filter(v => regex.test(v));
-  //   }
-
-  //   setResult(arr.slice(0, 5));
-  // };
-
   useEffect(() => {
     const fetchCities = async () => {
       const newCities = await fetchData();
