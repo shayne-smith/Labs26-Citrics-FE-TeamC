@@ -116,6 +116,7 @@ function CityCard(props) {
   } = props;
   const [modalShow, setModalShow] = useState(false);
   const [covidData, setCovidData] = useState({});
+  const [tempData, setTempData] = useState({});
 
   const avgHousePrice = () => {
     return housing[city.slice(-2)][city];
@@ -132,6 +133,13 @@ function CityCard(props) {
         setCovidData(JSON.parse(res.data));
       })
       .catch(err => console.log(err));
+
+    axios
+      .post("https://c-ds-driftly.citrics.dev/temp_viz/", cityList)
+      .then(res => {
+        setTempData(JSON.parse(res.data));
+      })
+      .catch(err => console.log(err));
   };
 
   return (
@@ -141,6 +149,7 @@ function CityCard(props) {
       onClick={() => {
         setModalShow(true);
         fetchGraphs([city]);
+        //tempGraph([city]);
       }}
     >
       <ModalViz
@@ -154,6 +163,7 @@ function CityCard(props) {
         jobs={jobs}
         covid={covid}
         covidData={covidData}
+        tempData={tempData}
       />
 
       <CardHeader2>

@@ -75,9 +75,28 @@ export default class TestComponent extends React.Component {
               <div className="modalSubheader">City Visualizations</div>
               <Tabs
                 className="modalTabs"
-                defaultActiveKey="covid"
+                defaultActiveKey="weather"
                 id="modal-tabs"
               >
+                <Tab eventKey="weather" title="Weather">
+                  <Tabs
+                    className="modalTabs"
+                    defaultActiveKey="tempData"
+                    id="modal-subtabs"
+                  >
+                    <Tab eventKey="tempData" title="Temperature">
+                      <ChartContainer>
+                        <Plot
+                          className="data-viz"
+                          data={this.props.tempData.data}
+                          layout={this.props.tempData.layout}
+                          config={{ displayModeBar: false }}
+                        />
+                      </ChartContainer>
+                    </Tab>
+                  </Tabs>
+                </Tab>
+
                 <Tab eventKey="covid" title="COVID-19">
                   <ChartContainer>
                     <Plot
