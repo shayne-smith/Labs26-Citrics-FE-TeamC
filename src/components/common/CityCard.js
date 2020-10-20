@@ -7,7 +7,7 @@ import { PlusCircleOutlined, FrownOutlined } from "@ant-design/icons";
 
 import { Modal, Button } from "react-bootstrap";
 
-import TestComponent from "./TestComponent";
+import CityCardModal from "./CityCardModal";
 import WeatherIcon from "./WeatherIcon";
 
 //cardComparison height from 150 to 250 px
@@ -134,7 +134,7 @@ function CityCard(props) {
       style={{ background: `url(${image}) no-repeat center` }}
       onClick={() => setModalShow(true)}
     >
-      <TestComponent
+      <CityCardModal
         image={image}
         show={modalShow}
         onHide={() => setModalShow(false)}
