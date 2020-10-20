@@ -782,6 +782,7 @@ function App() {
 
     window.addEventListener("scroll", handleScroll);
     loadCities();
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [page]);
 
   // EFFECT HOOK TO ACCESS ALL CITIES AT ONCE - NECESSARY FOR ADVANCED SEARCH
@@ -811,13 +812,11 @@ function App() {
     return res.data;
   };
 
-  const handleScroll = e => {
-    // const { scrollTop, clientHeight, scrollHeight } = e.currentTarget;
-    const scrollTop = document.documentElement.scrollTop;
-    const clientHeight = document.documentElement.clientHeight;
-    const scrollHeight = document.documentElement.scrollHeight;
+  const handleScroll = () => {
+    const body = document.body,
+      html = document.documentElement;
 
-    if (scrollHeight - scrollTop === clientHeight) {
+    if (window.innerHeight + window.scrollY >= body.scrollHeight) {
       setPage(prev => prev + 1);
     }
   };
@@ -837,6 +836,8 @@ function App() {
       updateCityImage(city);
     });
   };
+
+  console.log(cities);
 
   const getHousingData = () =>
     axios

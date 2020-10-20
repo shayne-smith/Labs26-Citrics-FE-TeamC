@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 import { CityContext } from "../../contexts/CityContext";
 import { Link } from "react-router-dom";
 import { SearchOutlined } from "@ant-design/icons";
@@ -9,6 +9,27 @@ export const AutoComplete = () => {
   const [display, setDisplay] = useState(false);
   const [options, setOptions] = useState([]);
   const [search, setSearch] = useState("");
+
+  const searchContainer = useRef(null);
+
+  useEffect(() => {
+    window.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      window.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const handleClickOutside = e => {
+    if (
+      searchContainer.current &&
+      !searchContainer.current.contains(e.target)
+    ) {
+      hideSuggestion();
+    }
+  };
+
+  const hideSuggestion = () => setDisplay(false);
 
   const fetchData = async () => {
     const res = await (
@@ -36,28 +57,30 @@ export const AutoComplete = () => {
       <div className="search-box">
         <input
           className="search-input"
-          onChange={e => setSearch(e.target.value)}
-          onClick={() => setDisplay(!display)}
+          onChange={e => {
+            setDisplay(true);
+            setSearch(e.target.value);
+          }}
           type="text"
           placeholder="Type to search"
           value={search}
+          ref={searchContainer}
         />
         <Link className="search-btn" to="#">
           <SearchOutlined />
         </Link>
       </div>
       {display && (
-        <div className="grid">
+        <div className="option-container">
           {options
             .filter(item => {
               return item.location.toLowerCase().indexOf(search) >= 0;
             })
-            .slice(0, 5)
+            .slice(0, 3)
             .map((item, index) => {
-              console.log(item.location);
               return (
                 <div
-                  className="result"
+                  className="option"
                   key={index}
                   onClick={() => {
                     getData(item.location, item.image);
@@ -70,24 +93,6 @@ export const AutoComplete = () => {
             })}
         </div>
       )}
-      {/* {result.length !== 0 && (
-        <div className="grid">
-          {result.map((item, index) => {
-            return (
-              <div
-                className="result"
-                key={index}
-                onClick={() => {
-                  // getImage(item);
-                  getData(item.location, item.image);
-                }}
-              >
-                {item}
-              </div>
-            );
-          })}
-        </div>
-      )} */}
     </div>
   );
 };
