@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { CityContext } from "../../../contexts/CityContext";
 import CityCard from "../../common/CityCard.js";
@@ -38,6 +38,7 @@ const Button = styled.button`
 function RenderHomePage() {
   const {
     cities,
+    setCities,
     comparisonList,
     setComparisonList,
     addCity,
@@ -49,12 +50,24 @@ function RenderHomePage() {
     jobs,
     housing,
     covid,
+    population,
     loading
   } = useContext(CityContext);
 
   const [showStats, setShowStats] = useState(false);
 
   let history = useHistory();
+
+  const popEntries = Object.entries(population);
+  const sortedByPop = [];
+  popEntries.map(entry => {
+    sortedByPop.push(entry.sort());
+  });
+
+  console.log(popEntries);
+  //console.log('sorted by pop', sortedByPop)
+
+  console.log("cities", cities);
 
   // if (comparisonList.length <= 3) {
   return (
@@ -107,22 +120,29 @@ function RenderHomePage() {
       )}
 
       <div className="card-container">
-        {cities.map((city, index) => (
-          <CityCard
-            key={index}
-            city={city.location}
-            image={city.image}
-            index={index}
-            setIsComparing={setIsComparing}
-            addCity={addCity}
-            getData={getData}
-            cities={cities}
-            weather={weather}
-            jobs={jobs}
-            housing={housing}
-            covid={covid}
-          />
-        ))}
+        {sortedByPop.map(entry => {
+          return cities.map((city, index) => {
+            return entry[1] === city.location ? (
+              <CityCard
+                key={index}
+                city={city.location}
+                image={city.image}
+                index={index}
+                setIsComparing={setIsComparing}
+                addCity={addCity}
+                getData={getData}
+                cities={cities}
+                weather={weather}
+                jobs={jobs}
+                housing={housing}
+                covid={covid}
+                population={population}
+              />
+            ) : (
+              false
+            );
+          });
+        })}
       </div>
       {loading ? <Loading>Loading ...</Loading> : <End>No more data!</End>}
     </div>

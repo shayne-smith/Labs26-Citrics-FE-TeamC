@@ -89,7 +89,7 @@ function CardComparison(props) {
           <ul>
             <li>Housing: ${props.data.housing}</li>
             <li>Total Manufacturing: {props.data.jobs.toFixed(2)}</li>
-            <li>Weather: {props.data.weather.toFixed(0)} degree</li>
+            <li>Weather: {props.data.weather.toFixed(0)}°F</li>
             <li>Covid Positive Cases: {props.data.covid.toFixed(0)} cases</li>
           </ul>
         </div>
