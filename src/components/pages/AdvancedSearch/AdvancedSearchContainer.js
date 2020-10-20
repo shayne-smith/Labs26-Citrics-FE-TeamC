@@ -63,12 +63,11 @@ const AdvancedSearch = () => {
   useEffect(() => {
     const createDictionary = () => {
       const dict = {};
-      {
-        data[0] &&
-          data[0].map(c => {
-            dict[c.location] = c.image;
-          });
-      }
+
+      data[0] &&
+        data[0].map(c => {
+          dict[c.location] = c.image;
+        });
 
       return dict;
     };
