@@ -140,6 +140,130 @@ export default class TestComponent extends React.Component {
                         />
                       </ChartContainer>
                     </Tab>
+
+                    <Tab eventKey="manufacturingData" title="Manufacturing">
+                      <ChartContainer>
+                        <Plot
+                          className="data-viz"
+                          data={this.props.manufacturingData.data}
+                          layout={this.props.manufacturingData.layout}
+                          config={{ displayModeBar: false }}
+                        />
+                      </ChartContainer>
+                    </Tab>
+                    <Tab eventKey="constructionData" title="Construction">
+                      <ChartContainer>
+                        <Plot
+                          className="data-viz"
+                          data={this.props.constructionData.data}
+                          layout={this.props.constructionData.layout}
+                          config={{ displayModeBar: false }}
+                        />
+                      </ChartContainer>
+                    </Tab>
+                    <Tab
+                      eventKey="tradeTransportData"
+                      title="Trade & Transport"
+                    >
+                      <ChartContainer>
+                        <Plot
+                          className="data-viz"
+                          data={this.props.tradeTransportData.data}
+                          layout={this.props.tradeTransportData.layout}
+                          config={{ displayModeBar: false }}
+                        />
+                      </ChartContainer>
+                    </Tab>
+                    <Tab eventKey="financialData" title="Finance">
+                      <ChartContainer>
+                        <Plot
+                          className="data-viz"
+                          data={this.props.financialData.data}
+                          layout={this.props.financialData.layout}
+                          config={{ displayModeBar: false }}
+                        />
+                      </ChartContainer>
+                    </Tab>
+                    <Tab eventKey="businessData" title="Business">
+                      <ChartContainer>
+                        <Plot
+                          className="data-viz"
+                          data={this.props.businessData.data}
+                          layout={this.props.businessData.layout}
+                          config={{ displayModeBar: false }}
+                        />
+                      </ChartContainer>
+                    </Tab>
+                    <Tab eventKey="eduHealthData" title="Education & Health">
+                      <ChartContainer>
+                        <Plot
+                          className="data-viz"
+                          data={this.props.eduHealthData.data}
+                          layout={this.props.eduHealthData.layout}
+                          config={{ displayModeBar: false }}
+                        />
+                      </ChartContainer>
+                    </Tab>
+                    <Tab eventKey="hospitalityData" title="Hospitality">
+                      <ChartContainer>
+                        <Plot
+                          className="data-viz"
+                          data={this.props.hospitalityData.data}
+                          layout={this.props.hospitalityData.layout}
+                          config={{ displayModeBar: false }}
+                        />
+                      </ChartContainer>
+                    </Tab>
+                    <Tab eventKey="informationData" title="Information">
+                      <ChartContainer>
+                        <Plot
+                          className="data-viz"
+                          data={this.props.informationData.data}
+                          layout={this.props.informationData.layout}
+                          config={{ displayModeBar: false }}
+                        />
+                      </ChartContainer>
+                    </Tab>
+                    <Tab eventKey="servicesData" title="Services">
+                      <ChartContainer>
+                        <Plot
+                          className="data-viz"
+                          data={this.props.serviceData.data}
+                          layout={this.props.serviceData.layout}
+                          config={{ displayModeBar: false }}
+                        />
+                      </ChartContainer>
+                    </Tab>
+                    <Tab eventKey="miningData" title="Mining">
+                      <ChartContainer>
+                        <Plot
+                          className="data-viz"
+                          data={this.props.miningData.data}
+                          layout={this.props.miningData.layout}
+                          config={{ displayModeBar: false }}
+                        />
+                      </ChartContainer>
+                    </Tab>
+                    <Tab eventKey="otherData" title="Other">
+                      <ChartContainer>
+                        <Plot
+                          className="data-viz"
+                          data={this.props.otherData.data}
+                          layout={this.props.otherData.layout}
+                          config={{ displayModeBar: false }}
+                        />
+                      </ChartContainer>
+                    </Tab>
+                    <Tab eventKey="unclassifiedData" title="Unclassified">
+                      <ChartContainer>
+                        <Plot
+                          className="data-viz"
+                          data={this.props.unclassifiedData.data}
+                          layout={this.props.unclassifiedData.layout}
+                          config={{ displayModeBar: false }}
+                        />
+                      </ChartContainer>
+                    </Tab>
                   </Tabs>
                 </Tab>
 
