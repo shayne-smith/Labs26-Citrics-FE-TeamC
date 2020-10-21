@@ -123,6 +123,26 @@ export default class TestComponent extends React.Component {
                     />
                   </ChartContainer>
                 </Tab>
+
+                <Tab eventKey="jobs" title="Jobs">
+                  <Tabs
+                    className="modalTabs"
+                    defaultActiveKey="goodsData"
+                    id="modal-subtabs"
+                  >
+                    <Tab eventKey="goodsData" title="Goods">
+                      <ChartContainer>
+                        <Plot
+                          className="data-viz"
+                          data={this.props.goodsData.data}
+                          layout={this.props.goodsData.layout}
+                          config={{ displayModeBar: false }}
+                        />
+                      </ChartContainer>
+                    </Tab>
+                  </Tabs>
+                </Tab>
+
                 <Tab eventKey="covid" title="COVID-19">
                   <ChartContainer>
                     <Plot
