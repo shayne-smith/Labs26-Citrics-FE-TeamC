@@ -121,7 +121,6 @@ function CityCard(props) {
   const [housingData, setHousingData] = useState({});
 
   const [goodsData, setGoodsData] = useState({});
-
   const [miningData, setMiningData] = useState({});
   const [manufacturingData, setManufacturingData] = useState({});
   const [constructionData, setConstructionData] = useState({});
