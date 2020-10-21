@@ -93,7 +93,7 @@ const AdvancedSearch = () => {
 
   // filter cities based on city population data
   const popFilter = size => {
-    // convert weather data object to array
+    // convert population data object to array
     const popArray = Object.entries(population);
 
     // initialize array to store filtered cities
@@ -101,6 +101,7 @@ const AdvancedSearch = () => {
 
     // loop through all cities in array
     popArray.map(city => {
+      // filters cities based on population
       if (size === "small") {
         if (city[1] < 500000) {
           filteredResults.push(city[0]);
@@ -120,7 +121,6 @@ const AdvancedSearch = () => {
       }
     });
 
-    console.log(filteredResults);
     return filteredResults;
   };
 
