@@ -74,7 +74,7 @@ function DataVizContainer() {
   return (
     <Container>
       <MenuWrapper>
-        <Link id="menuLogoWrapper">
+        <Link id="menuLogoWrapper" to="/">
           <DriftlyLogo id="menuLogo" onClick={() => history.push("/")} />
         </Link>
         <DataOptionsList>
