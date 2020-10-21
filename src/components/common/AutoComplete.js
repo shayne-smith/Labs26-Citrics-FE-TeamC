@@ -1,10 +1,11 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
+import axios from "axios";
 import { CityContext } from "../../contexts/CityContext";
 import { Link } from "react-router-dom";
 import { SearchOutlined } from "@ant-design/icons";
 
-export const AutoComplete = () => {
-  const { getData } = useContext(CityContext);
+export const AutoComplete = props => {
+  const { getData, data } = useContext(CityContext);
 
   const [display, setDisplay] = useState(false);
   const [options, setOptions] = useState([]);
@@ -12,40 +13,38 @@ export const AutoComplete = () => {
 
   const searchContainer = useRef(null);
 
-  useEffect(() => {
-    window.addEventListener("mousedown", handleClickOutside);
+  // SIDE EFFECTS
+  // Create a dictionary to match filtered city names to images
+  // useEffect(() => {
+  //   console.log(data[0])
+  //   const createDictionary = () => {
+  //     const dict = {};
 
-    return () => {
-      window.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+  //     data[0] &&
+  //       data[0].map(c => {
+  //         dict[c.location] = c.image;
+  //       });
 
-  const handleClickOutside = e => {
-    if (
-      searchContainer.current &&
-      !searchContainer.current.contains(e.target)
-    ) {
-      hideSuggestion();
-    }
-  };
+  //     return dict;
+  //   };
 
-  const hideSuggestion = () => setDisplay(false);
-
-  const fetchData = async () => {
-    const res = await (
-      await fetch(`https://citrics-c-api.herokuapp.com/cities?page=1&limit=700`)
-    ).json();
-    return res.data;
-  };
+  //   setDictonary(createDictionary());
+  // }, [data]);
 
   useEffect(() => {
-    const fetchCities = async () => {
-      const newCities = await fetchData();
-      setOptions(newCities);
-    };
+    let elem = document.getElementsByClassName("option-container");
 
-    fetchCities();
-  }, []);
+    document.addEventListener("click", function(event) {
+      if (elem[0] !== undefined) {
+        let isClickInside = elem[0].contains(event.target);
+
+        if (!isClickInside) {
+          setDisplay(false);
+          setSearch("");
+        }
+      }
+    });
+  }, [display]);
 
   const handleSearch = e => {
     setSearch(e);
@@ -72,7 +71,7 @@ export const AutoComplete = () => {
       </div>
       {display && (
         <div className="option-container">
-          {options
+          {data[0]
             .filter(item => {
               return item.location.toLowerCase().indexOf(search) >= 0;
             })
@@ -83,7 +82,9 @@ export const AutoComplete = () => {
                   className="option"
                   key={index}
                   onClick={() => {
+                    console.log("clicking!");
                     getData(item.location, item.image);
+
                     handleSearch(item.location);
                   }}
                 >

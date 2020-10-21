@@ -530,7 +530,6 @@ function DataViz(props) {
     axios
       .post("https://c-ds-driftly.citrics.dev/covid_viz/", cityList)
       .then(res => {
-        console.log(JSON.parse(res.data));
         setCovidData(JSON.parse(res.data));
       })
       .catch(err => console.log(err));
@@ -538,7 +537,6 @@ function DataViz(props) {
     axios
       .post("https://c-ds-driftly.citrics.dev/temp_viz/", cityList)
       .then(res => {
-        console.log(JSON.parse(res.data));
         setTempData(JSON.parse(res.data));
       })
       .catch(err => console.log(err));
@@ -546,7 +544,6 @@ function DataViz(props) {
     axios
       .post("https://c-ds-driftly.citrics.dev/precip_viz/", cityList)
       .then(res => {
-        console.log(JSON.parse(res.data));
         setPrecipData(JSON.parse(res.data));
       })
       .catch(err => console.log(err));
@@ -554,7 +551,6 @@ function DataViz(props) {
     axios
       .post("https://c-ds-driftly.citrics.dev/snow_viz/", cityList)
       .then(res => {
-        console.log(JSON.parse(res.data));
         setSnowData(JSON.parse(res.data));
       })
       .catch(err => console.log(err));
@@ -562,7 +558,6 @@ function DataViz(props) {
     axios
       .post("https://c-ds-driftly.citrics.dev/uvindex_viz/", cityList)
       .then(res => {
-        console.log(JSON.parse(res.data));
         setUvindexData(JSON.parse(res.data));
       })
       .catch(err => console.log(err));
@@ -570,7 +565,6 @@ function DataViz(props) {
     axios
       .post("https://c-ds-driftly.citrics.dev/humidity_viz/", cityList)
       .then(res => {
-        console.log(JSON.parse(res.data));
         setHumidityData(JSON.parse(res.data));
       })
       .catch(err => console.log(err));
@@ -578,7 +572,6 @@ function DataViz(props) {
     axios
       .post("https://c-ds-driftly.citrics.dev/wind_viz/", cityList)
       .then(res => {
-        console.log(JSON.parse(res.data));
         setWindData(JSON.parse(res.data));
       })
       .catch(err => console.log(err));
@@ -586,7 +579,6 @@ function DataViz(props) {
     axios
       .post("https://c-ds-driftly.citrics.dev/housing_viz/", cityList)
       .then(res => {
-        console.log(JSON.parse(res.data));
         setHousingData(JSON.parse(res.data));
       })
       .catch(err => console.log(err));
