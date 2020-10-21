@@ -83,8 +83,7 @@ const AdvancedSearch = () => {
   }, []);
 
   const handleScroll = () => {
-    const body = document.body,
-      html = document.documentElement;
+    const body = document.body;
 
     if (window.innerHeight + window.scrollY >= body.scrollHeight) {
       setPageNumber(prev => prev + 1);
@@ -428,7 +427,7 @@ const AdvancedSearch = () => {
       output8
     } = [];
     const filtersArray = Object.entries(filters);
-    console.log(filtersArray);
+
     filtersArray.map(f => {
       switch (f[0]) {
         case "popFilter":

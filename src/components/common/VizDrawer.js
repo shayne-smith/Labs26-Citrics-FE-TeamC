@@ -91,7 +91,7 @@ const VizDrawer = () => {
         <CityListContainer>
           <h6>Selected Cities</h6>
           {comparisonList.map((city, index) => (
-            <CityNameContainer>
+            <CityNameContainer key={index}>
               <CityName>{city.city}</CityName>
               <CloseOutlined
                 className="anticon-close"

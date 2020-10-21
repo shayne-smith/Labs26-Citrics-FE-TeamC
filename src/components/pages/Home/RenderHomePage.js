@@ -38,7 +38,6 @@ const Button = styled.button`
 function RenderHomePage() {
   const {
     cities,
-    setCities,
     comparisonList,
     setComparisonList,
     addCity,
@@ -64,12 +63,6 @@ function RenderHomePage() {
     sortedByPop.push(entry.sort());
   });
 
-  console.log(popEntries);
-  //console.log('sorted by pop', sortedByPop)
-
-  console.log("cities", cities);
-
-  // if (comparisonList.length <= 3) {
   return (
     <div className="home-page-container">
       <Header />
@@ -147,8 +140,5 @@ function RenderHomePage() {
       {loading ? <Loading>Loading ...</Loading> : <End>No more data!</End>}
     </div>
   );
-  // } else if (comparisonList.length > 3) {
-  //   alert("Can only compare at most 3 cities!");
-  // }
 }
 export default RenderHomePage;
