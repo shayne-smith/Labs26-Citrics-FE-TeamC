@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Plot from "react-plotly.js";
 import styled from "styled-components";
+import axios from "axios";
 
 const ChartContainer = styled.div`
   display: flex;
@@ -9,6 +10,14 @@ const ChartContainer = styled.div`
 `;
 
 function DataViz(props) {
+  const [covidData, setCovidData] = useState({});
+  const [tempData, setTempData] = useState({});
+  const [precipData, setPrecipData] = useState({});
+  const [snowData, setSnowData] = useState({});
+  const [uvindexData, setUvindexData] = useState({});
+  const [humidityData, setHumidityData] = useState({});
+  const [windData, setWindData] = useState({});
+  const [housingData, setHousingData] = useState({});
   const [data, setData] = useState(
     '{"data":[{"hovertemplate":"date=%{x}<br>value=%{y}<extra></extra>","legendgroup":"","line":{"color":"#636efa","dash":"solid"},"mode":"lines","name":"","orientation":"v","showlegend":false,"type":"scatter","x":["1996-01-31","1996-02-29","1996-03-31","1996-04-30","1996-05-31","1996-06-30","1996-07-31","1996-08-31","1996-09-30","1996-10-31","1996-11-30","1996-12-31","1997-01-31","1997-02-28","1997-03-31","1997-04-30","1997-05-31","1997-06-30","1997-07-31","1997-08-31","1997-09-30","1997-10-31","1997-11-30","1997-12-31","1998-01-31","1998-02-28","1998-03-31","1998-04-30","1998-05-31","1998-06-30","1998-07-31","1998-08-31","1998-09-30","1998-10-31","1998-11-30","1998-12-31","1999-01-31","1999-02-28","1999-03-31","1999-04-30","1999-05-31","1999-06-30","1999-07-31","1999-08-31","1999-09-30","1999-10-31","1999-11-30","1999-12-31","2000-01-31","2000-02-29","2000-03-31","2000-04-30","2000-05-31","2000-06-30","2000-07-31","2000-08-31","2000-09-30","2000-10-31","2000-11-30","2000-12-31","2001-01-31","2001-02-28","2001-03-31","2001-04-30","2001-05-31","2001-06-30","2001-07-31","2001-08-31","2001-09-30","2001-10-31","2001-11-30","2001-12-31","2002-01-31","2002-02-28","2002-03-31","2002-04-30","2002-05-31","2002-06-30","2002-07-31","2002-08-31","2002-09-30","2002-10-31","2002-11-30","2002-12-31","2003-01-31","2003-02-28","2003-03-31","2003-04-30","2003-05-31","2003-06-30","2003-07-31","2003-08-31","2003-09-30","2003-10-31","2003-11-30","2003-12-31","2004-01-31","2004-02-29","2004-03-31","2004-04-30","2004-05-31","2004-06-30","2004-07-31","2004-08-31","2004-09-30","2004-10-31","2004-11-30","2004-12-31","2005-01-31","2005-02-28","2005-03-31","2005-04-30","2005-05-31","2005-06-30","2005-07-31","2005-08-31","2005-09-30","2005-10-31","2005-11-30","2005-12-31","2006-01-31","2006-02-28","2006-03-31","2006-04-30","2006-05-31","2006-06-30","2006-07-31","2006-08-31","2006-09-30","2006-10-31","2006-11-30","2006-12-31","2007-01-31","2007-02-28","2007-03-31","2007-04-30","2007-05-31","2007-06-30","2007-07-31","2007-08-31","2007-09-30","2007-10-31","2007-11-30","2007-12-31","2008-01-31","2008-02-29","2008-03-31","2008-04-30","2008-05-31","2008-06-30","2008-07-31","2008-08-31","2008-09-30","2008-10-31","2008-11-30","2008-12-31","2009-01-31","2009-02-28","2009-03-31","2009-04-30","2009-05-31","2009-06-30","2009-07-31","2009-08-31","2009-09-30","2009-10-31","2009-11-30","2009-12-31","2010-01-31","2010-02-28","2010-03-31","2010-04-30","2010-05-31","2010-06-30","2010-07-31","2010-08-31","2010-09-30","2010-10-31","2010-11-30","2010-12-31","2011-01-31","2011-02-28","2011-03-31","2011-04-30","2011-05-31","2011-06-30","2011-07-31","2011-08-31","2011-09-30","2011-10-31","2011-11-30","2011-12-31","2012-01-31","2012-02-29","2012-03-31","2012-04-30","2012-05-31","2012-06-30","2012-07-31","2012-08-31","2012-09-30","2012-10-31","2012-11-30","2012-12-31","2013-01-31","2013-02-28","2013-03-31","2013-04-30","2013-05-31","2013-06-30","2013-07-31","2013-08-31","2013-09-30","2013-10-31","2013-11-30","2013-12-31","2014-01-31","2014-02-28","2014-03-31","2014-04-30","2014-05-31","2014-06-30","2014-07-31","2014-08-31","2014-09-30","2014-10-31","2014-11-30","2014-12-31","2015-01-31","2015-02-28","2015-03-31","2015-04-30","2015-05-31","2015-06-30","2015-07-31","2015-08-31","2015-09-30","2015-10-31","2015-11-30","2015-12-31","2016-01-31","2016-02-29","2016-03-31","2016-04-30","2016-05-31","2016-06-30","2016-07-31","2016-08-31","2016-09-30","2016-10-31","2016-11-30","2016-12-31","2017-01-31","2017-02-28","2017-03-31","2017-04-30","2017-05-31","2017-06-30","2017-07-31","2017-08-31","2017-09-30","2017-10-31","2017-11-30","2017-12-31","2018-01-31","2018-02-28","2018-03-31","2018-04-30","2018-05-31","2018-06-30","2018-07-31","2018-08-31","2018-09-30","2018-10-31","2018-11-30","2018-12-31","2019-01-31","2019-02-28","2019-03-31","2019-04-30","2019-05-31","2019-06-30","2019-07-31","2019-08-31","2019-09-30","2019-10-31","2019-11-30","2019-12-31","2020-01-31","2020-02-29","2020-03-31","2020-04-30","2020-05-31","2020-06-30","2020-07-31"],"xaxis":"x","y":["120,921.0","121,198.0","120,390.0","120,078.0","119,395.0","119,150.0","117,635.0","116,853.0","116,720.0","117,320.0","117,444.0","117,375.0","116,834.0","115,304.0","114,569.0","113,737.0","113,886.0","114,005.0","115,343.0","115,733.0","114,609.0","112,271.0","109,723.0","107,058.0","105,294.0","104,737.0","104,751.0","103,816.0","101,919.0","99,038.0","96,857.0","94,886.0","94,063.0","93,576.0","94,303.0","95,317.0","96,062.0","96,377.0","96,352.0","96,532.0","96,917.0","97,761.0","98,247.0","98,122.0","97,473.0","96,970.0","96,505.0","96,831.0","96,715.0","95,634.0","93,134.0","90,507.0","88,958.0","88,040.0","87,683.0","87,850.0","88,285.0","87,971.0","86,783.0","84,871.0","83,271.0","83,207.0","84,484.0","86,812.0","87,774.0","89,066.0","89,543.0","90,382.0","89,970.0","89,705.0","89,427.0","89,441.0","89,695.0","89,688.0","89,497.0","89,233.0","89,231.0","88,427.0","88,106.0","87,776.0","89,021.0","90,192.0","91,365.0","92,272.0","93,187.0","93,964.0","94,625.0","94,500.0","95,220.0","95,842.0","96,143.0","95,495.0","94,366.0","94,135.0","94,772.0","96,317.0","97,258.0","97,235.0","96,690.0","96,855.0","97,444.0","98,536.0","99,676.0","100,935.0","102,360.0","103,548.0","104,749.0","105,289.0","106,587.0","108,642.0","110,628.0","111,968.0","112,187.0","113,106.0","114,264.0","116,094.0","117,312.0","118,356.0","118,679.0","119,029.0","118,969.0","119,438.0","120,851.0","122,762.0","125,200.0","126,994.0","128,156.0","128,319.0","128,516.0","129,121.0","130,601.0","132,418.0","134,339.0","135,486.0","136,725.0","137,826.0","138,868.0","139,684.0","141,023.0","143,151.0","144,899.0","146,036.0","146,371.0","146,110.0","145,153.0","143,774.0","142,265.0","141,178.0","140,458.0","138,254.0","136,138.0","134,863.0","136,447.0","137,790.0","138,211.0","137,956.0","138,063.0","139,177.0","138,987.0","137,985.0","135,633.0","135,450.0","135,384.0","134,713.0","132,070.0","129,989.0","129,211.0","128,919.0","128,589.0","127,346.0","127,145.0","127,388.0","128,844.0","129,882.0","130,734.0","130,556.0","129,658.0","128,918.0","128,638.0","128,932.0","128,770.0","128,859.0","128,619.0","128,491.0","127,980.0","126,995.0","124,977.0","124,144.0","123,859.0","123,292.0","121,229.0","118,874.0","117,684.0","116,937.0","116,665.0","115,614.0","114,127.0","112,513.0","112,993.0","113,492.0","114,608.0","115,158.0","116,359.0","117,205.0","117,371.0","117,284.0","116,900.0","117,651.0","118,964.0","120,400.0","120,632.0","120,267.0","119,448.0","118,704.0","117,887.0","117,529.0","117,535.0","117,860.0","118,249.0","118,243.0","118,367.0","118,912.0","118,866.0","118,594.0","117,348.0","116,812.0","116,538.0","116,793.0","117,070.0","116,911.0","116,638.0","115,926.0","114,962.0","113,678.0","112,689.0","112,280.0","112,678.0","112,988.0","112,846.0","113,047.0","112,978.0","112,958.0","112,102.0","111,267.0","109,926.0","108,310.0","107,525.0","107,216.0","107,618.0","108,240.0","109,897.0","109,669.0","108,841.0","107,517.0","107,765.0","108,704.0","110,998.0","114,324.0","117,336.0","119,446.0","120,626.0","121,015.0","120,072.0","119,880.0","120,850.0","122,905.0","123,970.0","124,892.0","125,118.0","125,436.0","124,973.0","125,637.0","126,423.0","127,253.0","127,811.0","129,066.0","130,552.0","132,180.0","133,412.0","133,863.0","132,918.0","131,127.0","130,009.0","128,624.0","127,492.0","126,574.0","126,287.0","125,489.0","124,069.0","122,115.0","120,599.0","119,505.0","121,503.0","122,226.0","123,593.0"],"yaxis":"y"}],"layout":{"legend":{"tracegroupgap":0},"template":{"data":{"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5}},"type":"bar"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5}},"type":"barpolar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"heatmapgl":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmapgl"}],"histogram":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"histogram"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"#E5ECF6","showlakes":true,"showland":true,"subunitcolor":"white"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"rgba(0,0,0,0)","plot_bgcolor":"#E5ECF6","polar":{"angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"bgcolor":"#E5ECF6","radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","gridwidth":2,"linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white"},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","gridwidth":2,"linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white"},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","gridwidth":2,"linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"bgcolor":"#E5ECF6","caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","zerolinewidth":2}}},"title":{"text":"Albany, NY Real Estate Value over Time"},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"date"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"value"}}}}',
     '{"data":[{"hovertemplate":"variable=MinTempF<br>month=%{x}<br>value=%{y}<extra></extra>","legendgroup":"MinTempF","line":{"color":"#636efa","dash":"solid"},"mode":"lines","name":"MinTempF","orientation":"v","showlegend":true,"type":"scatter","x":[1,2,3,4,5,6,7,8,9,10,11,12],"xaxis":"x","y":[16.882706766917295,16.390400000000003,23.411428571428576,35.758823529411764,47.37105263157895,53.215999999999994,59.824516129032254,59.12774193548389,53.551351351351364,43.58523489932887,31.15454545454546,24.059677419354838],"yaxis":"y"},{"hovertemplate":"variable=MaxTempF<br>month=%{x}<br>value=%{y}<extra></extra>","legendgroup":"MaxTempF","line":{"color":"#EF553B","dash":"solid"},"mode":"lines","name":"MaxTempF","orientation":"v","showlegend":true,"type":"scatter","x":[1,2,3,4,5,6,7,8,9,10,11,12],"xaxis":"x","y":[28.075187969924812,32.11520000000001,38.95571428571429,53.361764705882386,67.97631578947369,74.56400000000002,81.33161290322577,79.76387096774195,73.20540540540543,59.471140939597305,44.504545454545465,34.8016129032258],"yaxis":"y"}],"layout":{"legend":{"title":{"text":"variable"},"tracegroupgap":0},"template":{"data":{"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5}},"type":"bar"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5}},"type":"barpolar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"heatmapgl":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmapgl"}],"histogram":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"histogram"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"#E5ECF6","showlakes":true,"showland":true,"subunitcolor":"white"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"rgba(0,0,0,0)","plot_bgcolor":"#E5ECF6","polar":{"angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"bgcolor":"#E5ECF6","radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","gridwidth":2,"linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white"},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","gridwidth":2,"linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white"},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","gridwidth":2,"linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"bgcolor":"#E5ECF6","caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","zerolinewidth":2}}},"title":{"text":"Albany, NY Average Monthly Temperature"},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"month"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"value"}}}}',
@@ -488,24 +497,145 @@ function DataViz(props) {
     }
   });
 
+  const { comparisonList } = props;
+
+  useEffect(() => {
+    const cityList = constructCityList(comparisonList);
+    fetchGraphs(cityList);
+  }, [comparisonList]);
+
+  const constructCityList = list => {
+    const cityList = [];
+    list.map(city => {
+      cityList.push(city.city);
+    });
+    return cityList;
+  };
+
+  const fetchGraphs = cityList => {
+    axios
+      .post("https://c-ds-driftly.citrics.dev/covid_viz/", cityList)
+      .then(res => {
+        console.log(JSON.parse(res.data));
+        setCovidData(JSON.parse(res.data));
+      })
+      .catch(err => console.log(err));
+
+    axios
+      .post("https://c-ds-driftly.citrics.dev/temp_viz/", cityList)
+      .then(res => {
+        console.log(JSON.parse(res.data));
+        setTempData(JSON.parse(res.data));
+      })
+      .catch(err => console.log(err));
+
+    axios
+      .post("https://c-ds-driftly.citrics.dev/precip_viz/", cityList)
+      .then(res => {
+        console.log(JSON.parse(res.data));
+        setPrecipData(JSON.parse(res.data));
+      })
+      .catch(err => console.log(err));
+
+    axios
+      .post("https://c-ds-driftly.citrics.dev/snow_viz/", cityList)
+      .then(res => {
+        console.log(JSON.parse(res.data));
+        setSnowData(JSON.parse(res.data));
+      })
+      .catch(err => console.log(err));
+
+    axios
+      .post("https://c-ds-driftly.citrics.dev/uvindex_viz/", cityList)
+      .then(res => {
+        console.log(JSON.parse(res.data));
+        setUvindexData(JSON.parse(res.data));
+      })
+      .catch(err => console.log(err));
+
+    axios
+      .post("https://c-ds-driftly.citrics.dev/humidity_viz/", cityList)
+      .then(res => {
+        console.log(JSON.parse(res.data));
+        setHumidityData(JSON.parse(res.data));
+      })
+      .catch(err => console.log(err));
+
+    axios
+      .post("https://c-ds-driftly.citrics.dev/wind_viz/", cityList)
+      .then(res => {
+        console.log(JSON.parse(res.data));
+        setWindData(JSON.parse(res.data));
+      })
+      .catch(err => console.log(err));
+
+    axios
+      .post("https://c-ds-driftly.citrics.dev/housing_viz/", cityList)
+      .then(res => {
+        console.log(JSON.parse(res.data));
+        setHousingData(JSON.parse(res.data));
+      })
+      .catch(err => console.log(err));
+  };
+
   return (
     <ChartContainer>
-      {props.showData.realEstate && (
+      {/* {props.showData.realEstate && (
         <Plot
           className="data-viz"
           data={JSON.parse(data).data}
           layout={JSON.parse(data).layout}
           config={{ displayModeBar: false }}
         />
-      )}
-      {props.showData.weather && (
-        <Plot
-          className="data-viz"
-          data={weather.data}
-          layout={weather.layout}
-          config={{ displayModeBar: false }}
-        />
-      )}
+      )} */}
+      <Plot
+        className="data-viz"
+        data={covidData.data}
+        layout={covidData.layout}
+        config={{ displayModeBar: false }}
+      />
+      <Plot
+        className="data-viz"
+        data={tempData.data}
+        layout={tempData.layout}
+        config={{ displayModeBar: false }}
+      />
+      <Plot
+        className="data-viz"
+        data={precipData.data}
+        layout={precipData.layout}
+        config={{ displayModeBar: false }}
+      />
+      <Plot
+        className="data-viz"
+        data={snowData.data}
+        layout={snowData.layout}
+        config={{ displayModeBar: false }}
+      />
+      <Plot
+        className="data-viz"
+        data={uvindexData.data}
+        layout={uvindexData.layout}
+        config={{ displayModeBar: false }}
+      />
+      <Plot
+        className="data-viz"
+        data={humidityData.data}
+        layout={humidityData.layout}
+        config={{ displayModeBar: false }}
+      />
+      <Plot
+        className="data-viz"
+        data={windData.data}
+        layout={windData.layout}
+        config={{ displayModeBar: false }}
+      />
+      <Plot
+        className="data-viz"
+        data={housingData.data}
+        layout={housingData.layout}
+        config={{ displayModeBar: false }}
+      />
     </ChartContainer>
   );
 }

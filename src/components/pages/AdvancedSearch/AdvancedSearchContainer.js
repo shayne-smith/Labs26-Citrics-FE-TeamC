@@ -41,7 +41,8 @@ const AdvancedSearch = () => {
     housing,
     covid,
     suggestions,
-    data
+    data,
+    population
   } = useContext(CityContext);
 
   const [filteredCities, setFilteredCities] = useState(suggestions);
@@ -53,7 +54,8 @@ const AdvancedSearch = () => {
     governmentJobsFilter: 0,
     manufacturingJobsFilter: 0,
     housingPriceFilter: { low: 0, high: 9999999999 },
-    covidFilter: 99999999
+    covidFilter: 99999999,
+    popFilter: "large"
   });
   const [dictionary, setDictonary] = useState({});
   const [pageNumber, setPageNumber] = useState(1);
@@ -87,6 +89,39 @@ const AdvancedSearch = () => {
     if (window.innerHeight + window.scrollY >= body.scrollHeight) {
       setPageNumber(prev => prev + 1);
     }
+  };
+
+  // filter cities based on city population data
+  const popFilter = size => {
+    // convert population data object to array
+    const popArray = Object.entries(population);
+
+    // initialize array to store filtered cities
+    const filteredResults = [];
+
+    // loop through all cities in array
+    popArray.map(city => {
+      // filters cities based on population
+      if (size === "small") {
+        if (city[1] < 500000) {
+          filteredResults.push(city[0]);
+        }
+      } else if (size === "medium") {
+        if (500000 <= city[1] && city[1] < 1000000) {
+          filteredResults.push(city[0]);
+        }
+      } else if (size === "large") {
+        if (1000000 <= city[1] && city[1] < 2000000) {
+          filteredResults.push(city[0]);
+        }
+      } else if (size === "mega") {
+        if (2000000 <= city[1]) {
+          filteredResults.push(city[0]);
+        }
+      }
+    });
+
+    return filteredResults;
   };
 
   // filter cities based on average summer "feels like F" data
@@ -382,6 +417,7 @@ const AdvancedSearch = () => {
   const filterCities = () => {
     let result = [];
     let {
+      output0,
       output1,
       output2,
       output3,
@@ -392,8 +428,12 @@ const AdvancedSearch = () => {
       output8
     } = [];
     const filtersArray = Object.entries(filters);
+    console.log(filtersArray);
     filtersArray.map(f => {
       switch (f[0]) {
+        case "popFilter":
+          output0 = popFilter(f[1]);
+          break;
         case "avgSumTempFilter":
           output1 = avgSumTempFilter(f[1]);
           break;
@@ -420,6 +460,7 @@ const AdvancedSearch = () => {
       }
     });
     result = intersection(
+      output0,
       output1,
       output2,
       output3,
@@ -435,7 +476,7 @@ const AdvancedSearch = () => {
   return (
     <Container>
       <MenuWrapper>
-        <Link id="menuLogoWrapper" to="/home">
+        <Link id="menuLogoWrapper" to="/">
           <DriftlyLogo id="menuLogo" />
         </Link>
         <h3 id="advanced-search-title">Refine your search</h3>

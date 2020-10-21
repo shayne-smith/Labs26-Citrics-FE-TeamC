@@ -2,20 +2,19 @@ import React, { useState } from "react";
 import { Radio } from "antd";
 
 const RadioButtons = props => {
-  const [value, setValue] = useState(2);
+  const [value, setValue] = useState(3);
   const { buttonNames, rowFormat, setFilters } = props;
 
   const onChange = e => {
-    console.log("radio checked", e.target.value);
     setValue(e.target.value);
     if (e.target.value === 1) {
-      // update state
+      setFilters(prev => ({ ...prev, popFilter: "small" }));
     } else if (e.target.value === 2) {
-      // update state
+      setFilters(prev => ({ ...prev, popFilter: "medium" }));
     } else if (e.target.value === 3) {
-      // update state
+      setFilters(prev => ({ ...prev, popFilter: "large" }));
     } else if (e.target.value === 4) {
-      // update state
+      setFilters(prev => ({ ...prev, popFilter: "mega" }));
     }
   };
 

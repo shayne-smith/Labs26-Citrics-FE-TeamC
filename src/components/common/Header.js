@@ -22,7 +22,7 @@ const Navigation = styled.nav`
   font-family: Amatic SC;
   font-style: normal;
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 2rem;
 `;
 
 function Header() {
@@ -33,14 +33,14 @@ function Header() {
       <Wrapper className="Header">
         {width > 700 && (
           <Navigation className="Nav">
-            <Link className="header-link" to="/home">
+            <Link className="header-link" to="/">
               Home
             </Link>
             <Link className="header-link" to="/about">
               About
             </Link>
-            <Link id="login" className="header-link" to="/">
-              Logout
+            <Link id="login" className="header-link" to="/login">
+              Login
             </Link>
           </Navigation>
         )}

@@ -1,10 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import Plot from "react-plotly.js";
 
-import CityCard from "./CityCard.js";
-
 const ComparisonViz = props => {
-  console.log(JSON.parse(props.data));
   return (
     <>
       <div className="comparison-container">

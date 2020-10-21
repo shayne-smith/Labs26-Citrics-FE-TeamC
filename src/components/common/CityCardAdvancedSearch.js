@@ -132,6 +132,7 @@ function CityCard(props) {
     axios
       .post("https://c-ds-driftly.citrics.dev/covid_viz/", cityList)
       .then(res => {
+        console.log(JSON.parse(res.data));
         setCovidData(JSON.parse(res.data));
       })
       .catch(err => console.log(err));

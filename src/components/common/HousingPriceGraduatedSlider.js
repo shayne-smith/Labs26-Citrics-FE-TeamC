@@ -14,7 +14,6 @@ const GraduatedSlider = props => {
         step={step}
         defaultValue={defaultValue}
         onChange={value => {
-          console.log(value);
           setFilters(prev => ({
             ...prev,
             housingPriceFilter: { low: value[0], high: value[1] }

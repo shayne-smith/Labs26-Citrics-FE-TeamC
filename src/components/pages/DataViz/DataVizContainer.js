@@ -47,7 +47,7 @@ const DataOption = styled.div`
   }
 `;
 
-function DataVizContainer(props) {
+function DataVizContainer() {
   const { comparisonList } = useContext(CityContext);
   const history = useHistory();
 
@@ -63,11 +63,8 @@ function DataVizContainer(props) {
   });
 
   const buildTitle = () => {
-    console.log(`comparison list: ${comparisonList}`);
     let tempTitle = "";
     comparisonList.forEach(city => {
-      console.log("running");
-      console.log(city.city);
       tempTitle = tempTitle.concat(city.city, " -- ");
     });
     tempTitle = tempTitle.slice(0, -4);
@@ -118,7 +115,7 @@ function DataVizContainer(props) {
       <DataWrapper>
         <Header />
         <h1 className="viz-title">{title}</h1>
-        <RenderDataViz showData={showData} />
+        <RenderDataViz showData={showData} comparisonList={comparisonList} />
       </DataWrapper>
     </Container>
   );
