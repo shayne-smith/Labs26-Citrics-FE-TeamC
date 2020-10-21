@@ -63,6 +63,20 @@ function CityCard(props) {
   const [windData, setWindData] = useState({});
   const [housingData, setHousingData] = useState({});
 
+  const [goodsData, setGoodsData] = useState({});
+  const [miningData, setMiningData] = useState({});
+  const [manufacturingData, setManufacturingData] = useState({});
+  const [constructionData, setConstructionData] = useState({});
+  const [tradeTransportData, setTradeTransportData] = useState({});
+  const [financialData, setFinancialData] = useState({});
+  const [businessData, setBusinessData] = useState({});
+  const [eduHealthData, setEduHealthData] = useState({});
+  const [hospitalityData, setHospitalityData] = useState({});
+  const [informationData, setInformationData] = useState({});
+  const [serviceData, setServiceData] = useState({});
+  const [otherData, setOtherData] = useState({});
+  const [unclassifiedData, setUnclassifiedData] = useState({});
+
   const avgHousePrice = () => {
     return housing[city.slice(-2)][city];
   };
@@ -127,6 +141,101 @@ function CityCard(props) {
         setHousingData(JSON.parse(res.data));
       })
       .catch(err => console.log(err));
+
+    axios
+      .post("https://c-ds-driftly.citrics.dev/wage_goods_viz/", cityList)
+      .then(res => {
+        setGoodsData(JSON.parse(res.data));
+      })
+      .catch(err => console.log(err));
+    axios
+      .post("https://c-ds-driftly.citrics.dev/wage_mining_viz/", cityList)
+      .then(res => {
+        setMiningData(JSON.parse(res.data));
+      })
+      .catch(err => console.log(err));
+
+    axios
+      .post(
+        "https://c-ds-driftly.citrics.dev/wage_manufacturing_viz/",
+        cityList
+      )
+      .then(res => {
+        setManufacturingData(JSON.parse(res.data));
+      })
+      .catch(err => console.log(err));
+    axios
+      .post("https://c-ds-driftly.citrics.dev/wage_construction_viz/", cityList)
+      .then(res => {
+        setConstructionData(JSON.parse(res.data));
+      })
+      .catch(err => console.log(err));
+
+    axios
+      .post(
+        "https://c-ds-driftly.citrics.dev/wage_trade_transport_viz/",
+        cityList
+      )
+      .then(res => {
+        setTradeTransportData(JSON.parse(res.data));
+      })
+      .catch(err => console.log(err));
+
+    axios
+      .post("https://c-ds-driftly.citrics.dev/wage_financial_viz/", cityList)
+      .then(res => {
+        setFinancialData(JSON.parse(res.data));
+      })
+      .catch(err => console.log(err));
+
+    axios
+      .post("https://c-ds-driftly.citrics.dev/wage_business_viz/", cityList)
+      .then(res => {
+        setBusinessData(JSON.parse(res.data));
+      })
+      .catch(err => console.log(err));
+
+    axios
+      .post("https://c-ds-driftly.citrics.dev/wage_edu_health_viz/", cityList)
+      .then(res => {
+        setEduHealthData(JSON.parse(res.data));
+      })
+      .catch(err => console.log(err));
+
+    axios
+      .post("https://c-ds-driftly.citrics.dev/wage_hospitality_viz/", cityList)
+      .then(res => {
+        setHospitalityData(JSON.parse(res.data));
+      })
+      .catch(err => console.log(err));
+
+    axios
+      .post("https://c-ds-driftly.citrics.dev/wage_information_viz/", cityList)
+      .then(res => {
+        setInformationData(JSON.parse(res.data));
+      })
+      .catch(err => console.log(err));
+
+    axios
+      .post("https://c-ds-driftly.citrics.dev/wage_service_viz/", cityList)
+      .then(res => {
+        setServiceData(JSON.parse(res.data));
+      })
+      .catch(err => console.log(err));
+
+    axios
+      .post("https://c-ds-driftly.citrics.dev/wage_other_viz/", cityList)
+      .then(res => {
+        setOtherData(JSON.parse(res.data));
+      })
+      .catch(err => console.log(err));
+
+    axios
+      .post("https://c-ds-driftly.citrics.dev/wage_unclassified_viz/", cityList)
+      .then(res => {
+        setUnclassifiedData(JSON.parse(res.data));
+      })
+      .catch(err => console.log(err));
   };
 
   return (
@@ -150,6 +259,19 @@ function CityCard(props) {
         humidityData={humidityData}
         windData={windData}
         housingData={housingData}
+        goodsData={goodsData}
+        manufacturingData={manufacturingData}
+        miningData={miningData}
+        constructionData={constructionData}
+        tradeTransportData={tradeTransportData}
+        financialData={financialData}
+        businessData={businessData}
+        eduHealthData={eduHealthData}
+        hospitalityData={hospitalityData}
+        informationData={informationData}
+        serviceData={serviceData}
+        otherData={otherData}
+        unclassifiedData={unclassifiedData}
       />
 
       <CardHeader2>
