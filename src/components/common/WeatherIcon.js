@@ -14,9 +14,9 @@ const WeatherIcon = props => {
   }, []);
 
   const calculateTemp = () => {
-    if (temp < 60) {
+    if (temp < 65) {
       setIsCold(true);
-    } else if (60 <= temp && temp <= 80) {
+    } else if (65 <= temp && temp <= 80) {
       setIsModerate(true);
     } else if (80 < temp) {
       setIsHot(true);

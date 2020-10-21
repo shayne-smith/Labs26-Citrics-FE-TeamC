@@ -750,12 +750,14 @@ function App() {
 
   const [isComparing, setIsComparing] = useState(false);
   const [showLimitError, setShowLimitError] = useState(false);
+
   // The reason to declare App this way is so that we can use any helper functions we'd need for business logic, in our case auth.
   // React Router has a nifty useHistory hook we can use at this level to ensure we have security around our routes.
 
   const baseURL = "https://c-ds-driftly.citrics.dev";
   const history = useHistory();
 
+  // SIDE EFFECTS
   useEffect(() => {
     getHousingData();
     getWeatherData();
@@ -823,30 +825,11 @@ function App() {
     }
   };
 
-  const extractCityImages = cityData => {
-    const updateCityImage = city => {
-      const location = city.location.slice(-2);
-      const image = city.image;
-
-      setCityImages(cityImages => ({
-        ...cityImages,
-        [location]: image
-      }));
-    };
-
-    cityData.map(city => {
-      updateCityImage(city);
-    });
-  };
-
-  console.log(cities);
-
   const getHousingData = () =>
     axios
       .get(`${baseURL}/housing`)
       .then(res => {
         setHousing(JSON.parse(res.data));
-        // console.log("running getHousingData()"); // runs 1 time
       })
       .catch(err => console.log(err));
 
