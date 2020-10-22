@@ -118,6 +118,7 @@ function CityCard(props) {
     covid,
     population
   } = props;
+
   const [modalShow, setModalShow] = React.useState(false);
 
   //console.log("CityCard Render");
