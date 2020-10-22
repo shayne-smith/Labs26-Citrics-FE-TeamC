@@ -1,6 +1,6 @@
 # Driftly - let's find your next home!
 
-[Driftly](https://c.citrics.dev/)
+Application deployed at [https://c.citrics.dev/](https://c.citrics.dev/)
 
 ## Basic SPA
 
@@ -12,7 +12,7 @@ For steps on how to work with this repository [please see here](https://docs.lab
 | :-------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------: |
 | [<img src="https://ca.slack-edge.com/ESZCHB482-W0123RTM51V-bf749dc3288f-512" width = "200" />](https://github.com/) | [<img src="https://ca.slack-edge.com/ESZCHB482-W0123RTV5QX-3ba8de22b37c-512" width = "200" />](https://github.com/) | [<img src="https://ca.slack-edge.com/ESZCHB482-W012QNUUE6Q-79b5f4d3d5d8-512" width = "200" />](https://github.com/) |
 |                                [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/shayne-smith)                                |                            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/galfarotolon)                             |                          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/NathanNNguyen)                           |
-|                 [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)                 |                [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)                |                 [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/nathannnguyen)                 |
+|                 [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/shayne-smith1)                 |                [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/guillermo-alfaro)                |                 [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/nathannnguyen)                 |
 
 <br>
 <br>
