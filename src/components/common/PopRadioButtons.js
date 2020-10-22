@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Radio } from "antd";
 
 const RadioButtons = props => {
-  const [value, setValue] = useState(3);
+  const [value, setValue] = useState(2);
   const { buttonNames, rowFormat, setFilters } = props;
 
   const onChange = e => {
