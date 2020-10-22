@@ -33,14 +33,11 @@ function Header() {
       <Wrapper className="Header">
         {width > 700 && (
           <Navigation className="Nav">
-            <Link className="header-link" to="/">
+            <Link id="home" className="header-link" to="/">
               Home
             </Link>
             <Link className="header-link" to="/about">
               About
-            </Link>
-            <Link id="login" className="header-link" to="/login">
-              Login
             </Link>
           </Navigation>
         )}

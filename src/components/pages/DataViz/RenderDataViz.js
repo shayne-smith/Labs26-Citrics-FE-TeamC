@@ -375,6 +375,8 @@ function DataViz(props) {
         />
       )}
 
+      {/* covid */}
+
       {props.showData.covid && (
         <Plot
           className="data-viz"
