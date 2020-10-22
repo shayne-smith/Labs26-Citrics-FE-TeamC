@@ -6,8 +6,10 @@ export default class CityCardModal extends React.Component {
   state = {
     weather: [this.props.weather],
     housing: [this.props.housing],
+    housingPredict: [this.props.housingPredict],
     jobs: [this.props.jobs],
-    covid: [this.props.covid]
+    covid: [this.props.covid],
+    population: [this.props.population]
   };
 
   stateCode = Object.keys(this.state.weather[0]);
@@ -16,8 +18,10 @@ export default class CityCardModal extends React.Component {
   cityNames = [];
   allCityNamesArray = [];
   housingArray = Object.values(this.state.housing[0]);
+  housingPredictArray = Object.values(this.state.housingPredict);
   jobsStates = Object.entries(this.state.jobs[0]);
   covidArray = Object.entries(this.state.covid[0]);
+  populationArray = Object.entries(this.state.population[0]);
   overviewArray = [];
 
   numberWithCommas(number) {
@@ -61,7 +65,6 @@ export default class CityCardModal extends React.Component {
             >
               <Modal.Title id="contained-modal-title-vcenter">
                 {this.allCityNamesArray.map((city, index) => {
-                  //remove this ternary when all cities get added to the DB
                   return city === this.props.cityName ? (
                     <div key={index}>{city}</div>
                   ) : (
@@ -419,6 +422,29 @@ export default class CityCardModal extends React.Component {
                               ${entry[1]}
                             </div>
                           </div>
+                          <div className="modal-rightSide">
+                            {this.housingPredictArray.map(
+                              housingPredictData => {
+                                return Object.entries(housingPredictData).map(
+                                  entry => {
+                                    return entry[0] === this.props.cityName ? (
+                                      <div className="modalData">
+                                        <span className="modalKey">
+                                          Estimated Home Purchase Cost in 2025
+                                        </span>
+                                        $
+                                        {this.numberWithCommas(
+                                          entry[1]["2025"]
+                                        )}
+                                      </div>
+                                    ) : (
+                                      false
+                                    );
+                                  }
+                                );
+                              }
+                            )}
+                          </div>
                         </div>
                       ) : (
                         false
@@ -639,8 +665,21 @@ export default class CityCardModal extends React.Component {
                   })}
                 </Tab>
                 <Tab eventKey="overview" title="Overview">
+                  {this.populationArray.map(entry => {
+                    return entry[0] === this.props.cityName ? (
+                      <div>
+                        {this.overviewData(this.numberWithCommas(entry[1]))}
+                      </div>
+                    ) : (
+                      false
+                    );
+                  })}
                   <div className="modalContainer">
                     <div className="modal-leftSide">
+                      <div className="modalData">
+                        <span className="modalKey">🏙️ Population</span>
+                        {this.overviewArray[10]}
+                      </div>
                       <div className="modalData">
                         <span className="modalKey">
                           ☀️ Average Temp (F Summer)

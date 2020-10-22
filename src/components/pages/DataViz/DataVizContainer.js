@@ -52,9 +52,10 @@ function DataVizContainer() {
   const history = useHistory();
 
   const [showData, setShowData] = useState({
+    weather: true,
+    realEstate: false,
     jobs: false,
-    realEstate: true,
-    weather: true
+    covid: false
   });
   const [title, setTitle] = useState("");
 
@@ -73,7 +74,11 @@ function DataVizContainer() {
 
   return (
     <Container>
-      <MenuWrapper>
+      <MenuWrapper
+        style={{
+          position: "fixed"
+        }}
+      >
         <Link id="menuLogoWrapper" to="/">
           <DriftlyLogo id="menuLogo" onClick={() => history.push("/")} />
         </Link>
@@ -82,12 +87,14 @@ function DataVizContainer() {
             onClick={() =>
               setShowData(showData => ({
                 ...showData,
-                jobs: !showData.jobs
+                weather: !showData.weather
               }))
             }
+            style={showData.weather ? { opacity: "0.50" } : { color: "white" }}
           >
-            JOBS
+            WEATHER
           </DataOption>
+
           <DataOption
             onClick={() =>
               setShowData(showData => ({
@@ -95,18 +102,34 @@ function DataVizContainer() {
                 realEstate: !showData.realEstate
               }))
             }
+            style={
+              showData.realEstate ? { opacity: "0.50" } : { color: "white" }
+            }
           >
-            REAL ESTATE
+            Housing
+          </DataOption>
+
+          <DataOption
+            onClick={() =>
+              setShowData(showData => ({
+                ...showData,
+                jobs: !showData.jobs
+              }))
+            }
+            style={showData.jobs ? { opacity: "0.50" } : { color: "white" }}
+          >
+            JOBS
           </DataOption>
           <DataOption
             onClick={() =>
               setShowData(showData => ({
                 ...showData,
-                weather: !showData.weather
+                covid: !showData.covid
               }))
             }
+            style={showData.covid ? { opacity: "0.50" } : { color: "white" }}
           >
-            WEATHER
+            COVID-19
           </DataOption>
         </DataOptionsList>
         <VizDrawer />

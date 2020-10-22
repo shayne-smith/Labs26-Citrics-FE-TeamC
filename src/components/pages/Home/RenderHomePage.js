@@ -50,6 +50,7 @@ function RenderHomePage() {
     housing,
     covid,
     population,
+    housingPredict,
     loading
   } = useContext(CityContext);
 
@@ -122,6 +123,7 @@ function RenderHomePage() {
                 housing={housing}
                 covid={covid}
                 population={population}
+                housingPredict={housingPredict}
               />
             ) : (
               false

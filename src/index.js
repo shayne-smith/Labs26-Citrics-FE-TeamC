@@ -46,6 +46,7 @@ function App() {
   // state for cities data
   const [cities, setCities] = useState([]);
   const [housing, setHousing] = useState([]);
+  const [housingPredict, setHousingPredict] = useState([]);
   const [weather, setWeather] = useState([]);
   const [jobs, setJobs] = useState([]);
   const [suggestions] = useState([
@@ -760,6 +761,7 @@ function App() {
   // SIDE EFFECTS
   useEffect(() => {
     getHousingData();
+    getHousingPredictData();
     getWeatherData();
     getJobsData();
     getCovidData();
@@ -830,6 +832,14 @@ function App() {
       .get(`${baseURL}/housing`)
       .then(res => {
         setHousing(JSON.parse(res.data));
+      })
+      .catch(err => console.log(err));
+
+  const getHousingPredictData = () =>
+    axios
+      .get(`${baseURL}/pred_housing`)
+      .then(res => {
+        setHousingPredict(JSON.parse(res.data));
       })
       .catch(err => console.log(err));
 
@@ -926,6 +936,7 @@ function App() {
         getData,
         weather,
         housing,
+        housingPredict,
         jobs,
         covid,
         population,

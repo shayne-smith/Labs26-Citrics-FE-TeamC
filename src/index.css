@@ -7,6 +7,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
     background-color: #F9F8F4;
 }
+
 #root {
   min-height: 100%;
 }
@@ -37,7 +38,7 @@ code {
 }
 
 /* HEADER SECTION */
-#login {
+#home {
   background-color: rgba(112, 199, 131, 0.9);
   padding: 0 0.8rem;
   margin: 0 0 0 0.4rem;
@@ -251,6 +252,36 @@ code {
 }
 
 /* ABOUT PAGE */
+
+.aboutProject{
+  margin: 5rem;
+font-family: Amatic SC;
+}
+
+.aboutProject h2{
+  text-align: center;
+  font-family: Amatic SC;
+  font-weight: bold;
+  font-size: 3rem;
+  color: #656665
+}
+
+.aboutProject h4{
+  text-align: center;
+  font-family: Amatic SC;
+  font-weight: bold;
+  font-size: 3rem;
+  color: #656665
+}
+
+.aboutProject p{
+  text-align: center;
+  font-family: oswald;
+  font-weight: 500;
+  font-size: 1.3rem;
+  color: #656665
+}
+
 .social {
   display: block;
   color: rgba(255, 255, 255, .8);

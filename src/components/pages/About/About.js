@@ -45,6 +45,41 @@ function About() {
   return (
     <>
       <Header />
+
+      <div className="aboutProject">
+        <h2>The Project</h2>
+        <p>
+          Driftly is a comparison tool of over 650 US cities that analyzes
+          information such as poulation, weather, jobs, and COVID-19 data, and
+          allows users to compare up to 3 cities and find their next home.
+        </p>
+        <p>
+          Begin using Driftly by searching for the city or cities you are
+          looking for in the search bar or just by scrolling down. Once you have
+          found the city you are looking for, you can click on the city card
+          itself to open up a city report with a quick overview of that city.
+          Alternatively, you can click on the 'plus' button located on the top
+          right corner of every city card to add it to the comparison container.
+          Up to 3 cities can be added at one time.
+        </p>
+        <p>
+          Once a city or cities have been added to the container, click on the
+          'Compare Cities' button. This will take you to the comparison page
+          with all sorts of visual representations.
+        </p>
+
+        <p>
+          You can also click on the 'Advanced Search' button to filter out
+          cities based on various city data such as population, temperature,
+          number of jobs in a particular sector, average housing prices, and
+          number of COVID-19 positive outcomes.
+        </p>
+        <p>
+          Whatever it is you're looking for, Driftly will surely help you in
+          finding your next home!
+        </p>
+      </div>
+
       <h2
         style={{
           textAlign: "center",
@@ -54,7 +89,7 @@ function About() {
           color: "#656665"
         }}
       >
-        A team from Lambda School
+        The Team
       </h2>
       <Wrapper>
         {data.map((e, index) => (
@@ -131,7 +166,7 @@ const data = [
     name: "Connor Angelis",
     role: "TPL",
     github: "https://github.com/KonstadinosAngelis",
-    linkedIn: "",
+    linkedIn: "https://www.linkedin.com/in/konstadinos/",
     image: "https://ca.slack-edge.com/ESZCHB482-W0138D6L6UQ-bbfef33c1387-512"
   },
   {
