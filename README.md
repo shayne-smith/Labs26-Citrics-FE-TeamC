@@ -83,7 +83,7 @@ Please go through this [Docs](https://github.com/Lambda-School-Labs/Labs26-Citri
 - Main Text
   - font-family: "Oswald", sans-serif;
 
-# Contributing
+## Contributing
 
 When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
 
