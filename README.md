@@ -1,10 +1,6 @@
 # Driftly - let's find your next home!
 
-[Driftly](https://c.citrics.dev/)
-
-## Basic SPA
-
-For steps on how to work with this repository [please see here](https://docs.labs.lambdaschool.com/labs-spa-starter/)
+Application deployed at [https://c.citrics.dev/](https://c.citrics.dev/)
 
 ## Contributors
 
@@ -12,7 +8,7 @@ For steps on how to work with this repository [please see here](https://docs.lab
 | :-------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------: |
 | [<img src="https://ca.slack-edge.com/ESZCHB482-W0123RTM51V-bf749dc3288f-512" width = "200" />](https://github.com/) | [<img src="https://ca.slack-edge.com/ESZCHB482-W0123RTV5QX-3ba8de22b37c-512" width = "200" />](https://github.com/) | [<img src="https://ca.slack-edge.com/ESZCHB482-W012QNUUE6Q-79b5f4d3d5d8-512" width = "200" />](https://github.com/) |
 |                                [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/shayne-smith)                                |                            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/galfarotolon)                             |                          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/NathanNNguyen)                           |
-|                 [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)                 |                [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)                |                 [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/nathannnguyen)                 |
+|                 [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/shayne-smith1)                 |                [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/guillermo-alfaro)                |                 [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/nathannnguyen)                 |
 
 <br>
 <br>
@@ -21,23 +17,44 @@ For steps on how to work with this repository [please see here](https://docs.lab
 ![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
 ![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)
 
+## Project Overview
 
-- Fork and clone the repo to install it as your own remote.
-  - **note** please [be sure to set your remote](https://help.github.jp/enterprise/2.11/user/articles/changing-a-remote-s-url/) for this repo to point to your Labs Team Front End Repository.
-- run: `npm install` to download all dependencies.
-- run: `npm start` to start your local development server.
+[Product Roadmap](https://www.notion.so/Citrics-Roadmap-98a5614b708745ccae4ca55960ea8e1b)
 
-> When using Okta for authentication, the app will need to run locally on port 3000.
+[UX Design Files](https://www.figma.com/file/SuHUelhKGOOHyHmfgcXPrG/Identity?node-id=0%3A1)
+
+Citrics is a city comparison tool that analyzes data from all over the internet such as poulation, weather, jobs, and COVID-19 data, and allows users to compare cities and find their next home based on user preferences. 
+
+### Basic SPA
+
+For steps on how to work with this repository [please see here](https://docs.labs.lambdaschool.com/labs-spa-starter/)
+
+## Tech Stack
+
+### Front end built using:
+
+- React
+- React Bootstrap
+- Plotly JavaScript Graphing Library
+- Axios
+- Prettier
+- Jest
+- ESLint
+- AWS Amplify
+- Styled Components
+- Ant Designs
+- Okta Authentication
+- Google Fonts
+- Context API
+  - The application's state management uses Context API.
 
 ### Key Features
 
 - See a list of approximately 700 cities' statistics about weather, job market, housing, covid cases and more
-- Allow to choose any three cities to compare data
-- Providing data visualization such as graphs or bars for better user's experience
+- Allow user to choose any three cities to compare data
+- Provide data visualizations for each city
 - Search for city by name
-- Search based on user's reference (incoming)
-
-#### Front end deployed to ` https://c.citrics.dev`
+- Search based on user's reference
 
 #### [Back end](http://driftly-ds-api.eba-pqp2r6up.us-east-2.elasticbeanstalk.com/#/default) built using FastAPI
 
@@ -49,6 +66,22 @@ Please go through this [Docs](https://github.com/Lambda-School-Labs/Labs26-Citri
 - Installing the dependencies `npm i`
 
 - Start the app `npm start`
+
+> When using Okta for authentication, the app will need to run locally on port 3000.
+
+## Style Guidelines
+
+### Color Scheme
+
+- Action color: #70C783
+  - Used throughout the site to identify elements that we want the user to notice. This includes our login button, data, and menus.
+
+### Font
+- Title
+  - font-family: "Amatic SC", sans-serif;
+
+- Main Text
+  - font-family: "Oswald", sans-serif;
 
 # Contributing
 
