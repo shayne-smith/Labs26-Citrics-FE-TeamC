@@ -423,8 +423,8 @@ code {
 /* ADVANCED SEARCH MENU */
 #advanced-search-title {
   position: absolute;
-  top: 11.5rem;
-  font-size: 2.5rem;
+  top: 17.7rem;
+  font-size: 2rem;
   font-weight: 700;
   text-align: left;
   color: #ffffff;
@@ -432,7 +432,7 @@ code {
 }
 .advanced-search-menu {
   position: absolute;
-  top: 15rem;
+  top: 20.5rem;
   border-radius: 6px;
   font-family: 'Amatic SC', 'sans serif';
   font-size: 1.8rem;
@@ -495,7 +495,7 @@ code {
 }
 #get-results-button {
   position: absolute;
-  bottom: 2rem;
+  top: 12rem;
   background-color: #ffffff;
   width: 150px;
   height: 50px;

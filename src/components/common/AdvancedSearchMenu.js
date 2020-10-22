@@ -46,8 +46,8 @@ const AdvancedSearchMenu = props => {
         <p className="advanced-search-option-title">Choose City Size</p>
         <PopRadioButtons
           buttonNames={[
-            "Small | <500K",
-            "Medium | 500K - 1M",
+            "Small | <100K",
+            "Medium | 100K - 1M",
             "Large | 1M - 2M",
             "Mega | 2M+"
           ]}
@@ -110,11 +110,11 @@ const AdvancedSearchMenu = props => {
         </p>
         <GovernmentJobsDecimalSlider
           min={0}
-          max={10000000}
+          max={1000000}
           step={1000}
           marks={{
             0: "0",
-            10000000: "10,000,000"
+            1000000: "1,000,000"
           }}
           setFilters={setFilters}
         />
@@ -123,11 +123,11 @@ const AdvancedSearchMenu = props => {
         </p>
         <ManufacturingJobsDecimalSlider
           min={0}
-          max={10000000}
+          max={1000000}
           step={1000}
           marks={{
             0: "0",
-            10000000: "10,000,000"
+            1000000: "1,000,000"
           }}
           setFilters={setFilters}
         />

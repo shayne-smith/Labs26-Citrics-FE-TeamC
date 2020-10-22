@@ -55,7 +55,7 @@ const AdvancedSearch = () => {
     manufacturingJobsFilter: 0,
     housingPriceFilter: { low: 0, high: 9999999999 },
     covidFilter: 99999999,
-    popFilter: "large"
+    popFilter: "medium"
   });
   const [dictionary, setDictonary] = useState({});
   const [pageNumber, setPageNumber] = useState(1);
@@ -102,11 +102,11 @@ const AdvancedSearch = () => {
     popArray.map(city => {
       // filters cities based on population
       if (size === "small") {
-        if (city[1] < 500000) {
+        if (city[1] < 100000) {
           filteredResults.push(city[0]);
         }
       } else if (size === "medium") {
-        if (500000 <= city[1] && city[1] < 1000000) {
+        if (100000 <= city[1] && city[1] < 1000000) {
           filteredResults.push(city[0]);
         }
       } else if (size === "large") {
@@ -478,8 +478,6 @@ const AdvancedSearch = () => {
         <Link id="menuLogoWrapper" to="/">
           <DriftlyLogo id="menuLogo" />
         </Link>
-        <h3 id="advanced-search-title">Refine your search</h3>
-        <AdvancedSearchMenu id="advanced-search-menu" setFilters={setFilters} />
         <div
           id="get-results-button"
           role="button"
@@ -490,6 +488,8 @@ const AdvancedSearch = () => {
         >
           Get Results
         </div>
+        <h3 id="advanced-search-title">Refine your search</h3>
+        <AdvancedSearchMenu id="advanced-search-menu" setFilters={setFilters} />
       </MenuWrapper>
       <ResultsWrapper>
         <Header />
