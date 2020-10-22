@@ -11,7 +11,7 @@ const CardContainer = styled.div`
   background-repeat: no-repeat;
   color: whitesmoke;
   max-width: 30%;
-  height: 200px;
+  height: 250px;
   min-width: 300px;
   margin: 2rem;
   border-radius: 3px;
@@ -84,16 +84,16 @@ function CardComparison(props) {
       >
         <MinusCircleOutlined className="plus-sign" />
       </button>
-      {props.showStats && (
+      {
         <div className="stat-section">
           <ul>
-            <li>Housing: ${props.data.housing}</li>
+            <li>Average House Price: ${props.data.housing}</li>
             <li>Total Manufacturing: {props.data.jobs.toFixed(2)}</li>
             <li>Weather: {props.data.weather.toFixed(0)}°F</li>
             <li>Covid Positive Cases: {props.data.covid.toFixed(0)} cases</li>
           </ul>
         </div>
-      )}
+      }
     </CardContainer>
   );
 }

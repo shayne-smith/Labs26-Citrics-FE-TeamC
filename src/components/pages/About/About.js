@@ -38,7 +38,7 @@ const Footer = styled.div`
 `;
 
 const Image = styled.img`
-  width: 15%;
+  width: 45%;
   border-radius: 0.5rem;
 `;
 function About() {
@@ -49,7 +49,9 @@ function About() {
         style={{
           textAlign: "center",
           fontFamily: "Amatic SC",
-          fontSize: "2rem"
+          fontWeight: "bold",
+          fontSize: "3rem",
+          color: "#656665"
         }}
       >
         A team from Lambda School
@@ -57,12 +59,20 @@ function About() {
       <Wrapper>
         {data.map((e, index) => (
           <El key={index}>
-            <Image alt="img" src={e.image} />
-            <h3 style={{ fontWeight: "700", fontSize: "1.4rem" }}>{e.name}</h3>
-            <p
+            <Image alt="img" src={e.image} style={{ margin: "1.5rem" }} />
+            <h3
               style={{
                 fontWeight: "700",
-                fontSize: "1.3rem",
+                fontSize: "1.5rem",
+                fontFamily: "Oswald"
+              }}
+            >
+              {e.name}
+            </h3>
+            <p
+              style={{
+                fontWeight: "bold",
+                fontSize: "1.8rem",
                 marginBottom: "0"
               }}
             >
@@ -76,7 +86,12 @@ function About() {
                 className="social"
               >
                 <GithubOutlined className="icon" />
-                <span className="text">Github</span>
+                <span
+                  className="text"
+                  style={{ fontSize: "2rem", fontWeight: "bold" }}
+                >
+                  Github
+                </span>
               </a>
               <a
                 href={e.linkedIn}
@@ -85,13 +100,18 @@ function About() {
                 className="social"
               >
                 <LinkedinOutlined className="icon" />
-                <span className="text">LinkedIn</span>
+                <span
+                  className="text"
+                  style={{ fontSize: "2rem", fontWeight: "bold" }}
+                >
+                  LinkedIn
+                </span>
               </a>
             </div>
           </El>
         ))}
       </Wrapper>
-      <Footer>
+      <Footer style={{ marginBottom: "2.5rem" }}>
         Copyright 2020{" "}
         <span style={{ color: "rgba(112, 199, 131, 0.9)" }}>Driftly Team</span>
       </Footer>
@@ -103,29 +123,29 @@ const data = [
   {
     name: "Vlad",
     role: "APL",
-    github: "",
-    linkedIn: "",
+    github: "https://github.com/vladmog",
+    linkedIn: "https://www.linkedin.com/in/vladmog/",
     image: "https://ca.slack-edge.com/ESZCHB482-W012X6RQ5G9-833633f70058-512"
   },
   {
     name: "Connor Angelis",
     role: "TPL",
-    github: "",
+    github: "https://github.com/KonstadinosAngelis",
     linkedIn: "",
     image: "https://ca.slack-edge.com/ESZCHB482-W0138D6L6UQ-bbfef33c1387-512"
   },
   {
     name: "Shayne Smith",
     role: "Full Stack Engineer",
-    github: "",
-    linkedIn: "",
+    github: "https://github.com/shayne-smith",
+    linkedIn: "https://www.linkedin.com/in/shayne-smith1/",
     image: "https://ca.slack-edge.com/ESZCHB482-W0123RTM51V-bf749dc3288f-512"
   },
   {
     name: "Guillermo Alfaro",
     role: "Full Stack Engineer",
-    github: "",
-    linkedIn: "",
+    github: "https://github.com/galfarotolon",
+    linkedIn: "https://www.linkedin.com/in/guillermo-alfaro/",
     image: "https://ca.slack-edge.com/ESZCHB482-W0123RTV5QX-3ba8de22b37c-512"
   },
   {
@@ -138,22 +158,22 @@ const data = [
   {
     name: "Michael Toce",
     role: "Data Scientist",
-    github: "",
-    linkedIn: "",
+    github: "https://github.com/mtoce",
+    linkedIn: "https://www.linkedin.com/in/mtoce/",
     image: "https://ca.slack-edge.com/ESZCHB482-W012JHYTBU2-e56d9a3755f2-512"
   },
   {
     name: "Rourke Struthers",
     role: "Data Scientist",
-    github: "",
-    linkedIn: "",
+    github: "https://github.com/Struth-Rourke",
+    linkedIn: "https://www.linkedin.com/in/rourkestruthers/",
     image: "https://ca.slack-edge.com/ESZCHB482-W012QNXTZMJ-4c660cb71977-512"
   },
   {
     name: "Fatai King",
     role: "Data Scientist",
-    github: "",
-    linkedIn: "",
+    github: "https://github.com/fataik1",
+    linkedIn: "https://www.linkedin.com/in/fatai-king-8b2b5a9b/",
     image: "https://ca.slack-edge.com/ESZCHB482-W012BRSS6EA-1757906d14b2-512"
   }
 ];
