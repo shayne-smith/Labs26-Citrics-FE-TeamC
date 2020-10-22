@@ -27,7 +27,7 @@ const NavDrawer = () => {
         onClose={onClose}
         visible={visible}
       >
-        <Link className="menu-link" to="/home">
+        <Link className="menu-link" to="/">
           Home
         </Link>
         <Link className="menu-link" to="/about">
