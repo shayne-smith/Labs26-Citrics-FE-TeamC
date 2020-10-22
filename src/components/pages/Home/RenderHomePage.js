@@ -80,7 +80,7 @@ function RenderHomePage() {
         className="more-filters-button"
         onClick={() => history.push("/advanced-search")}
       >
-        More Filters
+        Advanced Search
       </div>
       {isComparing && (
         <div className="comparison-container">
