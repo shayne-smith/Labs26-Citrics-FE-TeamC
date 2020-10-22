@@ -96,18 +96,10 @@ function RenderHomePage() {
           <Button
             className="compareButton"
             onClick={() => {
-              setShowStats(true);
-            }}
-          >
-            Compare Cities
-          </Button>
-          <Button
-            className="moreInfoButton"
-            onClick={() => {
               history.push("/dataviz");
             }}
           >
-            More Info
+            Compare Cities
           </Button>
         </div>
       )}
