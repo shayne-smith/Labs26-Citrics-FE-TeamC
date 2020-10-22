@@ -131,7 +131,7 @@ const data = [
     name: "Connor Angelis",
     role: "TPL",
     github: "https://github.com/KonstadinosAngelis",
-    linkedIn: "",
+    linkedIn: "https://www.linkedin.com/in/konstadinos/",
     image: "https://ca.slack-edge.com/ESZCHB482-W0138D6L6UQ-bbfef33c1387-512"
   },
   {
