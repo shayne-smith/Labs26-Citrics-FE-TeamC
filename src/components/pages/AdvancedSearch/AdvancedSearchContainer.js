@@ -456,6 +456,7 @@ const AdvancedSearch = () => {
           break;
         case "covidFilter":
           output8 = covidFilter(f[1]);
+          break;
       }
     });
     result = intersection(

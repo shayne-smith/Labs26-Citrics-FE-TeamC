@@ -106,7 +106,7 @@ function RenderHomePage() {
       )}
 
       <div className="card-container">
-        {sortedByPop.map(entry => {
+        {/* {sortedByPop.map(entry => {
           return cities.map((city, index) => {
             return entry[1] === city.location ? (
               <CityCard
@@ -129,6 +129,26 @@ function RenderHomePage() {
               false
             );
           });
+        })} */}
+        {cities.map((city, index) => {
+          return (
+            <CityCard
+              key={index}
+              city={city.location}
+              image={city.image}
+              index={index}
+              setIsComparing={setIsComparing}
+              addCity={addCity}
+              getData={getData}
+              cities={cities}
+              weather={weather}
+              jobs={jobs}
+              housing={housing}
+              covid={covid}
+              population={population}
+              housingPredict={housingPredict}
+            />
+          );
         })}
       </div>
       {loading ? <Loading>Loading ...</Loading> : <End>No more data!</End>}
